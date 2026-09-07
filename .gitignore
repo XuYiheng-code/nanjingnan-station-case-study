@@ -9,6 +9,9 @@ Thumbs.db
 **/__pycache__/
 **/dist/
 
+# 旧版整合包与上线包留在本地归档，不进仓库
+/99-历史归档/
+
 # Heavy video masters stay in the local archive.
 # Only the small agent demo films are kept in Git.
 *.mp4

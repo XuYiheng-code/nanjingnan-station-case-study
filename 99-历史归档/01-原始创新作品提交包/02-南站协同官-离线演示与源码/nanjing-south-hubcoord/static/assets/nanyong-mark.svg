@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">南雍治道标志</title>
-  <path fill="#F28C45" d="M32 3C15.7 3 7 12.7 7 29v6c0 16.3 8.7 26 25 26s25-9.7 25-26v-6C57 12.7 48.3 3 32 3Z"/>
-  <g fill="none" stroke="#11100E" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke-width="2.8" d="M14 28c4.5-9.5 10.5-14.2 18-14.2S45.5 18.5 50 28"/>
-    <path stroke-width="2.4" d="M13.5 28h37M18.5 35h27M24 42h16"/>
-  </g>
-  <circle cx="32" cy="28" r="2.8" fill="#FFFDF8"/>
-</svg>
