@@ -4,9 +4,36 @@
 > 主题：从平台化到智能化——政企共创平台企业何以化解行政分割难题？
 > 案例：南京南站跨区域公共交通枢纽。
 
-![南雍治道 · 南京南站案例封面](docs/assets/cover-banner.jpg)
+---
 
-本仓库集中存放参赛作品的**全部素材、可运行源码与成品展示**：案例分析、智能体 Demo、网页工作台、3D 沙盘、Remotion 视频工程、设计资产，以及对外展示的 GitHub Pages 站点。根目录的 [`index.html`](./index.html) 是作品合集的对外门户；`docs/assets/` 收录本 README 引用的封面与 Logo。
+## 在线预览（GitHub Pages 已上线）
+
+👉 **https://xuyiheng-code.github.io/nanjingnan-station-case-study/**
+
+`index.html` 是仓库的对外门户，复用南站协同官参赛工作台的设计系统。下面是该页面的完整截图：
+
+### 01 / Hero — 主标题与六行星轨图
+
+![南雍治道 Hero](docs/screenshots/hero.png)
+
+### 02 / Shared story world — SC-01 时间线 T+00 → T+45
+
+![SC-01 时间线](docs/screenshots/story.png)
+
+### 03 / Portfolio — 作品卡片（视频、网页、智能体、3D 沙盘）
+
+![作品合集](docs/screenshots/works.png)
+![作品合集·续](docs/screenshots/works2.png)
+
+### 04 / Source code — 源码入口（深色段 6 项目）
+
+![源码段](docs/screenshots/code.png)
+![源码项目卡片](docs/screenshots/code_grid.png)
+
+### 05 / Archive — 材料与规则 + footer
+
+![材料与规则](docs/screenshots/materials.png)
+![Footer](docs/screenshots/footer.png)
 
 ---
 
@@ -33,8 +60,8 @@
 
 ## 在线入口
 
-- **作品合集首页**：[`index.html`](./index.html)（GitHub Pages 部署后即为线上入口）
-- **小南 · 案例问答助手**：[https://qaq.hubcoord.cn/assistant.html](https://qaq.hubcoord.cn/assistant.html)
+- **作品合集首页**：https://xuyiheng-code.github.io/nanjingnan-station-case-study/
+- **小南 · 案例问答助手**：https://qaq.hubcoord.cn/assistant.html
 - **南站工作台网页（本地版）**：[`03-可运行源码/南站工作台网页-hubcoord-case/index.html`](./03-可运行源码/南站工作台网页-hubcoord-case/index.html)
 - **南京南站 3D 运行沙盘**：[`03-可运行源码/南京南站3D仿真-station-sim-3d/`](./03-可运行源码/南京南站3D仿真-station-sim-3d/)
 - **案例视频 Remotion 工程**：[`03-可运行源码/案例视频Remotion工程-case-video/`](./03-可运行源码/案例视频Remotion工程-case-video/)
