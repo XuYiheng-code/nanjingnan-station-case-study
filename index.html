@@ -1,210 +1,222 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="南雍治道：南京南站公共管理案例、创新作品、网页 Demo、3D 沙盘和案例视频合集。" />
-    <meta name="theme-color" content="#17120d" />
-    <title>南雍治道｜南京南站案例作品合集</title>
-    <link rel="icon" href="03-可运行源码/南站工作台网页-hubcoord-case/assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="site-assets/portfolio.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="南雍治道作品合集">
-        <img src="05-设计与视觉资产/assets/logo-concepts/nanyong-zhidao-final.svg" alt="" />
-        <span>南雍治道 · 南京南站案例作品合集</span>
-      </a>
-      <nav aria-label="作品导航">
-        <a href="#works">作品</a>
-        <a href="#code">源码</a>
-        <a href="#materials">材料</a>
-        <a href="README.md">README</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="南雍治道：南京南站公共管理案例作品合集——案例视频、交互网页、案例智能体、3D 沙盘与可运行源码。">
+  <meta name="theme-color" content="#07182d">
+  <title>南雍治道 · 南京南站案例作品合集</title>
+  <link rel="icon" href="docs/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#07182d;--ink2:#102d4c;--paper:#f6f8fa;--white:#fff;--line:#d7e1e9;--text:#162b40;--slate:#53687b;--muted:#8493a3;--gold:#bd9646;--goldp:#f6ecd7;--jade:#187b6b;--jadep:#dcefe9;--blue:#327cb7;--bluep:#deedf8;--red:#bf5b51;--redp:#f8e4e1;--violet:#6b59aa;--violetp:#edeafa;--serif:"Noto Serif SC","Source Han Serif SC","Songti SC",serif;--sans:"Noto Sans SC","Source Han Sans SC","PingFang SC",sans-serif;--mono:"IBM Plex Mono",Consolas,monospace;--shadow:0 18px 45px rgba(7,24,45,.11);--shadow-sm:0 5px 16px rgba(7,24,45,.07);--max:1190px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--text);background:var(--paper);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased} a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(calc(100% - 44px),var(--max));margin:auto}.section{padding:102px 0}.section.white{background:var(--white)}.section.ink{color:#fff;background:var(--ink)}.section.tint{background:linear-gradient(180deg,#fff,#eff4f7)}.eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:var(--gold);font:600 12px/1 var(--mono);letter-spacing:.14em}.eyebrow:before{content:"";width:26px;height:1px;background:currentColor}.title{max-width:880px;margin:0;font:700 clamp(31px,4vw,50px)/1.28 var(--serif);letter-spacing:-.04em}.lead{max-width:760px;margin:17px 0 0;color:var(--slate);font-size:16px}.ink .lead{color:#bed0dd}.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:700;line-height:1.2}.tag:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.p0{background:var(--goldp);color:#89651d}.p1{background:var(--bluep);color:#20699d}.fact{background:var(--bluep);color:#276d9f}.research{background:var(--goldp);color:#87631d}.sim{background:#edf0f3;color:#627587}.safe{background:var(--jadep);color:#0d6758}.warn{background:var(--redp);color:#a3443a}
+    .top{position:fixed;z-index:20;top:0;left:0;right:0;height:64px;color:#eaf2f7;background:rgba(7,24,45,.89);border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)}.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;white-space:nowrap}.brand b{display:grid;place-items:center;width:29px;height:29px;border:1px solid #d8b86a;color:#e6cf99;font:600 12px var(--mono)}.nav{display:flex;gap:21px;align-items:center;color:#c2d0db;font-size:12px}.nav a{transition:.2s}.nav a:hover,.nav a.active{color:#ead39c}.nav .go{padding:7px 12px;border:1px solid #c8a455;color:#ead39c}
+    .hero{min-height:810px;position:relative;display:flex;overflow:hidden;color:#fff;background:radial-gradient(circle at 80% 25%,rgba(47,122,181,.32),transparent 31%),linear-gradient(125deg,#061426,#0d2b49 62%,#123455)}.hero:before{content:"";position:absolute;inset:0;opacity:.27;background-image:linear-gradient(rgba(210,225,237,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(210,225,237,.18) 1px,transparent 1px);background-size:53px 53px;mask-image:linear-gradient(90deg,#000,transparent 84%)}.hero:after{content:"";position:absolute;width:72vw;height:72vw;right:-32vw;bottom:-41vw;border:1px solid rgba(222,191,115,.26);border-radius:50%;box-shadow:0 0 0 70px rgba(222,191,115,.025),0 0 0 140px rgba(222,191,115,.018)}.hero .wrap{z-index:1;display:grid;grid-template-columns:1.14fr .86fr;align-items:center;gap:50px;padding:125px 0 77px}.kicker{margin-bottom:23px;color:#e5cb8e;font:500 13px var(--mono);letter-spacing:.13em}.hero h1{max-width:790px;margin:0;font:900 clamp(48px,6.6vw,81px)/1.1 var(--serif);letter-spacing:-.075em}.hero h1 em{color:#d9b75e;font-style:normal}.hero p{max-width:670px;margin:25px 0 0;color:#cbd6e0;font-size:18px}.hero-notes{display:flex;gap:19px;flex-wrap:wrap;margin-top:37px;color:#a9bccb;font-size:12px}.hero-notes span{display:flex;align-items:center;gap:7px}.hero-notes i{width:5px;height:5px;transform:rotate(45deg);background:#d9b75e}.constellation{position:relative;width:min(100%,460px);aspect-ratio:1;margin-left:auto}.constellation .orbit{position:absolute;border:1px solid rgba(203,220,235,.26);border-radius:50%}.constellation .o1{inset:7%}.constellation .o2{inset:21%;border-color:rgba(224,184,96,.6)}.constellation .o3{inset:36%}.constellation>.core{position:absolute;inset:39%;display:grid;place-items:center;border-radius:50%;background:#d9b75e;color:#08213b;box-shadow:0 0 0 12px rgba(217,183,94,.11),0 0 43px rgba(217,183,94,.34);text-align:center;font:700 16px/1.35 var(--serif)}.orbital{position:absolute;display:grid;place-items:center;width:73px;height:73px;border:1px solid rgba(220,231,240,.55);border-radius:50%;background:rgba(10,39,68,.9);color:#dce8f1;text-align:center;font-size:11px;line-height:1.25;box-shadow:0 8px 17px rgba(0,0,0,.13)}.orbital small{display:block;color:#e8cd8c;font:600 10px var(--mono);letter-spacing:.07em}.a{top:0;left:41%}.b{top:23%;right:1%}.c{bottom:5%;right:12%}.d{bottom:2%;left:17%}.e{top:46%;left:0}.f{top:19%;left:9%}.scroll{position:absolute;z-index:1;bottom:24px;left:50%;color:#b7c9d8;font:11px var(--mono);letter-spacing:.13em;transform:translateX(-50%)}.scroll:after{content:"";display:block;width:1px;height:28px;margin:8px auto 0;background:#d9b75e}
+    .decision{display:grid;grid-template-columns:.8fr 1.2fr;margin-top:50px;overflow:hidden;border:1px solid #264b6b;border-radius:17px;background:#0c263f;color:#fff;box-shadow:var(--shadow)}.decision-aside{padding:37px;background:linear-gradient(145deg,#153b61,#0a2038)}.decision-aside h3{margin:13px 0;font:700 29px/1.35 var(--serif)}.decision-aside p{margin:0;color:#c4d1dc;font-size:14px}.decision-list{padding:20px 34px}.decision-row{display:grid;grid-template-columns:32px 1fr auto;gap:13px;align-items:center;padding:15px 0;border-bottom:1px solid rgba(220,234,244,.13)}.decision-row:last-child{border:0}.decision-row b{display:grid;place-items:center;width:27px;height:27px;border:1px solid #7691a8;border-radius:50%;color:#bad0df;font:500 11px var(--mono)}.decision-row strong{display:block;font-size:14px}.decision-row span{display:block;color:#aec0ce;font-size:12px}.decision-row em{color:#e7cc8c;font:500 11px var(--mono);font-style:normal;white-space:nowrap}
+    .rule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:49px}.rule{padding:26px;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow-sm)}.rule small{color:var(--gold);font:600 11px var(--mono);letter-spacing:.1em}.rule h3{margin:15px 0 8px;font:700 20px var(--serif)}.rule p{margin:0;color:var(--slate);font-size:13px}
+    .story{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:54px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff}.story-step{position:relative;min-height:245px;padding:24px 19px;border-right:1px solid var(--line)}.story-step:last-child{border:0}.story-step:after{content:"→";position:absolute;z-index:1;display:grid;place-items:center;top:50%;right:-11px;width:22px;height:22px;border:1px solid var(--line);border-radius:50%;color:var(--gold);background:#fff;font-size:12px}.story-step:last-child:after{display:none}.story-step .num{color:var(--gold);font:600 11px var(--mono);letter-spacing:.1em}.story-step h3{margin:11px 0 7px;font:700 18px/1.35 var(--serif)}.story-step p{margin:0;color:var(--slate);font-size:12px;line-height:1.7}.story-step code{display:block;margin-top:14px;color:#74879a;font:500 10px/1.5 var(--mono);white-space:normal}
+    .portfolio-layout{display:grid;grid-template-columns:318px 1fr;gap:25px;margin-top:51px}.work-selector{display:grid;gap:8px;align-content:start}.work-btn{display:grid;grid-template-columns:33px 1fr auto;gap:10px;align-items:center;padding:15px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--slate);text-align:left;cursor:pointer;transition:.2s}.work-btn:hover{border-color:#c3a256;color:var(--ink)}.work-btn.active{color:#fff;border-color:var(--ink);background:var(--ink);box-shadow:var(--shadow-sm)}.work-btn .index{color:var(--gold);font:600 11px var(--mono)}.work-btn.active .index{color:#e3c67d}.work-btn strong{display:block;font-size:13px}.work-btn small{display:block;margin-top:1px;font-size:10px;color:#8091a1}.work-btn.active small{color:#aabfce}.work-btn em{font:600 10px var(--mono);font-style:normal}.work-panel{min-height:505px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm)}.work-head{display:flex;justify-content:space-between;gap:20px;padding:31px 34px;border-bottom:1px solid var(--line);background:linear-gradient(110deg,#fbfcfd,#edf4f8)}.work-code{margin-bottom:7px;color:var(--gold);font:600 11px var(--mono);letter-spacing:.1em}.work-head h3{margin:0;font:700 30px/1.25 var(--serif)}.work-head p{max-width:580px;margin:10px 0 0;color:var(--slate);font-size:13px}.work-actions{display:flex;align-items:flex-start;gap:7px;white-space:nowrap}.work-body{display:grid;grid-template-columns:1fr 1fr;gap:0}.work-cell{padding:25px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.work-cell:nth-child(2n){border-right:0}.work-cell:nth-last-child(-n+2){border-bottom:0}.work-cell h4{margin:0 0 10px;color:var(--ink2);font:700 15px var(--serif)}.work-cell p{margin:0;color:var(--slate);font-size:12px}.work-cell ul{margin:0;padding:0;list-style:none}.work-cell li{margin:7px 0;color:var(--slate);font-size:12px}.work-cell li:before{content:"—";margin-right:7px;color:var(--gold)}
+    .system-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:28px;align-items:stretch;margin-top:53px}.system-side{padding:35px;border-radius:14px;background:#eef4f7;border:1px solid #d9e5eb}.system-side h3{margin:9px 0 12px;font:700 27px/1.3 var(--serif)}.system-side p{margin:0;color:var(--slate);font-size:13px}.key-list{margin:23px 0 0;padding:0;list-style:none}.key-list li{display:flex;justify-content:space-between;gap:13px;padding:11px 0;border-bottom:1px dashed #c8d6df;font-size:12px}.key-list li:last-child{border:0}.key-list b{color:var(--ink2)}.key-list span{color:var(--slate);text-align:right}.architecture{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr}.arch{min-height:325px;padding:25px;border:1px solid rgba(216,229,239,.19);border-radius:13px;background:rgba(255,255,255,.055)}.arch.core{border-color:rgba(218,183,93,.68);background:linear-gradient(155deg,rgba(218,183,93,.18),rgba(255,255,255,.055))}.arch h3{margin:12px 0;font:700 20px var(--serif)}.arch p{margin:0;color:#c2d2de;font-size:12px}.arch ul{margin:15px 0 0;padding:0;list-style:none}.arch li{margin:7px 0;color:#e8f0f5;font-size:12px}.arch li:before{content:"—";margin-right:7px;color:#e4c779}.arrow{display:grid;place-items:center;color:#e1c374;font:24px var(--serif)}
+    .ledger{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-top:43px}.ledger-card{padding:23px;border:1px solid var(--line);border-radius:12px;background:#fff}.ledger-card h3{margin:12px 0 7px;font:700 18px var(--serif)}.ledger-card p{margin:0;color:var(--slate);font-size:12px}.ledger-card code{display:block;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);color:#7d8f9e;font:10px/1.5 var(--mono)}
+    .sprint{display:grid;grid-template-columns:245px 1fr;margin-top:53px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff}.sprint-aside{padding:35px;background:#f0f5f8}.sprint-aside h3{margin:9px 0;font:700 28px/1.35 var(--serif)}.sprint-aside p{margin:0;color:var(--slate);font-size:13px}.sprint-list{padding:26px 33px}.sprint-row{display:grid;grid-template-columns:108px 1fr auto;gap:18px;align-items:start;padding:16px 0;border-bottom:1px dashed var(--line)}.sprint-row:last-child{border:0}.sprint-row time{color:var(--gold);font:600 11px var(--mono);letter-spacing:.05em}.sprint-row h4{margin:0;font-size:14px}.sprint-row p{margin:3px 0 0;color:var(--slate);font-size:12px}.sprint-row span{color:#506a7e;font:500 10px var(--mono);white-space:nowrap}
+    .checklist{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}.check{padding:24px;border:1px solid rgba(218,229,239,.18);border-radius:12px;background:rgba(255,255,255,.055)}.check .n{color:#e4c77c;font:600 11px var(--mono);letter-spacing:.1em}.check h3{margin:11px 0 7px;font:700 19px var(--serif)}.check p{margin:0;color:#bdcedb;font-size:12px}.cutline{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}.cut{padding:26px;border-radius:13px;background:#fff;border:1px solid var(--line)}.cut h3{margin:0 0 9px;font:700 20px var(--serif)}.cut p{margin:0;color:var(--slate);font-size:13px}.cut ul{margin:13px 0 0;padding:0;list-style:none}.cut li{margin:8px 0;color:var(--slate);font-size:12px}.cut li:before{content:"✓";margin-right:8px;color:var(--jade);font-weight:700}.cut.warn li:before{content:"×";color:var(--red)}.foot{padding:39px 0;background:#061426;color:#afc1d0;font-size:12px}.foot .wrap{display:flex;justify-content:space-between;gap:25px}.foot b{display:block;color:#e8d099;font:600 12px var(--mono);letter-spacing:.1em}.foot p{max-width:710px;margin:8px 0 0;line-height:1.75}.reveal{opacity:0;transform:translateY(15px);transition:.55s ease}.reveal.in{opacity:1;transform:translateY(0)}
+    @media(max-width:980px){.nav{display:none}.hero .wrap,.decision,.portfolio-layout,.system-grid,.sprint{grid-template-columns:1fr}.hero{min-height:auto}.constellation{max-width:370px;margin:auto}.decision-aside{padding:28px}.story{grid-template-columns:repeat(3,1fr)}.story-step:nth-child(3):after{display:none}.architecture{grid-template-columns:1fr;gap:12px}.arrow{height:28px;transform:rotate(90deg)}.ledger{grid-template-columns:1fr 1fr}.work-selector{grid-template-columns:repeat(3,1fr)}.work-btn{grid-template-columns:25px 1fr}.work-btn em{display:none}}
+    @media(max-width:650px){.section{padding:72px 0}.wrap{width:min(calc(100% - 30px),var(--max))}.hero .wrap{padding:111px 0 63px;gap:43px}.hero h1{font-size:49px}.hero p{font-size:15px}.rule-grid,.story,.work-body,.ledger,.checklist,.cutline{grid-template-columns:1fr}.story-step{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}.story-step:after{top:auto;right:auto;bottom:-11px;left:50%;transform:rotate(90deg)}.story-step:nth-child(3):after{display:grid}.work-selector{grid-template-columns:1fr 1fr}.work-head{padding:25px;display:block}.work-actions{margin-top:14px}.work-cell{padding:22px;border-right:0;border-bottom:1px solid var(--line)}.work-cell:nth-last-child(-n+2){border-bottom:1px solid var(--line)}.work-cell:last-child{border-bottom:0}.sprint-aside,.sprint-list{padding:25px}.sprint-row{grid-template-columns:1fr;gap:4px}.foot .wrap{display:block}.foot .wrap>div+div{margin-top:15px}}
+    /* v1.1 · 让“共用底座”成为主力智能体的质量闸门，而非一组被挤压的技术卡片 */
+    .system-manifest{display:grid;grid-template-columns:1.16fr .84fr;gap:1px;overflow:hidden;margin:37px 0 0;border:1px solid rgba(222,234,244,.21);border-radius:16px;background:rgba(222,234,244,.17);box-shadow:0 20px 44px rgba(0,0,0,.13)}
+    .manifest-main{padding:28px 31px;background:linear-gradient(115deg,rgba(224,187,101,.19),rgba(255,255,255,.045))}.manifest-main small{color:#e9ce89;font:600 11px var(--mono);letter-spacing:.12em}.manifest-main h3{margin:10px 0 7px;color:#fff;font:700 25px/1.35 var(--serif)}.manifest-main p{max-width:690px;margin:0;color:#c3d3df;font-size:13px}
+    .manifest-rules{display:grid;align-content:center;gap:11px;padding:25px 30px;background:rgba(4,17,31,.32)}.manifest-rule{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}.manifest-rule b{display:grid;place-items:center;width:24px;height:24px;border:1px solid #d8b766;border-radius:50%;color:#e7cb88;font:600 10px var(--mono)}.manifest-rule span{display:block;color:#d5e0e9;font-size:12px;line-height:1.6}.manifest-rule strong{color:#fff}
+    .system-grid{grid-template-columns:minmax(285px,.74fr) minmax(0,1.26fr);gap:25px}.system-grid>*{min-width:0}.architecture{min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.architecture .arrow{display:none}.arch{position:relative;min-width:0;min-height:340px;padding:25px 22px;overflow:visible}.arch:not(:last-of-type)::after{content:"→";position:absolute;z-index:3;top:50%;right:-25px;display:grid;place-items:center;width:23px;height:23px;border:1px solid rgba(220,232,241,.32);border-radius:50%;background:#0b2640;color:#e7c676;font-size:12px;transform:translateY(-50%)}.arch h3{font-size:19px;word-break:keep-all}.arch p,.arch li{overflow-wrap:anywhere}.agent-anchor{position:relative;border-color:#d8b766!important;background:linear-gradient(145deg,rgba(218,183,93,.22),rgba(255,255,255,.055))!important}.agent-anchor:before{content:"主引擎";position:absolute;top:13px;right:13px;padding:3px 7px;border:1px solid rgba(225,195,118,.72);color:#edcf86;font:600 10px var(--mono);letter-spacing:.08em}.work-btn[data-work="agent"]{border-color:#c7a257;background:linear-gradient(100deg,#fffaf0,#fff)}.work-btn[data-work="agent"] strong{color:#6c4e17}.work-btn[data-work="agent"]:after{content:"主力";grid-column:2;color:#a27b2c;font:600 10px var(--mono);letter-spacing:.08em}.work-btn[data-work="agent"].active:after{color:#e7cc8b}.work-btn[data-work="agent"].active{background:linear-gradient(135deg,#15395c,#0a1f36);border-color:#d4b468}
+    @media(max-width:980px){.system-manifest{grid-template-columns:1fr}.architecture{grid-template-columns:repeat(3,minmax(0,1fr))}.arch{min-height:300px}.arch:not(:last-of-type)::after{right:-21px}.system-grid{grid-template-columns:1fr}}
+    @media(max-width:650px){.system-manifest{margin-top:27px}.manifest-main,.manifest-rules{padding:24px}.architecture{grid-template-columns:1fr}.arch{min-height:auto}.arch:not(:last-of-type)::after{top:auto;right:auto;bottom:-25px;left:50%;transform:translateX(-50%) rotate(90deg)}.work-btn[data-work="agent"]:after{display:block}}
+  
+    /* 作品合集首页增补：卡片网格、媒体块、仓库结构表 */
+    .works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:42px}
+    .work-card{display:flex;flex-direction:column;overflow:hidden;background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);transition:.28s}
+    .work-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .work-card .media{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0d2b49}
+    .work-card .media img,.work-card .media video{width:100%;height:100%;object-fit:cover;display:block}
+    .work-card .body{padding:22px 24px 24px}
+    .work-card h3{margin:0 0 8px;font:700 21px/1.35 var(--serif);letter-spacing:-.02em}
+    .work-card p{margin:0;color:var(--slate);font-size:14px}
+    .work-card .tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 13px}
+    .work-card .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border:1px solid var(--ink);border-radius:99px;color:var(--ink);font-size:13px;font-weight:600;transition:.2s}
+    .btn:hover{color:#fff;background:var(--ink)}
+    .btn.ghost{border-color:var(--line);color:var(--slate)}
+    .btn.ghost:hover{color:#fff;background:var(--ink2);border-color:var(--ink2)}
+    .repo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:42px}
+    .repo-cell{padding:24px;background:var(--white);border:1px solid var(--line);border-radius:13px}
+    .repo-cell b{display:block;color:var(--gold);font:600 11px/1 var(--mono);letter-spacing:.12em}
+    .repo-cell h4{margin:9px 0 7px;font:700 18px/1.4 var(--serif)}
+    .repo-cell p{margin:0;color:var(--slate);font-size:13px}
+    .repo-cell code{display:inline-block;margin-top:11px;padding:3px 8px;border-radius:6px;background:#eef2f6;color:var(--slate);font:500 12px var(--mono)}
+    .banner{width:100%;margin-top:38px;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm)}
+    @media(max-width:980px){.works,.repo-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <nav class="top" aria-label="页面导航"><div class="wrap">
+    <a class="brand" href="#top"><b>NY</b>南雍治道 · 南京南站案例作品合集</a>
+    <div class="nav">
+      <a href="#story">案例主线</a>
+      <a href="#works">作品</a>
+      <a href="#code">源码</a>
+      <a href="#materials">材料</a>
+      <a class="go" href="README.md">README</a>
+    </div>
+  </div></nav>
 
-    <main id="top">
-      <section class="hero">
-        <div class="shell hero-inner">
-          <div class="hero-title-wrap">
-            <h1>南雍治道｜南京南站案例作品合集</h1>
-          </div>
-          <aside class="hero-panel" aria-label="作品视觉标识">
-            <img src="05-设计与视觉资产/assets/logo-concepts/南雍治道_LOGO_最终版.png" alt="南雍治道 Logo" />
-          </aside>
-        </div>
-      </section>
+  <header class="hero" id="top"><div class="wrap"><div>
+    <div class="kicker">2026 中国智能社会治理公共政策案例分析大赛 · 参赛作品</div>
+    <h1>从平台化到智能化<br><em>政企共创平台企业</em><br>何以化解行政分割</h1>
+    <p>南京南站地处苏皖交界，长期存在“九龙治水”式的行政分割。本作品集以同一案例、同一主场景组织六种表达形式：视频让人看见困境，网页把边界摆出来，智能体让人换位追问，3D 沙盘解释空间与机制的后果。</p>
+    <div class="hero-notes">
+      <span><i></i>以南京南站跨区域公共交通枢纽为例</span>
+      <span><i></i>统一主场景 SC-01</span>
+      <span><i></i>一套证据与规则账本</span>
+    </div>
+  </div>
+  <div class="constellation" aria-label="作品形态">
+    <i class="orbit o1"></i><i class="orbit o2"></i><i class="orbit o3"></i>
+    <div class="core">南雍<br>治道</div>
+    <div class="orbital a"><small>01</small>案例视频</div>
+    <div class="orbital b"><small>02</small>交互网页</div>
+    <div class="orbital c"><small>03</small>案例智能体</div>
+    <div class="orbital d"><small>04</small>3D 沙盘</div>
+    <div class="orbital e"><small>05</small>分析稿</div>
+    <div class="orbital f"><small>06</small>视觉资产</div>
+  </div></div><div class="scroll">SCROLL TO WORKS</div></header>
 
-      <section class="section" id="works">
-        <div class="shell">
-          <div class="section-title">
-            <div>
-              <p class="kicker">Works</p>
-              <h2>对外展示入口</h2>
-            </div>
-            <p>优先放能直接打开、能被评审或同学快速理解的成品。</p>
-          </div>
-
-          <div class="grid feature-grid">
-            <article class="work-card">
-              <video controls preload="metadata" poster="02-终版案例视频/南京南站案例视频_封面.jpg">
-                <source src="web-media/nanjing-south-case-preview.mp4" type="video/mp4" />
-              </video>
-              <div class="card-body">
-                <span class="tag">案例视频</span>
-                <h3>南京南站案例片</h3>
-                <p>用两分钟呈现“九龙治水”、平台企业进入和智能化治理边界。网页内嵌的是 GitHub 友好的预览版。</p>
-                <div class="links">
-                  <a class="button primary" href="web-media/nanjing-south-case-preview.mp4">播放预览</a>
-                  <a class="button" href="02-终版案例视频/README.md">视频包说明</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card">
-              <video controls preload="metadata" poster="02-终版案例视频/播放页预览.png">
-                <source src="web-media/hubcoord-guide-preview.mp4" type="video/mp4" />
-              </video>
-              <div class="card-body">
-                <span class="tag">创新作品</span>
-                <h3>南站协同官导览</h3>
-                <p>介绍智能体如何围绕跨域枢纽事件整理证据、提示权责边界、起草协同议题卡并保留人工确认。</p>
-                <div class="links">
-                  <a class="button primary" href="web-media/hubcoord-guide-preview.mp4">播放导览</a>
-                  <a class="button" href="01-原始创新作品提交包/00-请先阅读.md">提交包说明</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card">
-              <img src="04-网页成品与展示材料/截图与视觉输出/hubcoord-judge-home.png" alt="南站协同官网页首页截图" />
-              <div class="card-body">
-                <span class="tag">网页 Demo</span>
-                <h3>南站协同官工作台</h3>
-                <p>一个面向评审展示的离线网页，展示案例叙事、协同官作品和关键机制分析。</p>
-                <div class="links">
-                  <a class="button primary" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/index.html">打开网页</a>
-                  <a class="button" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/agent-home.html">协同官入口</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card">
-              <img src="04-网页成品与展示材料/截图与视觉输出/xiaonan-assistant-workbench.png" alt="小南案例问答工作台桌面界面" />
-              <div class="card-body">
-                <span class="tag">RAG 问答助手</span>
-                <h3>小南 · 案例问答助手</h3>
-                <p>基于南京南站已审阅案例材料检索回答，支持事实核对、机制分析、相关方模拟、来源展开和中文语音输入。</p>
-                <div class="links">
-                  <a class="button primary" href="https://qaq.hubcoord.cn/assistant.html" target="_blank" rel="noreferrer">打开小南</a>
-                  <a class="button" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/README.md">源码与运行说明</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section band" id="code">
-        <div class="shell">
-          <div class="section-title">
-            <div>
-              <p class="kicker">Code</p>
-              <h2>后续编码放这里</h2>
-            </div>
-            <p>每个项目保留自己的源码、文档、构建方式和验收记录；能静态打开的版本优先留在项目根目录。</p>
-          </div>
-
-          <div class="grid">
-            <article class="work-card">
-              <img src="03-可运行源码/南站工作台网页-hubcoord-case/assets/city-brain-dashboard.jpeg" alt="城市调度大屏" />
-              <div class="card-body">
-                <span class="tag">HTML / CSS / JS</span>
-                <h3>南站工作台网页</h3>
-                <p>轻量静态网页项目，案例正文与分析统一使用成品站点中的案例故事和案例分析页面。</p>
-                <div class="links">
-                  <a class="button primary" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/story.html">案例正文</a>
-                  <a class="button" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/analysis.html">案例分析</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card">
-              <img src="05-设计与视觉资产/output/posters/海报方案B_治理界面.png" alt="治理界面海报" />
-              <div class="card-body">
-                <span class="tag">React / Three.js</span>
-                <h3>南京南站 3D 运行沙盘</h3>
-                <p>用于呈现站场空间、客流、事件演进和跨部门决策的三维治理沙盘。</p>
-                <div class="links">
-                  <a class="button primary" href="03-可运行源码/南京南站3D仿真-station-sim-3d/index.html">打开沙盘</a>
-                  <a class="button" href="03-可运行源码/南京南站3D仿真-station-sim-3d/README.md">开发说明</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card">
-              <img src="02-终版案例视频/关键帧总览.jpg" alt="案例视频关键帧总览" />
-              <div class="card-body">
-                <span class="tag">Remotion</span>
-                <h3>案例视频工程</h3>
-                <p>保留视频时间线、制作数据、旁白文本和代码。渲染输出不进 Git，终版成片另行管理。</p>
-                <div class="links">
-                  <a class="button primary" href="03-可运行源码/案例视频Remotion工程-case-video/production/design-spec.md">设计说明</a>
-                  <a class="button" href="03-可运行源码/案例视频Remotion工程-case-video/src/Root.tsx">源码入口</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="materials">
-        <div class="shell">
-          <div class="section-title">
-            <div>
-              <p class="kicker">Archive</p>
-              <h2>材料与规则</h2>
-            </div>
-            <p>这些文件帮助团队知道材料从哪里来、后来应放到哪里、上线时哪些内容需要换成网页预览版。</p>
-          </div>
-
-          <div class="source-list">
-            <a class="source-item" href="00-总览/文件清单.txt">
-              <strong>文件清单</strong>
-              <p>自动生成的全量文件索引，适合查找具体源码、页面、视频和说明。</p>
-            </a>
-            <a class="source-item" href="00-总览/后续开发与GitHub上线说明.md">
-              <strong>开发与上线说明</strong>
-              <p>后续项目放置规则、GitHub Pages 发布方式和大视频处理边界。</p>
-            </a>
-            <a class="source-item" href="03-可运行源码/README.md">
-              <strong>源码目录规则</strong>
-              <p>每个新项目建议保留的 README、源码、静态交付页、验收记录和数据边界。</p>
-            </a>
-            <a class="source-item" href="04-网页成品与展示材料/参赛规划HTML/南站协同官-智能体完整设计与落地蓝图.html">
-              <strong>智能体落地蓝图</strong>
-              <p>南站协同官的产品范围、工程想法和参赛展示准备材料。</p>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="shell">
-        南雍治道作品合集。静态页面可直接由 GitHub Pages 托管，原始高清视频留在本地归档或发布附件中。
+  <main>
+    <section class="section white" id="story"><div class="wrap">
+      <div class="eyebrow reveal">01 / Shared story world</div>
+      <h2 class="title reveal">所有作品都从同一个现场进入，也都回到同一个协同问题</h2>
+      <p class="lead reveal">一趟晚点列车如何让压力从铁路侧传导到站区协同接口。SC-01 是教学推演场景，以访谈中已确认的机制关系为基础，用清晰标注的模拟输入呈现问题如何跨过治理边界。</p>
+      <div class="story reveal">
+        <article class="story-step"><div class="num">T+00</div><h3>运行变化</h3><p>模拟列车晚点或集中到达，客流压力首先在铁路与出站空间出现。</p><code>来源：教学模拟输入</code></article>
+        <article class="story-step"><div class="num">T+10</div><h3>场内承压</h3><p>旅客向停车场、网约车上客区和周边接驳空间扩散。</p><code>节点：出站口 / 停车区</code></article>
+        <article class="story-step"><div class="num">T+20</div><h3>压力外溢</h3><p>车辆排队与人流叠加，场内引导开始影响外围道路秩序。</p><code>节点：红线转换点</code></article>
+        <article class="story-step"><div class="num">T+25</div><h3>边界出现</h3><p>运营方可组织红线内服务，却不能独自调控外围道路或取得全部运行信息。</p><code>规则：权责地图</code></article>
+        <article class="story-step"><div class="num">T+30</div><h3>协同确认</h3><p>协同官生成证据包与协同议题卡，请实际主体确认信息、动作和时限。</p><code>输出：待确认事项</code></article>
+        <article class="story-step"><div class="num">T+45</div><h3>处置与复盘</h3><p>比较“各自处理”与“人工确认后协同”的路径，记录仍未解决的制度接口。</p><code>输出：教学复盘</code></article>
       </div>
-    </footer>
-    <script>
-      document.querySelectorAll("a[href]").forEach((link) => {
-        const rawHref = link.getAttribute("href");
-        if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("javascript:") || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) return;
-        const url = new URL(rawHref, window.location.href);
-        const samePage = url.origin === window.location.origin && url.pathname === window.location.pathname;
-        if (samePage) return;
-        link.setAttribute("target", "_blank");
-        link.setAttribute("rel", "noopener noreferrer");
-      });
-    </script>
-  </body>
+    </div></section>
+
+    <section class="section tint" id="works"><div class="wrap">
+      <div class="eyebrow reveal">02 / Portfolio</div>
+      <h2 class="title reveal">对外展示入口：能直接打开、能被快速理解的成品</h2>
+      <p class="lead reveal">下面每一件都指向仓库中的真实文件。视频采用网页友好的预览版；原始高清成片留在本地归档，不进入 Git 历史。</p>
+
+      <div class="works">
+        <article class="work-card reveal">
+          <div class="media"><video controls preload="metadata" poster="02-终版案例视频/南京南站正式参赛案例片_封面.jpg"><source src="web-media/nanjing-south-case-preview.mp4" type="video/mp4"></video></div>
+          <div class="body">
+            <div class="tags"><span class="tag p0">P0 核心</span><span class="tag fact">案例片</span></div>
+            <h3>《从平台化到智能化》案例视频</h3>
+            <p>用两分钟呈现九龙治水、平台企业进入和智能化治理边界。网页内嵌的是 GitHub 友好的预览版。</p>
+            <div class="actions"><a class="btn" href="web-media/nanjing-south-case-preview.mp4">播放预览</a><a class="btn ghost" href="02-终版案例视频/README.md">视频包说明</a></div>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="media"><video controls preload="metadata" poster="02-终版案例视频/播放页预览.png"><source src="web-media/hubcoord-guide-preview.mp4" type="video/mp4"></video></div>
+          <div class="body">
+            <div class="tags"><span class="tag p0">P0 核心</span><span class="tag research">创新作品</span></div>
+            <h3>南站协同官导览</h3>
+            <p>介绍智能体如何围绕跨域枢纽事件整理证据、提示权责边界、起草协同议题卡并保留人工确认。</p>
+            <div class="actions"><a class="btn" href="web-media/hubcoord-guide-preview.mp4">播放导览</a><a class="btn ghost" href="01-原始创新作品提交包/00-请先阅读.md">提交包说明</a></div>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="media"><img src="04-网页成品与展示材料/截图与视觉输出/hubcoord-judge-home.png" alt="南站协同官网页首页截图"></div>
+          <div class="body">
+            <div class="tags"><span class="tag p0">P0 核心</span><span class="tag fact">网页 Demo</span></div>
+            <h3>南站协同官工作台</h3>
+            <p>面向评审展示的离线网页，呈现案例叙事、协同官作品和关键机制分析，断网可用。</p>
+            <div class="actions"><a class="btn" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/index.html">打开网页</a><a class="btn ghost" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/agent-home.html">协同官入口</a></div>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="media"><img src="04-网页成品与展示材料/截图与视觉输出/xiaonan-assistant-workbench.png" alt="小南案例问答工作台界面"></div>
+          <div class="body">
+            <div class="tags"><span class="tag p0">P0 核心</span><span class="tag safe">RAG 助手</span></div>
+            <h3>小南 · 案例问答助手</h3>
+            <p>基于已审阅案例材料检索回答，支持事实核对、机制分析、相关方模拟、来源展开和中文语音输入。</p>
+            <div class="actions"><a class="btn" href="https://qaq.hubcoord.cn/assistant.html" target="_blank" rel="noreferrer">打开小南</a><a class="btn ghost" href="03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/README.md">源码说明</a></div>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="media"><img src="04-网页成品与展示材料/截图与视觉输出/hubcoord-production.png" alt="南站协同官生产环境界面"></div>
+          <div class="body">
+            <div class="tags"><span class="tag p1">P1 增强</span><span class="tag sim">React / Three.js</span></div>
+            <h3>南京南站 3D 运行沙盘</h3>
+            <p>呈现站场空间、客流、事件演进和跨部门决策的三维治理沙盘，Vite + Three.js 工程。</p>
+            <div class="actions"><a class="btn" href="03-可运行源码/南京南站3D仿真-station-sim-3d/index.html">打开沙盘</a><a class="btn ghost" href="03-可运行源码/南京南站3D仿真-station-sim-3d/README.md">开发说明</a></div>
+          </div>
+        </article>
+
+        <article class="work-card reveal">
+          <div class="media"><img src="02-终版案例视频/关键帧总览.jpg" alt="案例视频关键帧总览"></div>
+          <div class="body">
+            <div class="tags"><span class="tag p1">P1 增强</span><span class="tag sim">Remotion</span></div>
+            <h3>案例视频工程</h3>
+            <p>保留视频时间线、制作数据、旁白文本和代码。渲染输出不进 Git，终版成片另行管理。</p>
+            <div class="actions"><a class="btn" href="03-可运行源码/案例视频Remotion工程-case-video/production/design-spec.md">设计说明</a><a class="btn ghost" href="03-可运行源码/案例视频Remotion工程-case-video/src/Root.tsx">源码入口</a></div>
+          </div>
+        </article>
+      </div>
+    </div></section>
+
+    <section class="section ink" id="code"><div class="wrap">
+      <div class="eyebrow reveal">03 / Source code</div>
+      <h2 class="title reveal">后续编码放这里：每个项目自带文档、构建方式与验收记录</h2>
+      <p class="lead reveal">源码目录保留可继续开发的工程，静态可打开的版本优先留在项目根目录，便于评审直接预览。</p>
+      <div class="repo-grid">
+        <div class="repo-cell reveal"><b>AGENT · OFFLINE DEMO</b><h4>南站协同官离线演示</h4><p>规则、证据卡、评测数据与离线 Demo，含 contracts / data / eval / prompts 四类资产。</p><code>03-可运行源码/南站协同官-离线演示与源码/</code></div>
+        <div class="repo-cell reveal"><b>HTML / CSS / JS</b><h4>南站工作台网页</h4><p>轻量静态网页项目，案例正文与分析统一使用成品站点中的案例故事和案例分析页面。</p><code>03-可运行源码/南站工作台网页-hubcoord-case/</code></div>
+        <div class="repo-cell reveal"><b>VITE / THREE.JS</b><h4>南京南站 3D 仿真</h4><p>保留 dist 与源码，排除 node_modules；可通过 npm 重新构建。</p><code>03-可运行源码/南京南站3D仿真-station-sim-3d/</code></div>
+        <div class="repo-cell reveal"><b>REMOTION</b><h4>案例视频工程</h4><p>视频时间线、制作数据与旁白文本，渲染输出目录 out/ 不进仓库。</p><code>03-可运行源码/案例视频Remotion工程-case-video/</code></div>
+        <div class="repo-cell reveal"><b>SUBMISSION PACKAGE</b><h4>创新作品提交包</h4><p>“南雍治道”创新作品提交材料，含说明表、导览视频与离线演示源码。</p><code>01-原始创新作品提交包/</code></div>
+        <div class="repo-cell reveal"><b>DESIGN SYSTEM</b><h4>设计与视觉资产</h4><p>Logo、海报、设计系统与视觉输出，统一深蓝 / 金 / 玉三色编辑部风格。</p><code>05-设计与视觉资产/</code></div>
+      </div>
+    </div></section>
+
+    <section class="section white" id="materials"><div class="wrap">
+      <div class="eyebrow reveal">04 / Archive</div>
+      <h2 class="title reveal">材料与规则：知道内容从哪里来、以后该放到哪里</h2>
+      <p class="lead reveal">这些文件帮助团队理解材料的来源、后续放置规则，以及上线时哪些内容需要替换为网页预览版。</p>
+      <div class="rule-grid">
+        <article class="rule reveal"><small>FULL INDEX</small><h3>文件清单</h3><p>自动生成的全量文件索引，适合查找具体源码、页面、视频和说明。</p><p><a class="btn ghost" href="00-总览/文件清单.txt">查看清单</a></p></article>
+        <article class="rule reveal"><small>DEPLOY GUIDE</small><h3>开发与上线说明</h3><p>后续项目放置规则、GitHub Pages 发布方式和大视频处理边界。</p><p><a class="btn ghost" href="00-总览/后续开发与GitHub上线说明.md">查看说明</a></p></article>
+        <article class="rule reveal"><small>CODE RULES</small><h3>源码目录规则</h3><p>每个新项目建议保留的 README、源码、静态交付页、验收记录和数据边界。</p><p><a class="btn ghost" href="03-可运行源码/README.md">查看规则</a></p></article>
+      </div>
+      <img class="banner reveal" src="docs/assets/cover-banner.jpg" alt="南雍治道参赛作品封面">
+      <div class="rule-grid" style="margin-top:32px">
+        <article class="rule reveal"><small>WHY THIS WORKS</small><h3>评委会记住一个问题</h3><p>旅客看到的是连续的一条出站路；组织面对的却是一段段被铁路、运营、道路和属地边界切开的责任链。</p></article>
+        <article class="rule reveal"><small>WHAT TO PRIORITIZE</small><h3>先稳定核心交付</h3><p>视频、网页、智能体构成主交付；3D 沙盘与看板是增强项，服从主线进度。</p></article>
+        <article class="rule reveal"><small>WHAT NOT TO CLAIM</small><h3>这是研究与教学演示</h3><p>不虚构效果数据，不冒充官方平台，不把模型建议写成行政指令。</p></article>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap">
+    <div><b>NANYONG ZHIDAO · CASE PORTFOLIO</b><p>南雍治道作品合集。静态页面由 GitHub Pages 托管，原始高清视频留在本地归档或发布附件中。</p></div>
+    <div><b>REPOSITORY</b><p><a href="https://github.com/XuYiheng-code/nanjingnan-station-case-study" target="_blank" rel="noreferrer">XuYiheng-code/nanjingnan-station-case-study</a> · v1.0 / 2026.09.07</p></div>
+  </div></footer>
+
+  <script>
+    const observe = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(e=>observe.observe(e));
+    const links=[...document.querySelectorAll('.nav a:not(.go)')];
+    const navObserve=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-35% 0px -55% 0px'});
+    ['story','works','code','materials'].forEach(id=>{const n=document.getElementById(id); if(n) navObserve.observe(n);});
+  </script>
+</body>
 </html>
