@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: HubCoord Demo API
+  version: 1.0.0
+  description: |
+    案例教学与模拟推演 API。服务不派单、不执法、不访问真实业务系统。
+    本地默认不启用认证；设置 HUBCOORD_AUTH_USER 与 HUBCOORD_AUTH_PASSWORD 后，
+    除 /healthz 和 /readyz 外均使用 HTTP Basic Auth。
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  parameters:
+    ProjectId:
+      in: path
+      name: project_id
+      required: true
+      schema: {type: string}
+  schemas:
+    Error:
+      type: object
+      additionalProperties: false
+      required: [error_code, message]
+      properties:
+        error_code: {type: string}
+        message: {type: string}
+    JsonObject:
+      type: object
+    DecisionResult:
+      type: object
+      additionalProperties: false
+      required: [record_id, card_id, event_id, action, actor_role, occurred_at, reason, data_status, card_status, confirmed_roles]
+      properties:
+        record_id: {type: string}
+        card_id: {type: string}
+        event_id: {type: string}
+        action: {type: string, enum: [confirmed, rejected, escalated]}
+        actor_role: {type: string}
+        occurred_at: {type: string, format: date-time}
+        reason: {type: string}
+        data_status: {const: simulated}
+        card_status: {type: string, enum: [pending_human_confirmation, confirmed, rejected, escalated]}
+        confirmed_roles:
+          type: array
+          items: {type: string}
+  responses:
+    BadRequest:
+      description: 请求字段、类型、长度或业务条件不合规。
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Unauthorized:
+      description: 已启用站点认证，但未提供正确账号密码。
+      headers:
+        WWW-Authenticate:
+          schema: {type: string}
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    NotFound:
+      description: 请求的项目、情景、事件或协同议题卡不存在。
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Conflict:
+      description: 卡片已进入终态、角色重复决定，或试图确认受限事项。
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    JsonRequired:
+      description: 写接口要求 application/json。
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+security:
+  - basicAuth: []
+  - {}
+paths:
+  /healthz:
+    get:
+      security: []
+      responses:
+        '200':
+          description: 应用、知识版本和数据库状态。
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/JsonObject'}
+  /readyz:
+    get:
+      security: []
+      responses:
+        '200': {description: 服务可以接收请求。}
+        '503': {description: 数据库当前不可用。}
+  /api/v1/platform:
+    get:
+      responses:
+        '200': {description: 平台名称、版本、模块和共同约束。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /api/v1/knowledge/evidence:
+    get:
+      responses:
+        '200': {description: 当前情景引用且已批准的可展示证据卡。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /api/v1/knowledge/review-issues:
+    get:
+      responses:
+        '200': {description: 与运行时证据隔离的稿件冲突项。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /api/v1/authority:
+    get:
+      responses:
+        '200': {description: SC-01 的角色和固定权责规则。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /api/v1/assistant/query:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [question]
+              properties:
+                question: {type: string, minLength: 1, maxLength: 300}
+      responses:
+        '200': {description: 确定性证据与边界回答。}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '415': {$ref: '#/components/responses/JsonRequired'}
+  /api/v1/projects:
+    get:
+      responses:
+        '200': {description: 本地案例项目列表。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [title, research_question]
+              properties:
+                title: {type: string, minLength: 1, maxLength: 80}
+                research_question: {type: string, minLength: 1, maxLength: 400}
+      responses:
+        '201': {description: 项目已写入本地数据库。}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '415': {$ref: '#/components/responses/JsonRequired'}
+  /api/v1/projects/{project_id}:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200': {description: 项目、活动、协同卡和已完成的确认记录。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /api/v1/projects/{project_id}/report:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200': {description: 可溯源项目纪要 JSON。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /api/v1/projects/{project_id}/export.md:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: 包含判断链和决定理由的 Markdown 附件。
+          content:
+            text/markdown:
+              schema: {type: string}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /api/v1/scenarios:
+    get:
+      responses:
+        '200': {description: 可演示的模拟情景列表。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /api/v1/scenarios/{scenario_id}:
+    get:
+      parameters:
+        - in: path
+          name: scenario_id
+          required: true
+          schema: {type: string, pattern: '^SC-[0-9]{2}$'}
+      responses:
+        '200': {description: 模拟情景、时间—空间节点、事件和可扮演角色。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /api/v1/evaluation:
+    get:
+      responses:
+        '200': {description: 20 条确定性边界断言的只读运行结果。}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /api/v1/cards/draft:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [scenario_id, event_id, acting_role, proposed_action]
+              properties:
+                scenario_id: {type: string, maxLength: 40}
+                event_id: {type: string, maxLength: 80}
+                acting_role: {type: string, maxLength: 80}
+                proposed_action: {type: string, maxLength: 100}
+                project_id: {type: string, maxLength: 80}
+      responses:
+        '200':
+          description: 待人工确认的协同议题卡，或需要人工补充的结果。
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: './coordination-card.schema.json'
+                  - $ref: './manual-review-required.schema.json'
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '415': {$ref: '#/components/responses/JsonRequired'}
+  /api/v1/cards/{card_id}/decisions:
+    post:
+      parameters:
+        - in: path
+          name: card_id
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [actor_role, decision, reason]
+              properties:
+                actor_role: {type: string, minLength: 1, maxLength: 80}
+                decision: {type: string, enum: [confirmed, rejected, escalated]}
+                reason: {type: string, minLength: 1, maxLength: 500}
+      responses:
+        '200':
+          description: 决定、卡片终态、项目活动和 SQLite 审计已在同一事务中写入。
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DecisionResult'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '415': {$ref: '#/components/responses/JsonRequired'}

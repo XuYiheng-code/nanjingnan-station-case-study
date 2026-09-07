@@ -1,0 +1,15 @@
+{
+  "card_id": "CC-DEMO-SC01-E01-001",
+  "event_id": "NJS-DEMO-SC01-E01",
+  "status": "pending_human_confirmation",
+  "data_status": "simulated",
+  "knowledge_version": "v1.0",
+  "evidence_refs": ["EV-SC01-01", "EV-SC01-04"],
+  "authority_refs": ["AR-SC01-02"],
+  "summary": "模拟列车晚点与停车区域排队提示需要跨主体核验。系统仅起草协同议题，不发出外部指令。",
+  "recommended_next_step": "request_cross_party_confirmation",
+  "required_confirmations": ["operator_supervisor", "management_office_duty"],
+  "boundary_notice": "本卡只用于模拟推演；站内与外围道路的后续动作须由实际负责主体确认。",
+  "human_gate": true,
+  "created_at": "2026-08-20T18:11:00+08:00"
+}

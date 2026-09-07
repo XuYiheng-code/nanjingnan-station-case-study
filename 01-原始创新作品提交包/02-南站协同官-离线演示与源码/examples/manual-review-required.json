@@ -1,0 +1,8 @@
+{
+  "status": "manual_review_required",
+  "event_id": "NJS-DEMO-SC01-E01",
+  "reason_code": "authority_unknown",
+  "message": "拟议动作没有匹配的展示版权责规则，需由研究组补充规则或调整情景。",
+  "human_gate": true,
+  "data_status": "simulated"
+}

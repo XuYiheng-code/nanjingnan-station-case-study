@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="案例智能体南站协同官：把跨主体现场线索整理成有证据、有规则、待确认的协同议题卡，并提供可操作 Demo。">
+  <title>案例智能体：南站协同官｜操作 Demo</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <noscript><p class="noscript-note">操作 Demo 需要启用 JavaScript。你仍可返回<a href="index.html">作品首页</a>或查看<a href="solution.html">智能体系统说明</a>。</p></noscript>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="返回南雍治道案例封面"><span class="brand-seal" aria-hidden="true"><img src="assets/nanyong-mark.svg" alt=""></span><span class="brand-wordmark"><strong>南雍治道</strong><small>从平台化到智能化</small></span></a>
+    <nav class="top-nav" aria-label="展示站导航">
+      <a href="agent-home.html">协同官首页</a><a href="case.html">案例全景</a><a href="mechanism.html">南站破局</a><a href="solution.html">智能体系统</a><a href="assistant.html">问答助手</a><a href="demo.html" aria-current="page">操作 Demo</a><a href="evidence.html">证据与验证</a>
+    </nav>
+    <div class="topbar-note"><span class="pulse" aria-hidden="true"></span> CASE TEACHING · OPERABLE DEMO</div>
+  </header>
+  <div id="runtimeNotice" class="runtime-notice hidden" role="status"><span id="runtimeNoticeText"></span><button id="runtimeRetry" type="button">重新连接</button></div>
+
+  <main id="main" class="shell">
+    <section id="top" class="agent-story-hero" aria-labelledby="heroTitle">
+      <div class="story-copy">
+        <p class="eyebrow">案例智能体 · 辅助决策与模拟推演</p>
+        <p class="story-overline">先把问题说清，再把责任找对</p>
+        <h1 id="heroTitle">南站协同官</h1>
+        <div class="story-positioning"><span>一句话说明</span><strong>当一件事跨过多个部门，南站协同官先把事实、依据和确认人找齐。</strong></div>
+        <p class="story-thesis">它把分散的现场线索，变成一张相关角色都能<strong>看懂、核对和确认</strong>的协同议题卡。</p>
+        <p class="story-explain">输入的是一件现场事件，输出的是一张有证据、有规则、待确认的协同议题卡。它不替任何部门下命令。</p>
+        <div class="hero-actions"><a class="button-link primary" href="#howItWorks">看它怎么工作</a><a class="button-link" href="#lab">直接操作 Demo</a><button id="presentationModeButton" class="button-link" type="button">三分钟答辩模式</button></div>
+        <p class="hero-boundary">当前为比赛评审与案例教学原型。使用模拟事件，不接入真实业务系统。</p>
+      </div>
+
+      <figure class="agent-motion" aria-labelledby="agentMotionTitle">
+        <figcaption id="agentMotionTitle"><span>输入 → 判断 → 输出</span><strong>把一件跨部门事件变成共同议题</strong></figcaption>
+        <div class="motion-board">
+          <div class="motion-input" aria-label="输入的多源线索">
+            <span>现场线索</span>
+            <p class="order-0">列车晚点</p>
+            <p class="order-1">停车排队</p>
+            <p class="order-2">外围道路承压</p>
+          </div>
+          <div class="motion-core" aria-label="南站协同官处理过程">
+            <span class="core-ring" aria-hidden="true"><i></i></span>
+            <strong>南站<br>协同官</strong>
+            <small>找事实 · 查规则 · 找确认人</small>
+          </div>
+          <div class="motion-output" aria-label="输出协同议题卡">
+            <span>输出</span>
+            <strong>协同议题卡</strong>
+            <p><i></i>证据编号</p><p><i></i>权责规则</p><p><i></i>确认角色</p>
+          </div>
+          <span class="flow-line flow-line-a" aria-hidden="true"><i></i></span>
+          <span class="flow-line flow-line-b" aria-hidden="true"><i></i></span>
+        </div>
+        <ol class="motion-steps" aria-label="智能体的五个处理步骤">
+          <li class="step-0"><span>01</span>事件归并</li>
+          <li class="step-1"><span>02</span>证据检索</li>
+          <li class="step-2"><span>03</span>权责核验</li>
+          <li class="step-3"><span>04</span>议题起草</li>
+          <li class="step-4"><span>05</span>安全审计</li>
+        </ol>
+        <div class="motion-gate"><span>SC-01 模拟角色确认</span><p>现场主管</p><b>+</b><p>综管办值守人员</p><strong>才可完成</strong></div>
+      </figure>
+    </section>
+
+    <section id="agentFilm" class="agent-film" aria-labelledby="agentFilmTitle">
+      <header class="agent-film-heading">
+        <div><p class="eyebrow">60-SECOND EXPLAINER</p><h2 id="agentFilmTitle">60 秒看懂南站协同官</h2></div>
+        <p>一分钟回答四个问题：为什么做、给谁用、能做什么、不能做什么。</p>
+      </header>
+      <div class="agent-film-grid">
+        <div class="agent-film-player">
+          <video id="agentExplainerVideo" controls playsinline preload="metadata" poster="assets/films/hubcoord-agent-60s-poster.webp" aria-describedby="agentFilmNote">
+            <source src="assets/films/hubcoord-agent-60s.mp4" type="video/mp4">
+            <track kind="captions" srclang="zh-CN" label="中文字幕" src="assets/films/hubcoord-agent-60s.zh-CN.vtt">
+            你的浏览器暂不支持视频播放，可继续阅读右侧文字说明。
+          </video>
+          <div id="agentFilmNote" class="agent-film-note"><span>01:00 · BGM + 中文字幕</span><p>网页不会自动播放声音。点击播放后，可在控制条中调节音量或全屏观看。</p><a href="assets/films/hubcoord-agent-60s-nobgm.mp4" download>下载无 BGM 版本</a></div>
+        </div>
+        <ol class="agent-film-brief" aria-label="南站协同官四项基本说明">
+          <li><span>01 / 为什么做</span><strong>同一件事，常常跨过多个部门</strong><p>线索分散、规则难找、确认人不清楚，协同往往先耗在“把事情说明白”。</p></li>
+          <li><span>02 / 给谁用</span><strong>当前用于评审教学，未来面向实务人员</strong><p>当前公开版供评委、研究和教学使用；未来可供现场运营、枢纽联络和综管办值守人员使用。</p></li>
+          <li><span>03 / 能做什么</span><strong>把线索整理成一张议题卡</strong><p>卡片写清发生了什么、依据是什么、边界在哪里、需要谁确认。</p></li>
+          <li><span>04 / 不能做什么</span><strong>不直接调度，也不替部门决定</strong><p>原型不接入真实业务系统；遇到越权动作，只能拦截或升级。</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="howItWorks" class="agent-explainer" aria-labelledby="agentExplainerTitle">
+      <header>
+        <p class="eyebrow">WHAT IT DOES</p>
+        <h2 id="agentExplainerTitle">现场出了事，它用四步把问题说清楚。</h2>
+        <p>输入一件模拟事件，输出一张可以共同确认的协同议题卡。每一步都保留证据和规则编号。</p>
+      </header>
+      <ol class="agent-explainer-flow">
+        <li><span>01 / 说清事实</span><strong>发生了什么</strong><p>记录时间、地点、来源和现场状态。</p></li>
+        <li><span>02 / 找到依据</span><strong>凭什么判断</strong><p>只引用已审阅材料；资料不足就明确说明。</p></li>
+        <li><span>03 / 核对边界</span><strong>谁能做什么</strong><p>匹配模拟权责规则，越权动作直接拦截。</p></li>
+        <li><span>04 / 交给人员</span><strong>由谁来确认</strong><p>规定角色分别说明理由，系统记录过程。</p></li>
+      </ol>
+      <div class="agent-boundary-pair">
+        <section><span>它负责把问题说清楚</span><p>整理线索、引用证据、匹配规则、提示冲突、记录确认过程。</p></section>
+        <section class="is-limit"><span>决定仍由人来做</span><p>不接管业务系统，不调用未授权数据，不替政府部门或运营主体作出处置决定。</p></section>
+      </div>
+    </section>
+
+    <section id="scenario" class="cockpit-hero" aria-labelledby="applicationScenarioTitle">
+      <header class="cockpit-kicker"><span>APPLICATION SCENARIO / SC-01</span><strong><i></i>教学模拟正在运行</strong></header>
+      <div class="cockpit-grid">
+        <div class="cockpit-brief">
+          <p class="eyebrow">WHY COORDINATION IS NEEDED</p>
+          <h2 id="applicationScenarioTitle">列车晚点后，停车压力传到外围道路，谁来接手？</h2>
+          <p class="hero-lead">晚点信息来自铁路，停车组织在站内，外围道路又属于另一套管理边界。南站协同官先把这件事整理清楚，再交给相关角色确认。</p>
+          <div class="hero-actions"><a class="button-link primary" href="#lab">用协同官处理这个情景</a></div>
+          <p class="hero-boundary">研究与教学演示，不接实时数据，不产生行政指令。</p>
+        </div>
+
+        <figure class="boundary-map" aria-labelledby="boundaryMapTitle">
+          <figcaption id="boundaryMapTitle"><span>TIME–SPACE TRACE / T+00–T+45</span><strong>压力从铁路运行域向外围道路传导</strong></figcaption>
+          <svg viewBox="0 0 760 330" role="img" aria-label="铁路运行域、站内集散域、停车运营域和外围道路的模拟边界传导图">
+            <defs><linearGradient id="flow" x1="0" x2="1"><stop stop-color="#56b8b2"/><stop offset=".72" stop-color="#d8ad54"/><stop offset="1" stop-color="#c85e3d"/></linearGradient></defs>
+            <path class="map-track" d="M82 183 C185 91 256 92 337 165 S502 264 675 148"/>
+            <path class="map-flow" d="M82 183 C185 91 256 92 337 165 S502 264 675 148"/>
+            <g class="map-node n1"><circle cx="82" cy="183" r="16"/><text x="55" y="225">T+00</text><text x="25" y="249">铁路运行域</text></g>
+            <g class="map-node n2"><circle cx="228" cy="117" r="16"/><text x="203" y="70">T+08</text><text x="177" y="48">站内集散域</text></g>
+            <g class="map-node n3"><circle cx="371" cy="193" r="16"/><text x="345" y="236">T+15</text><text x="316" y="261">停车运营域</text></g>
+            <g class="map-node boundary"><circle cx="500" cy="225" r="20"/><text x="472" y="286">T+25</text><text x="447" y="309">红线转换点</text></g>
+            <g class="map-node n5"><circle cx="675" cy="148" r="16"/><text x="649" y="98">T+45</text><text x="621" y="75">外围道路</text></g>
+            <path class="boundary-line" d="M500 34V302"/><text class="boundary-label" x="514" y="48">制度边界</text>
+          </svg>
+          <div class="map-legend"><span><i class="signal-a"></i>信息可见</span><span><i class="signal-b"></i>服务可处理</span><span><i class="signal-c"></i>越界需确认</span></div>
+        </figure>
+
+        <aside class="agent-briefing" aria-label="协同官初步判断">
+          <div class="agent-briefing-head"><span>HUBCOORD / INITIAL READ</span><strong>协同官初步判断</strong></div>
+          <section><span class="brief-index">01</span><div><small>已核实什么</small><p>晚点信息和停车排队只是模拟线索，仍需现场复核。</p></div></section>
+          <section><span class="brief-index warn">02</span><div><small>边界在哪里</small><p>站内服务可组织；外围道路管控不由运营方决定。</p></div></section>
+          <section><span class="brief-index action">03</span><div><small>现在等谁确认</small><p>现场主管补充观察，综管办值守人员确认协同范围。</p></div></section>
+        </aside>
+      </div>
+      <footer class="theory-strip" aria-label="案例的作用机制">
+        <div><span>01 / 碎片化</span><strong>多部门、多合同、多责任界面</strong></div><b>&rarr;</b>
+        <div><span>02 / 平台化</span><strong>先归集业务、规则、责任与数据</strong></div><b>&rarr;</b>
+        <div><span>03 / 智能化</span><strong>再降低信息处理与任务协调成本</strong></div><b>&rarr;</b>
+        <div class="limit"><span>04 / 制度边界</span><strong>执法权、数据权与属地责任仍须人工确认</strong></div>
+      </footer>
+    </section>
+
+    <section class="demo-paths" aria-labelledby="demoPathsTitle">
+      <header><p class="eyebrow">现在动手试一遍</p><h2 id="demoPathsTitle">两条操作路径：正常协同与越权拦截</h2><p>无需配置。选择一条路径，直接查看南站协同官怎样工作。</p></header>
+      <div>
+        <article><span>PATH A / 约 3 分钟</span><h3>完成一次正常协同</h3><p>五个专门任务依次处理事件，两名规定角色分别确认后，议题卡才进入完成状态。</p><button id="normalDemoStart" type="button">开始引导式推演</button></article>
+        <article class="is-boundary"><span>PATH B / 约 30 秒</span><h3>测试一次越权请求</h3><p>尝试“直接行政处置”，查看权责核验和安全审计如何禁止确认并要求升级。</p><button id="boundaryDemoStart" type="button">运行越权对照</button></article>
+      </div>
+      <button id="freshDemoStart" class="fresh-demo" type="button">彩排前准备一份空白演示档案</button>
+    </section>
+
+    <section class="demo-readout" aria-labelledby="demoReadoutTitle">
+      <header><p class="eyebrow">WHAT THE OUTPUT CONTAINS</p><h2 id="demoReadoutTitle">一张协同议题卡，要回答四个问题</h2></header>
+      <ol>
+        <li><span>01</span><div><strong>发生了什么</strong><p>哪条事件触发了协同，时间、空间和来源状态是否完整。</p></div></li>
+        <li><span>02</span><div><strong>依据是什么</strong><p>用了哪些证据卡和权责规则，哪些说法仍然存在冲突。</p></div></li>
+        <li><span>03</span><div><strong>边界在哪里</strong><p>当前动作属于服务范围、需要协同，还是不得越权。</p></div></li>
+        <li><span>04</span><div><strong>谁需要确认</strong><p>哪些角色已经说明理由，事项还在等待谁作出判断。</p></div></li>
+      </ol>
+    </section>
+
+    <details id="technicalDossier" class="technical-dossier">
+      <summary><span>需要查看技术细节？</span><strong>展开项目档案、证据库与权责规则</strong><small>这些内容用于核验智能体怎样得出判断，不影响直接操作 Demo。</small></summary>
+
+    <section class="platform-status" aria-label="平台概览">
+      <div><p class="label">当前版本</p><strong>公开展示版 / v1.0</strong></div>
+      <div><p class="label">知识状态</p><strong id="knowledgeStatus">正在核验…</strong></div>
+      <div><p class="label">运行方式</p><strong>网页运行 · 人工确认</strong></div>
+    </section>
+
+    <section class="module-deck" aria-labelledby="moduleTitle">
+      <div class="section-heading"><div><p class="eyebrow">PLATFORM MODULES</p><h2 id="moduleTitle">材料、判断和推演留在同一份案例档案里</h2></div><p>各模块读取同一套来源、规则和活动记录。未经审阅的材料不会进入运行时，模型也不能改写权责结论。</p></div>
+      <div id="moduleGrid" class="module-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="projects" class="project-zone" aria-labelledby="projectTitle">
+      <div class="section-heading compact"><div><p class="eyebrow">01 / CASE WORKSPACE</p><h2 id="projectTitle">案例项目工作台</h2></div><p>每次推演都挂回一个项目。刷新或重启服务后，协同卡、人工决定和活动记录仍可读取。</p></div>
+      <div class="project-grid">
+        <div class="project-list-wrap"><div id="projectList" class="project-list"><p class="muted-copy">正在加载案例项目…</p></div></div>
+        <form id="projectForm" class="project-form">
+          <p class="label">建立演示项目</p>
+          <label for="projectTitleInput">项目名称</label><input id="projectTitleInput" name="title" maxlength="80" placeholder="例如：枢纽协同边界案例" required>
+          <label for="projectQuestionInput">当前研究问题</label><textarea id="projectQuestionInput" name="research_question" maxlength="400" placeholder="请写出当前要判断的协同机制或治理边界。" required></textarea>
+          <button type="submit" class="draft-button">新建案例项目 <span aria-hidden="true">&rarr;</span></button>
+          <p id="projectFeedback" class="form-feedback" role="status">项目、卡片和活动记录保存在展示数据库；不会导入真实材料。</p>
+        </form>
+      </div>
+      <section id="projectInspector" class="project-inspector" aria-live="polite">
+        <div class="inspector-empty"><p class="label">PROJECT DOSSIER</p><h3>选择一个案例项目</h3><p>这里显示项目活动、协同议题卡及其确认状态。</p></div>
+      </section>
+    </section>
+
+    <section id="knowledge" class="knowledge-zone" aria-labelledby="knowledgeTitle">
+      <div class="section-heading compact"><div><p class="eyebrow">02 / EVIDENCE REVIEW</p><h2 id="knowledgeTitle">证据与核验台</h2></div><p>研究团队已审阅材料和待核验冲突分开显示。来源相互矛盾时，系统保留问题，不替研究团队作结论。</p></div>
+      <div class="knowledge-toolbar">
+        <label class="search-field" for="evidenceSearch"><span>检索证据</span><input id="evidenceSearch" type="search" placeholder="按编号、关键词或来源检索"></label>
+        <div id="evidenceFilters" class="filter-group" role="group" aria-label="证据筛选">
+          <button class="filter-button is-active" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter-button" data-filter="simulated" aria-pressed="false">模拟设定</button>
+          <button class="filter-button" data-filter="approved" aria-pressed="false">本次展示可用</button>
+        </div>
+      </div>
+      <div id="evidenceGrid" class="evidence-grid" aria-live="polite"><p class="muted-copy">正在加载研究团队已审阅的证据卡…</p></div>
+      <div id="evidenceEmpty" class="empty-result hidden">没有匹配的证据卡。</div>
+
+      <div class="review-heading"><div><p class="eyebrow">RESEARCH CHECKS</p><h3>四项稿件冲突，暂不进入知识库</h3></div><p>这些问题来自研究团队交付的两份案例稿。核验完成前，平台不会把任一说法展示为事实。</p></div>
+      <div id="reviewIssueGrid" class="review-issue-grid"><p class="muted-copy">正在加载稿件核验项…</p></div>
+    </section>
+
+    <section id="authority" class="authority-zone" aria-labelledby="authorityTitle">
+      <div class="section-heading compact"><div><p class="eyebrow">03 / AUTHORITY MAP</p><h2 id="authorityTitle">角色能做什么，由规则表决定</h2></div><p>同一动作在不同角色和空间边界下会得到不同结果。大模型只能解释规则，不能新增权限。</p></div>
+      <div class="legend" aria-label="权责结果图例"><span class="legend-ok">可核验</span><span class="legend-warn">需协同</span><span class="legend-stop">不可越权</span><span class="legend-unknown">资料不足</span></div>
+      <div id="authorityMatrix" class="authority-matrix" aria-live="polite"><p class="muted-copy">正在加载权责规则…</p></div>
+    </section>
+    </details>
+
+    <section id="lab" class="lab-zone" aria-labelledby="labTitle">
+      <div class="section-heading compact"><div><p class="eyebrow">04 / 可操作 Demo / SC-01</p><h2 id="labTitle">现在，让南站协同官处理这件事</h2></div><p>这不是静态效果图。你可以选择角色和动作，生成议题卡，再完成双角色确认或测试越权拦截。</p></div>
+      <dl class="demo-mission" aria-label="本轮推演任务">
+        <div><dt>输入</dt><dd>列车晚点与停车场外溢的模拟事件</dd></div>
+        <div><dt>智能体要做</dt><dd>找事实、查依据、判边界、生成议题卡</dd></div>
+        <div><dt>完成条件</dt><dd>现场主管与综管办值守人员分别确认</dd></div>
+      </dl>
+      <ol class="demo-steps" aria-label="推演步骤"><li class="is-current">1 看事件</li><li>2 查依据</li><li>3 判边界</li><li>4 生成卡</li><li>5 人确认</li></ol>
+      <section class="agent-process" aria-labelledby="agentProcessTitle">
+        <header><div><p class="label">智能体处理过程</p><h3 id="agentProcessTitle">五个任务依次完成，每一步都能检查</h3></div><span>输入、规则、判断和输出均有记录</span></header>
+        <ol id="agentPipeline" tabindex="0" aria-label="五个任务节点处理进度，可横向滚动">
+          <li data-agent="event"><span>01</span><div><strong>事件归并 Agent</strong><small>识别事件与空间范围</small></div><em>待运行</em></li>
+          <li data-agent="evidence"><span>02</span><div><strong>证据检索 Agent</strong><small>筛选与动作有关的材料</small></div><em>待运行</em></li>
+          <li data-agent="authority"><span>03</span><div><strong>权责核验 Agent</strong><small>匹配固定规则与角色</small></div><em>待运行</em></li>
+          <li data-agent="draft"><span>04</span><div><strong>议题起草 Agent</strong><small>形成最小协同请求</small></div><em>待运行</em></li>
+          <li data-agent="audit"><span>05</span><div><strong>安全审计 Agent</strong><small>拦截越权并保留人工闸门</small></div><em>待运行</em></li>
+        </ol>
+      </section>
+      <section class="scenario-bar" aria-label="当前模拟情景">
+        <div class="scenario-number">SC<br><b>01</b></div>
+        <div><p class="label">当前情景</p><h3 id="scenarioTitle">正在加载情景…</h3></div>
+        <div class="scenario-status"><span class="status-dot" aria-hidden="true"></span><span id="scenarioStatus">SIMULATED</span></div>
+      </section>
+
+      <section class="scenario-timeline" aria-labelledby="timelineTitle">
+        <div class="timeline-heading"><div><p class="label">SIMULATED TIME–SPACE PATH</p><h3 id="timelineTitle">压力怎样跨过治理边界</h3></div><p>点击节点查看。时间和事件均为教学模拟，不对应真实运行记录。</p></div>
+        <div id="timelineNodes" class="timeline-nodes" role="group" aria-label="SC-01 时间与空间节点"></div>
+        <div id="timelineDetail" class="timeline-detail" aria-live="polite"></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="rail">
+          <p class="rail-title">项目归属</p>
+          <select id="activeProject" aria-label="选择当前案例项目"></select>
+          <p class="rail-note">不选择项目也能演练；选择后，本次活动会写入项目档案。</p>
+          <div class="line"></div>
+          <p class="rail-title">01 / 选择视角</p>
+          <div id="roleList" class="role-list" role="radiogroup" aria-label="扮演角色"></div>
+          <div class="role-boundary" id="roleBoundary" aria-live="polite"></div>
+          <div class="line"></div>
+          <p class="rail-title">02 / 拟议动作</p>
+          <div class="action-list" role="radiogroup" aria-label="拟议动作">
+            <label class="action-option"><input type="radio" name="action" value="verify_evidence"><span>核验现场线索</span><small>服务范围内</small></label>
+            <label class="action-option"><input type="radio" name="action" value="request_cross_party_confirmation" checked><span>提出协同确认</span><small>推荐：体验完整流程</small></label>
+            <label class="action-option"><input type="radio" name="action" value="direct_enforcement"><span>直接行政处置</span><small>边界测试</small></label>
+            <label class="action-option"><input type="radio" name="action" value="share_restricted_data"><span>共享未授权数据</span><small>边界测试</small></label>
+          </div>
+          <button id="draftButton" class="draft-button">生成模拟议题卡 <span aria-hidden="true">&rarr;</span></button>
+        </aside>
+
+        <section class="event-column" aria-labelledby="eventTitle">
+          <div class="column-heading"><p class="label">事件证据包</p><span id="eventBadge" class="badge">SIMULATED</span></div>
+          <h3 id="eventTitle">等待情景数据</h3>
+          <p id="eventSummary" class="event-summary"></p>
+          <div id="signals" class="signal-list"></div>
+          <div class="source-note"><span>资料状态</span><strong>仅加载研究团队已审阅、可用于本次展示的证据卡</strong></div>
+
+          <form id="assistantForm" class="assistant-box">
+            <div><p class="rail-title">向协同官追问</p><span>基于当前证据和规则回答，不调用外部模型。</span></div>
+            <label class="sr-only" for="assistantQuestion">输入问题</label>
+            <div class="assistant-input"><input id="assistantQuestion" maxlength="300" placeholder="例如：平台可以直接要求交管处置吗？" required><button type="submit">核验</button></div>
+            <div class="question-chips" aria-label="示例问题"><button type="button" data-question="平台可以直接要求交管处置吗？">能否直接处置</button><button type="button" data-question="当前判断引用了哪些证据？">证据从哪里来</button></div>
+            <div id="assistantAnswer" class="assistant-answer" aria-live="polite">输入问题后，系统会返回回答、引用和边界说明。</div>
+          </form>
+        </section>
+
+        <section class="card-column" aria-live="polite">
+          <div class="column-heading"><p class="label">协同议题卡</p><span class="badge badge-gold">HUMAN GATE</span></div>
+          <div id="emptyCard" class="empty-card"><span class="empty-index">/ 00</span><h3>尚未生成</h3><p>选择角色和拟议动作后，系统会检查证据、规则和人工确认要求。</p></div>
+          <article id="coordinationCard" class="coordination-card hidden">
+            <div class="card-strip"><span id="cardStatus">待人工确认</span><span id="cardId"></span></div>
+            <h3 id="cardSummary"></h3><p id="boundaryNotice" class="boundary-notice"></p>
+            <dl class="card-facts"><div><dt>下一步</dt><dd id="nextStep"></dd></div><div><dt>需要确认</dt><dd id="confirmations"></dd></div><div><dt>证据链</dt><dd id="evidenceRefs"></dd></div><div><dt>权责规则</dt><dd id="authorityRefs"></dd></div></dl>
+            <div class="decision-trace"><p class="rail-title">本次判断链</p><ol id="decisionTrace"></ol></div>
+            <div class="confirmation-progress"><p class="rail-title">确认进度</p><div id="confirmationProgress"></div></div>
+            <div id="decisionPanel" class="decision-panel">
+              <label for="decisionReason">本角色决定的理由</label><textarea id="decisionReason" maxlength="500" placeholder="请说明确认、拒绝或升级的依据。"></textarea>
+              <p id="decisionHint">这一步只记录模拟决定，不会向任何外部主体发送指令。</p>
+              <div class="decision-actions"><button data-decision="confirmed">确认</button><button data-decision="rejected" class="quiet">拒绝</button><button data-decision="escalated" class="quiet">升级</button></div>
+            </div>
+          </article>
+          <article id="manualReview" class="manual-review hidden"><span class="empty-index">/ NEEDS HUMAN REVIEW</span><h3 id="manualTitle">需要人工补充</h3><p id="manualMessage"></p></article>
+        </section>
+      </section>
+      <section class="audit-strip"><div><p class="label">平台纪律</p><strong>先查证据，再看规则；实际责任人作出决定。</strong></div><div id="activity" class="activity" role="status">正在核验展示知识包…</div></section>
+    </section>
+
+    <section id="agentFaq" class="agent-faq" aria-labelledby="agentFaqTitle">
+      <header class="agent-faq-heading">
+        <div><p class="eyebrow">还有疑问？</p><h2 id="agentFaqTitle">关于南站协同官，按问题查看</h2></div>
+        <p>先操作，再按需展开。这里集中说明定位、使用者、输入输出和能力边界。</p>
+      </header>
+      <div class="agent-faq-list">
+        <details open><summary><span>01</span><strong>南站协同官是什么？</strong></summary><div><p>它是一个面向南京南站跨主体协同的辅助决策与模拟推演原型。系统把分散的现场线索、展示证据和模拟权责规则整理成协同议题卡，再交给规定角色确认。</p></div></details>
+        <details><summary><span>02</span><strong>为什么要做？</strong></summary><div><p>同一件现场事件可能跨过铁路、停车、站内服务和属地管理。问题出现后，人们常要重新找线索、查规则、找确认人。南站协同官先把这些内容放到同一张卡上。</p></div></details>
+        <details><summary><span>03</span><strong>谁来使用？</strong></summary><div><p>当前公开版用于比赛评审、研究和案例教学。未来若进入真实场景，预期使用者是现场运营人员、枢纽联络人员和综管办值守人员；正式使用前仍需共同审定数据、规则和角色权限。</p></div></details>
+        <details><summary><span>04</span><strong>输入什么，输出什么？</strong></summary><div><p>输入是事件时间、地点、来源、现场信号和拟议动作。输出是一张协同议题卡，写明发生了什么、依据是什么、边界在哪里、需要谁确认。</p></div></details>
+        <details><summary><span>05</span><strong>它解决什么问题？</strong></summary><div><p>它针对信息分散、说法不一、责任边界模糊和确认对象不明带来的重复沟通。真实效果仍需通过现场试点评估。</p></div></details>
+        <details><summary><span>06</span><strong>它会直接调度或执法吗？</strong></summary><div><p>不会。公开原型不接管真实业务系统，不调用未授权数据，也不生成行政处置指令。遇到越权动作，系统会禁止确认，只允许拒绝或升级。</p></div></details>
+        <details><summary><span>07</span><strong>它和聊天机器人有什么不同？</strong></summary><div><p>它使用结构化事件、已审阅证据和固定权责规则。五个环节是可审计的任务节点，不是五个各自运行的大模型，也不能自行增加权限。</p></div></details>
+        <details><summary><span>08</span><strong>现在做到哪一步？</strong></summary><div><p>当前版本可以完整运行 SC-01 模拟情景：选择角色和动作、生成议题卡、完成双角色确认，并拦截越权请求。它没有接入南京南站或任何单位的真实数据与系统。</p></div></details>
+      </div>
+    </section>
+
+  </main>
+
+  <aside id="presentationGuide" class="presentation-guide hidden" role="region" aria-live="polite" aria-atomic="true" aria-label="三分钟答辩引导">
+    <div><span id="presentationProgress">答辩 1 / 6</span><strong id="presentationTitle"></strong><p id="presentationNote"></p></div>
+    <div class="presentation-actions"><button id="presentationExit" type="button">退出</button><button id="presentationNext" type="button">下一段</button></div>
+  </aside>
+
+  <footer class="footer"><div><span class="brand-seal" aria-hidden="true"><img src="assets/nanyong-mark.svg" alt=""></span><strong>南站协同官</strong></div><p>公开展示版仅用于案例教学与模拟推演。未接入南京南站、铁路、政府部门或企业的真实运行系统。</p><small>CASE TEACHING DEMO · 2026.09</small></footer>
+  <script src="offline-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

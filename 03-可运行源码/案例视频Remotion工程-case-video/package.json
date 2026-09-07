@@ -1,0 +1,24 @@
+{
+  "name": "nanjing-south-case-film",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts CaseFilm out/南京南站案例动画.mp4",
+    "still": "remotion still src/index.ts CaseFilm",
+    "timeline:competition": "node src/longform/write-timeline.mjs",
+    "render:competition:female": "remotion render src/index.ts CompetitionCaseFilm out/南京南站案例长片_女声_BGM.mp4 --props='{\"voice\":\"female\",\"bgm\":true}'",
+    "render:competition:male": "remotion render src/index.ts CompetitionCaseFilm out/南京南站案例长片_男声_BGM.mp4 --props='{\"voice\":\"male\",\"bgm\":true}'",
+    "still:competition": "remotion still src/index.ts CompetitionCaseFilm"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "typescript": "6.0.3"
+  }
+}

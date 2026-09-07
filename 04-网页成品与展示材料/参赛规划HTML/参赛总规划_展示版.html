@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>清华2026智能社会治理大赛 · 参赛总规划</title>
+<style>
+  :root{
+    --bg:#0b0712; --panel:#16101f; --panel2:#1d1430; --line:#ffffff1a;
+    --txt:#ece6f6; --mut:#a394bd; --pur:#c79bff; --pink:#ff7fc4; --cyan:#7ad7ff; --gold:#ffce5e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg); color:var(--txt); font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased}
+  a{color:var(--cyan); text-decoration:none}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px}
+
+  /* hero */
+  header{padding:90px 0 70px; background:radial-gradient(110% 80% at 50% -10%,#2c1145 0%,#160a23 55%,#0b0712 100%);
+    border-bottom:1px solid var(--line); text-align:center}
+  .kick{letter-spacing:.45em; color:var(--pur); font-weight:700; font-size:15px; text-transform:uppercase}
+  header h1{font-size:46px; font-weight:800; margin:22px 0 14px; line-height:1.25}
+  header h1 b{background:linear-gradient(90deg,#ff8adf,#b07bff,#7ad7ff); -webkit-background-clip:text;
+    background-clip:text; -webkit-text-fill-color:transparent}
+  .lede{color:var(--mut); font-size:18px}
+  .pills{margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .pill{border:1px solid var(--line); background:#ffffff0d; border-radius:999px; padding:9px 20px; font-size:14px; color:var(--txt)}
+  .pill.k{background:linear-gradient(90deg,#ffce5e,#ff9e4e); color:#1a0f00; border:none; font-weight:700}
+
+  /* nav */
+  nav{position:sticky; top:0; z-index:20; background:#0b0712e6; backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex; gap:8px; flex-wrap:wrap; padding:12px 28px}
+  nav a{color:var(--mut); font-size:14px; padding:7px 14px; border-radius:8px}
+  nav a:hover{color:#fff; background:#ffffff12}
+
+  section{padding:56px 0; border-bottom:1px solid var(--line)}
+  .eyebrow{color:var(--pink); font-weight:700; letter-spacing:.12em; font-size:13px}
+  h2{font-size:30px; font-weight:800; margin:10px 0 6px}
+  .h2sub{color:var(--mut); font-size:16px; margin-bottom:26px}
+
+  .grid{display:grid; gap:18px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:820px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,var(--panel),#120c1c); border:1px solid var(--line);
+    border-radius:18px; padding:24px 24px}
+  .card h3{font-size:19px; margin-bottom:10px; display:flex; align-items:center; gap:9px}
+  .card p,.card li{color:#cdbfe2; font-size:15.5px}
+  .card ul{margin:6px 0 0 18px}
+  .card li{margin:5px 0}
+  .ico{font-size:22px}
+  .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+  .tag{font-size:13px; color:var(--gold); border:1px solid #ffce5e44; border-radius:999px; padding:5px 13px}
+  .tag.c{color:var(--cyan); border-color:#7ad7ff44}
+
+  /* timeline */
+  .tl{display:grid; grid-template-columns:130px 1fr; gap:0}
+  .tl .when{color:var(--cyan); font-weight:800; font-size:17px; padding:16px 0; border-top:1px solid var(--line)}
+  .tl .what{padding:16px 0 16px 26px; border-top:1px solid var(--line); position:relative}
+  .tl .what::before{content:""; position:absolute; left:-5px; top:22px; width:11px; height:11px;
+    border-radius:50%; background:#5a3a86}
+  .tl .row.key .what::before{background:var(--pink); box-shadow:0 0 0 6px #ff5fa233}
+  .tl .row.key .when{color:var(--pink)}
+  .tl .what b{color:#fff}
+  .dead{color:var(--gold); font-weight:700}
+
+  table{width:100%; border-collapse:collapse; margin-top:8px; font-size:15px}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line)}
+  th{color:var(--pur); font-weight:700; font-size:13px; letter-spacing:.05em}
+  td b{color:#fff}
+
+  .num{display:inline-flex; width:26px; height:26px; border-radius:50%; background:#ff5fa226;
+    color:var(--pink); font-weight:800; font-size:14px; align-items:center; justify-content:center; margin-right:8px}
+  .stack-l{border-radius:12px; padding:14px 20px; font-weight:800; color:#fff; margin-bottom:10px;
+    display:flex; justify-content:space-between; align-items:center; font-size:17px}
+  .stack-l span{font-weight:500; font-size:14px; opacity:.9}
+  .L1{background:linear-gradient(90deg,#3b1d6e,#5e2b9e)} .L2{background:linear-gradient(90deg,#7a2b8e,#a83b8e)}
+  .L3{background:linear-gradient(90deg,#b03b6e,#d65f5f)}
+
+  .callout{background:linear-gradient(90deg,#2a0f3e,#1d1430); border:1px solid #c79bff33;
+    border-left:4px solid var(--pur); border-radius:12px; padding:18px 22px; color:#e2d6f5; font-size:15.5px}
+  footer{padding:46px 0 70px; text-align:center; color:var(--mut); font-size:14px}
+  .big-cta{font-size:24px; font-weight:800; color:#fff; margin-bottom:8px}
+  .big-cta b{color:var(--pink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kick">Tsinghua University · 2026</div>
+    <h1>清华大学2026年中国<b>智能社会治理</b><br>公共政策案例分析大赛 · 参赛总规划</h1>
+    <div class="lede">项目 ｜ 智能时代的公共管理：南京南站案例研究　·　双线作战：案例文本 ＋ 案例智能体</div>
+    <div class="pills">
+      <span class="pill k">7/10 选题报告截止</span>
+      <span class="pill">9/7 案例报告截止</span>
+      <span class="pill">10月 清华现场决赛</span>
+      <span class="pill">目标：常规奖 + 案例创新奖 + 案例库收录</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#why">核心判断</a>
+  <a href="#time">赛程时间线</a>
+  <a href="#rule">作品规格</a>
+  <a href="#text">案例文本</a>
+  <a href="#agent">案例智能体</a>
+  <a href="#todo">近期行动</a>
+</div></nav>
+
+<!-- 核心判断 -->
+<section id="why"><div class="wrap">
+  <div class="eyebrow">STRATEGY · 为什么这样打</div>
+  <h2>核心判断：两条线互为杠杆</h2>
+  <div class="h2sub">上一届全国 MPA 未入围，教训多半丢在"开局定位"。这一届把火力前置，并用智能体拉开差距。</div>
+  <div class="grid g2">
+    <div class="card"><h3><span class="ico">📄</span>第一条线 · 案例分析报告</h3>
+      <p>冲常规奖，争取入选 <b>中国公共管理案例库</b> 与《智能社会治理教程》教辅出版——学术履历价值高于奖金。</p>
+      <div class="tagrow"><span class="tag">主线</span><span class="tag">已近发表水平</span></div></div>
+    <div class="card"><h3><span class="ico">🤖</span>第二条线 · 南京南站案例智能体</h3>
+      <p>赛事「创新作品」明列 <b>"案例智能体"</b> 形式——专攻「案例创新奖」，更是 <b>决赛现场答辩</b> 的差异化王牌。</p>
+      <div class="tagrow"><span class="tag c">创新线</span><span class="tag c">已有全栈原型可复用</span></div></div>
+  </div>
+  <div class="callout" style="margin-top:18px;">文本讲机制，智能体让评委 <b>亲手验证</b> 机制。两者共享同一套概念、同一批一手语料、同一个故事——这种"知行合一"的整体感，正是上一届所缺、这一届能赢的关键。</div>
+</div></section>
+
+<!-- 时间线 -->
+<section id="time"><div class="wrap">
+  <div class="eyebrow">TIMELINE · 锁死节点</div>
+  <h2>赛程时间线</h2>
+  <div class="h2sub">报名/选题阶段只有约 3.5 周，且它就是第一道淘汰线。</div>
+  <div class="tl">
+    <div class="row"><div class="when">6/17 下午</div><div class="what"><b>赛事说明会（必看）</b>　了解主题、赛程、选题与写作指导、创新作品提交细则</div></div>
+    <div class="row key"><div class="when">→ 7/10 12:00</div><div class="what"><b>报名 + 选题报告截止</b>　<span class="dead">硬死线</span>　1500–3000 字</div></div>
+    <div class="row"><div class="when">7/21</div><div class="what">官网公布 <b>入围名单</b>，入围后进入正式写作</div></div>
+    <div class="row key"><div class="when">→ 9/7 12:00</div><div class="what"><b>案例分析报告截止</b>　<span class="dead">硬死线</span>　≤1.5 万字（案例正文＋案例分析）＋可选创新作品</div></div>
+    <div class="row"><div class="when">9/23</div><div class="what">公布 <b>决赛入围名单</b></div></div>
+    <div class="row key"><div class="when">10/1–10/16</div><div class="what"><b>清华大学公管学院现场决赛 + 颁奖</b>　展示、汇报、<b>答辩</b></div></div>
+  </div>
+</div></section>
+
+<!-- 作品规格 -->
+<section id="rule"><div class="wrap">
+  <div class="eyebrow">SPEC · 硬性约束</div>
+  <h2>作品规格与红线</h2>
+  <div class="grid g3">
+    <div class="card"><h3>📝 选题报告</h3><p>1500–3000 字。含选题名称、背景、意义、案例摘要、研究问题、思路、计划。</p></div>
+    <div class="card"><h3>📚 案例分析报告</h3><p><b>≤15000 字</b>，含"案例正文"＋"案例分析"两部分。</p></div>
+    <div class="card"><h3>🏆 创新作品（可选）</h3><p>参评案例创新奖，附约 <b>2000 字</b> 技术说明。奖金 5000 元/队。</p></div>
+  </div>
+  <div class="callout" style="margin-top:18px;">
+    <b>合规红线：</b>全文重复率 <b>&lt;10%</b>（CNKI 去引用）；AIGC 须 <b>红色字体标注且 &lt;10%</b>；<b>主体观点、核心论点、关键数据论证、创新分析与研究结论不得为 AIGC</b>。语言润色、查证、图表美化不算 AIGC。
+  </div>
+</div></section>
+
+<!-- 案例文本 -->
+<section id="text"><div class="wrap">
+  <div class="eyebrow">LINE 1 · 高位精修</div>
+  <h2>案例文本：在现有基础上做得更好</h2>
+  <div class="h2sub">不是从零开始——框架与命题已近发表水平，重点是对齐赛事口径 + 补齐自评短板。</div>
+  <div class="grid g2" style="margin-bottom:18px;">
+    <div class="card"><h3>已有家底</h3>
+      <div class="stack-l L1">技术层 <span>智能技术降低交易成本</span></div>
+      <div class="stack-l L2">组织层 <span>政府创制平台企业「交控万物」</span></div>
+      <div class="stack-l L3">制度层 <span>三重刚性 · 有限的整体性治理</span></div>
+      <p style="margin-top:10px; color:var(--mut); font-size:14px;">效率逻辑 vs 合法性逻辑 双主线 · 三命题 · 一手调研语料</p></div>
+    <div class="card"><h3>五大待补缺口</h3>
+      <p><span class="num">1</span>"智能"含量前置加浓——让 AI 当叙事主角</p>
+      <p><span class="num">2</span>动态过程——交控万物"试探—整合—扩张"</p>
+      <p><span class="num">3</span>边界能动应对——巡查劝导上报／关系契约取数／商业谈判</p>
+      <p><span class="num">4</span>显性文献对话——vs 一网统管／城市大脑</p>
+      <p><span class="num">5</span>字数纪律——≤1.5 万字做减法</p></div>
+  </div>
+  <div class="card"><h3>推进路线</h3>
+    <ul>
+      <li><b>阶段A（→7/10）</b>：把厚框架降维成 1500–3000 字"钩子"，标题让"智能"显性化，研究计划里给智能体埋点。<b>已产出 v1 草稿与 Word 版。</b></li>
+      <li><b>阶段B（入围后）</b>：案例正文（故事化＋过程追踪 6–7 千字）＋ 案例分析（三层框架＋文献对话 7–8 千字），全程人写、AI 仅润色并红标、CNKI 自查。</li>
+    </ul></div>
+</div></section>
+
+<!-- 案例智能体 -->
+<section id="agent"><div class="wrap">
+  <div class="eyebrow">LINE 2 · 很能打</div>
+  <h2>案例智能体：把"南京南站"做成一个很能打的智能体</h2>
+  <div class="h2sub">不是聊天机器人，而是让评委走进案例、扮演主体、做决策、看后果的教学与推演智能体。</div>
+  <div class="grid g3" style="margin-bottom:18px;">
+    <div class="card"><h3>① 可溯源 RAG 问答</h3><p>基于一手调研语料作答并给出处，反幻觉、合规——别队拿不到这批料。</p></div>
+    <div class="card" style="border-color:#ff7fc455"><h3>② 多主体决策推演 ★</h3><p>扮演政府／平台／市民，在执法权禁区、数据壁垒、属地考核三两难中博弈，推演交易成本与合法性后果。</p></div>
+    <div class="card"><h3>③ 治理数据看板</h3><p>工单闭环、25 类算法分布、三重制度边界可视化，与文本框架图联动。</p></div>
+  </div>
+  <div class="card"><h3>复用现有资产，几乎零造轮子</h3>
+    <table>
+      <tr><th>需要的能力</th><th>直接复用</th></tr>
+      <tr><td>LLM 调用（超时/重试/json）</td><td><b>aifit_demo / llm_client.py</b>（改 env 切 Claude）</td></tr>
+      <tr><td>RAG 知识层</td><td><b>aifit_demo / knowledge/</b>（换语料＝南京南站）</td></tr>
+      <tr><td>服务编排</td><td><b>aifit_demo / orchestrator + gateway</b></td></tr>
+      <tr><td>对话前端＋语音</td><td><b>interview-robot</b>（Next.js + ASR + chat）</td></tr>
+    </table>
+    <div class="tagrow" style="margin-top:14px;"><span class="tag c">MVP：内核①＋②极简版</span><span class="tag c">本周可跑通演示</span></div>
+  </div>
+</div></section>
+
+<!-- 行动 -->
+<section id="todo"><div class="wrap">
+  <div class="eyebrow">ACTION · 现在就做</div>
+  <h2>近期行动清单</h2>
+  <div class="grid g2">
+    <div class="card"><h3>本周</h3><ul>
+      <li>✅ 选题报告 v1 草稿 + Word 版（已完成）</li>
+      <li>✅ 智能体 MVP 开发规划（已完成）</li>
+      <li>▢ 6/17 下午参加赛事说明会，记录评委口径</li>
+      <li>▢ 建南京南站语料库（智能体地基＋文本证据库）</li>
+      <li>▢ 智能体最小原型：可溯源问答跑通</li>
+    </ul></div>
+    <div class="card"><h3>7/10 前 → 入围后</h3><ul>
+      <li>▢ 定标题与小切口，选题报告定稿提交</li>
+      <li>▢ 组队（≤4人）、报名信息预登记</li>
+      <li>▢ 启动 1.5 万字报告精修</li>
+      <li>▢ 智能体内核②③开发 + 2000 字技术说明</li>
+      <li>▢ 决赛演示脚本与答辩话术</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="big-cta">知行合一 —— <b>这一届，我们要赢</b></div>
+  南京大学政府管理学院 · 南京南站案例研究团队 ｜ 2026
+</footer>
+
+</body>
+</html>

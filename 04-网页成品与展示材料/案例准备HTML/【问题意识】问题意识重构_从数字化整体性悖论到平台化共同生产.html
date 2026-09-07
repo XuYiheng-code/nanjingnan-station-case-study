@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="围绕碎片化—整体性的组织张力，梳理数字治理、平台兴起与人工智能进场，并形成南京南站案例研究的新引言。">
+<title>问题意识重构｜从数字化整体性悖论到平台化共同生产</title>
+<style>
+  :root{
+    --bg:#f5f0e6;--surface:#fbf8f1;--ink:#1c1815;--ink-soft:#5b5247;--rule:#d8cdb8;
+    --accent:#b5431f;--accent-2:#2f5d54;--source:#2f5d54;--inference:#8a5c16;--open:#8e3828;
+    --font-display:"Songti SC","STSong","Noto Serif SC",Georgia,serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    --font-mono:"SF Mono",Menlo,monospace;--s1:.5rem;--s2:1rem;--s3:1.6rem;--s4:2.6rem;--s5:4rem;
+    --radius:2px;--shadow:0 1px 0 rgba(28,24,21,.06),0 18px 40px -28px rgba(28,24,21,.45);--maxw:78ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:clamp(15px,.45vw + 13.5px,17px);line-height:1.78}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:20}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 17rem;max-width:1240px;margin:0 auto;gap:clamp(2rem,5vw,5rem);padding:clamp(1.3rem,4vw,3.8rem)}
+  main{max-width:var(--maxw);min-width:0}
+  header{border-top:4px solid var(--ink);padding-top:var(--s3);margin-bottom:var(--s5)}
+  .kicker{color:var(--accent);font-size:.78rem;letter-spacing:.14em;font-weight:700;text-transform:uppercase;margin-bottom:.8rem}
+  h1,h2,h3{font-family:var(--font-display);color:var(--ink);font-weight:800}
+  h1{font-size:clamp(2.25rem,5.8vw,4.7rem);line-height:1.05;letter-spacing:-.04em;margin:0 0 1.25rem;max-width:13ch}
+  .dek{font-family:var(--font-display);font-size:clamp(1.05rem,1.8vw,1.35rem);line-height:1.65;color:var(--ink-soft);max-width:43em;margin:0}
+  .meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.8rem;color:var(--ink-soft)}
+  section{margin-bottom:var(--s5);scroll-margin-top:2rem}
+  h2{font-size:clamp(1.55rem,3vw,2.15rem);line-height:1.28;margin:0 0 var(--s3);padding-top:.35rem;border-top:3px solid var(--ink)}
+  h3{font-size:clamp(1.1rem,2vw,1.35rem);line-height:1.45;margin:2.25rem 0 .75rem}
+  p{margin:0 0 1.1rem;color:var(--ink-soft)}
+  strong{color:var(--ink)}
+  a{color:var(--accent);text-underline-offset:.2em}
+  sup{font-size:.7em;color:var(--accent);font-weight:700}
+  .lead{font-family:var(--font-display);font-size:1.14rem;line-height:1.8;color:var(--ink)}
+  .thesis{border-left:5px solid var(--accent);background:var(--surface);padding:1.25rem 1.4rem;box-shadow:var(--shadow);margin:1.6rem 0}
+  .thesis p{color:var(--ink);font-family:var(--font-display);font-size:1.08rem;margin:0}
+  .legend{display:flex;gap:.55rem;flex-wrap:wrap;margin:1rem 0 1.6rem}
+  .tag{display:inline-flex;align-items:center;border:1px solid currentColor;padding:.08rem .45rem;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.05em;font-weight:700}
+  .tag.source{color:var(--source)}.tag.inference{color:var(--inference)}.tag.open{color:var(--open)}
+  .response{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;padding:1.15rem 0;border-bottom:1px solid var(--rule)}
+  .response .verdict{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:1.02rem}
+  .response p{margin:0}
+  .table-wrap{overflow-x:auto;margin:1.2rem 0 1.8rem;border:1px solid var(--rule);background:var(--surface)}
+  table{width:100%;border-collapse:collapse;min-width:780px;font-size:.88rem;line-height:1.58}
+  th,td{text-align:left;vertical-align:top;padding:.75rem .8rem;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+  th:last-child,td:last-child{border-right:0}tr:last-child td{border-bottom:0}
+  thead th{background:var(--ink);color:var(--bg);font-weight:700}
+  tbody tr:nth-child(even){background:rgba(216,205,184,.18)}
+  .migration{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.75rem;margin:1.6rem 0}
+  .migration article{position:relative;border-top:3px solid var(--accent);background:var(--surface);padding:1rem;min-height:10.5rem;box-shadow:var(--shadow)}
+  .migration article:not(:last-child)::after{content:"\2192";position:absolute;right:-.65rem;top:46%;color:var(--accent);font-weight:800;z-index:2}
+  .migration b{display:block;font-family:var(--font-display);font-size:1.05rem;margin-bottom:.45rem}
+  .migration small{display:block;color:var(--ink-soft);line-height:1.55}
+  .loop{margin:1.5rem 0;padding:1.2rem 1.25rem;background:var(--ink);color:var(--bg);font-family:var(--font-display);font-size:1.06rem;line-height:1.8}
+  .loop span{color:#eaa88f;font-weight:800}
+  .four{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.4rem 0}
+  .four article{background:var(--surface);border:1px solid var(--rule);padding:1.1rem 1.2rem}
+  .four h3{margin:0 0 .35rem;font-size:1.15rem}.four p{margin:0;font-size:.92rem}
+  .urgency{counter-reset:u;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.4rem 0}
+  .urgency article{counter-increment:u;border-top:2px solid var(--accent-2);padding-top:.8rem}
+  .urgency h3{margin:0 0 .4rem;font-size:1.15rem}.urgency h3::before{content:counter(u,decimal-leading-zero) " ";font-family:var(--font-mono);font-size:.72rem;color:var(--accent-2)}
+  .rq{background:var(--accent-2);color:#f7f1e7;padding:1.45rem 1.6rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+  .rq p{color:#f7f1e7;font-family:var(--font-display);font-size:1.12rem;margin:0;line-height:1.8}
+  .bridge{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin:1.4rem 0}
+  .bridge div{border:1px solid var(--rule);background:var(--surface);padding:.85rem}
+  .bridge b{display:block;font-family:var(--font-display);margin-bottom:.25rem}.bridge small{color:var(--ink-soft)}
+  .intro{background:#fffdf8;border:1px solid var(--rule);padding:clamp(1.25rem,4vw,2.5rem);box-shadow:var(--shadow)}
+  .intro p{color:#312a24;text-align:justify;margin-bottom:1.2rem}
+  .intro p:first-of-type::first-letter{float:left;font-family:var(--font-display);font-size:3.8rem;line-height:.78;margin:.15rem .55rem 0 0;color:var(--accent)}
+  details{border-top:1px solid var(--rule);padding:.8rem 0}
+  summary{cursor:pointer;color:var(--ink);font-weight:650}
+  details p,details li{font-size:.88rem}
+  .refs{font-size:.86rem}.refs ol{padding-left:1.35rem}.refs li{margin:.7rem 0;color:var(--ink-soft)}
+  .note{font-size:.84rem;border-left:2px solid var(--rule);padding-left:.85rem;color:var(--ink-soft)}
+  nav.toc{position:sticky;top:1.5rem;align-self:start;font-size:.8rem;border-left:2px solid var(--rule);padding-left:1rem;max-height:calc(100vh - 3rem);overflow:auto}
+  nav.toc .toc-title{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;color:var(--accent);margin-bottom:.7rem}
+  nav.toc a{display:block;color:var(--ink-soft);text-decoration:none;padding:.28rem 0;line-height:1.45}
+  nav.toc a:hover,nav.toc a:focus,nav.toc a.active{color:var(--accent)}
+  footer{border-top:3px solid var(--ink);padding-top:1rem;color:var(--ink-soft);font-size:.8rem;margin-top:var(--s5)}
+  @media(prefers-reduced-motion:no-preference){.fx{opacity:0;transform:translateY(10px);animation:r .55s forwards}@keyframes r{to{opacity:1;transform:none}}}
+  @media(max-width:980px){.layout{grid-template-columns:1fr}.migration{grid-template-columns:1fr 1fr}.migration article:not(:last-child)::after{display:none}.bridge{grid-template-columns:1fr 1fr}nav.toc{display:none}}
+  @media(max-width:620px){.response{grid-template-columns:1fr;gap:.25rem}.four,.urgency,.migration,.bridge{grid-template-columns:1fr}h1{max-width:none}.layout{padding:1.1rem}.intro{padding:1.1rem}.meta{display:block}.meta span{display:block;margin-bottom:.25rem}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @media print{
+    .progress,nav.toc{display:none}body{background:#fff;font-size:10.5pt}.layout{display:block;max-width:none;padding:0}main{max-width:none}
+    header{margin-bottom:2rem}.migration,.four,.urgency,.bridge{break-inside:avoid}h2,h3,tr,details,.thesis,.rq{break-inside:avoid}
+    .intro,.thesis,.four article,.migration article{box-shadow:none;background:#fff}.rq{background:#eee;color:#111}.rq p{color:#111}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="layout">
+<main>
+  <header class="fx">
+    <div class="kicker">Research problem memo · 2026.08.24</div>
+    <h1>从碎片化治理到平台化共同生产</h1>
+    <p class="dek">人工智能进场前后的“数字化整体性悖论”：问题意识核验、技术演进、平台机制与新版引言</p>
+    <div class="meta"><span>研究对象：城市公共服务生产</span><span>经验入口：南京南站</span><span>方法：多智能体文献核验＋本地材料交叉检查</span></div>
+  </header>
+
+  <section id="claim">
+    <h2>一、先把“真问题”说清楚</h2>
+    <p class="lead">这个案例抓住的现实矛盾，不宜概括成“人工智能怎样改变组织”。更有解释力的问题是：数字技术持续追求整体治理，治理碎片却没有随之消失；它从部门和层级之间，逐步迁移到合同、系统、平台、模型及其接口之间。人工智能提高了识别、分类和生成的速度，也使数据汇聚与行动分散、技术判断与公共责任之间的落差更快暴露。</p>
+    <div class="thesis"><p><strong>核心命题：</strong>数字治理的发展呈现递归性的整体性悖论。每一轮技术都试图化解上一阶段的碎片化，并扩大数据、流程和行动者的连接范围；新的技术架构又会重新划定可见性、参与权与责任边界。问题的关键条件，是任务相互依赖的增长速度超过了组织协调、接口治理和责任衔接能力。</p></div>
+    <div class="legend" aria-label="证据标签说明"><span class="tag source">SOURCE 直接证据</span><span class="tag inference">INFERENCE 理论推论</span><span class="tag open">OPEN 待个案验证</span></div>
+  </section>
+
+  <section id="responses">
+    <h2>二、对现有思路逐点回应</h2>
+    <div class="response"><div class="verdict">成立，但需设限</div><p><strong>从专业分工与整体协同的张力起笔是合适的。</strong>Lawrence与Lorsch早已指出，专业化会形成不同知识、目标与工作惯例，任务依赖越强，整合要求越高。专业分工本身具有必要性；当横向协调能力没有跟上跨边界任务时，它才表现为治理碎片化。这个限定能够避免把“分工”写成问题根源。</p></div>
+    <div class="response"><div class="verdict">需要补一层</div><p><strong>新公共管理把组织分割推进到公共服务生产环节。</strong>机构拆分、购买者与提供者分离、绩效合同和服务外包，使边界从部门延伸到合同。同一城市事件可能穿过安保、保洁、设施、交通与信息系统等多份合同。政府把服务事项交给企业以后，协调没有消失，它转移到了政企之间与企业之间。</p></div>
+    <div class="response"><div class="verdict">有充分证据</div><p><strong>信息技术具有整合愿景，也会编码既有分割。</strong>数字时代治理以“再整合、需求导向的整体性和数字化”回应新公共管理的分解效应；中国电子政务研究则发现，行政条块分割会映射为系统孤岛、数据烟囱和标准差异。技术既能降低信息传递成本，也可能把部门和合同边界写入字段、权限、接口和工作流。</p></div>
+    <div class="response"><div class="verdict">可以概念化</div><p><strong>这组此消彼长的关系可称为“数字化整体性悖论”。</strong>它并不意味着技术越多、碎片越多。更准确的机制是“整合尺度升级—碎片化边界迁移”：每轮改革扩大了整体行动的范围，同时提出新的标准、接口、控制权和责任配置问题。</p></div>
+    <div class="response"><div class="verdict">平台由此进入</div><p><strong>平台的兴起源于点对点协调难以持续。</strong>共享组件、数据标准和接口把多个主体接入同一事件过程，平台运营者承担规则维护和生态编排。平台将分散信息转换为组织任务，并为集中数据进入分散行动体系提供通道；平台也可能产生平台孤岛、接口控制与供应商依赖。</p></div>
+    <div class="response"><div class="verdict">紧迫性成立</div><p><strong>人工智能使旧问题获得新的速度和层次。</strong>模型依赖跨领域数据，并开始介入检索、问答、分类、预测和辅助分办。碎片化的数据、标签和局部目标可能进入模型；算法更快“看见”问题，现场人员、合同权限与责任主体未必同步接住问题。2025年政务大模型部署指引已经明确提出防止“模型孤岛”、重复建设和碎片化安全风险。</p></div>
+    <div class="response"><div class="verdict">研究切口明确</div><p><strong>政企合作应落到“公共服务生产结构”上。</strong>研究要解释政府如何创制一个持续运营的合资平台，把资产、合同、人员、标准和数字系统接入共同过程，并通过分层责任维持公共性。这比笼统讨论技术应用，更能解释南京南站经验。</p></div>
+  </section>
+
+  <section id="evolution">
+    <h2>三、数字治理的演进：整体范围扩大，边界不断迁移</h2>
+    <p>下表采用“理想类型”梳理技术阶段。现实中的各阶段长期并存，不能理解为整齐的代际替换。</p>
+    <div class="table-wrap" role="region" aria-label="数字治理阶段演进表" tabindex="0">
+      <table>
+        <thead><tr><th>阶段</th><th>整合对象与技术逻辑</th><th>整体性承诺</th><th>新出现或被显化的碎片</th><th>证据边界</th></tr></thead>
+        <tbody>
+          <tr><td><strong>专业化与外包</strong><br>1990年代以来</td><td>单一职能组织、购买者—提供者分离、分项采购和绩效合同</td><td>提高单项服务的专业能力、可计量性和成本控制</td><td>组织边界转为合同边界；跨合同事件缺少稳定协调者</td><td><span class="tag source">SOURCE</span> NPM、整体性政府与合同国家研究</td></tr>
+          <tr><td><strong>部门电子化</strong><br>1990s—2000s</td><td>围绕职能建设数据库和业务系统</td><td>把纸面流程转入系统，提高部门内部效率</td><td>分别立项、采购和维护；形成系统孤岛、数据烟囱</td><td><span class="tag source">SOURCE</span> 中国电子政务与碎片化研究</td></tr>
+          <tr><td><strong>整体性数字政府</strong><br>2006—2010s</td><td>数据交换、统一门户、身份认证、事项标准</td><td>跨部门共享与一站式服务，围绕公民需求再整合</td><td>前台整合快于后台流程；语义、权限、利益和数据责任仍分化</td><td><span class="tag source">SOURCE</span> DEG、Whole-of-Government与互操作性研究</td></tr>
+          <tr><td><strong>城市平台治理</strong><br>2016—至今</td><td>物联网感知、事件分类、运行中心和指挥调度</td><td>把发现—派单—处置—反馈组织成连续流程</td><td>平台标准不一、场景不兼容、“联而不动”、线上发现快于线下处置</td><td><span class="tag source">SOURCE</span> “一网统管”与城市大脑实证</td></tr>
+          <tr><td><strong>政务人工智能</strong><br>2023—至今</td><td>大模型、知识库、检索生成、分类和工具调用</td><td>在语义与交互层连接异构知识和系统，辅助连续办理</td><td>模型孤岛、知识口径冲突、供应商依赖、日志审计和责任分层</td><td><span class="tag source">SOURCE</span> 模型孤岛已有政策证据；<span class="tag open">OPEN</span> 自主智能体仍属早期</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="migration" aria-label="碎片化边界迁移图">
+      <article><b>组织碎片</b><small>法定权责、专业知识、层级与部门目标分散。</small></article>
+      <article><b>合同碎片</b><small>资产、人员、预算、服务范围与考核指标分散。</small></article>
+      <article><b>数字碎片</b><small>数据口径、账号权限、接口标准与业务流程分散。</small></article>
+      <article><b>平台碎片</b><small>平台之间不兼容，接口控制和供应商锁定增强。</small></article>
+      <article><b>模型／责任碎片</b><small>标签、目标、版本和解释责任分散，输出难以进入行动。</small></article>
+    </div>
+    <p class="note">“算法碎片化”与“模型／责任碎片”是本文可提出的分析概念。政策已经确认“模型孤岛”风险，但跨部门自主智能体导致的责任扩散尚缺少成熟、规模化的经验材料。</p>
+  </section>
+
+  <section id="paradox">
+    <h2>四、悖论如何发生：一条可检验的机制链</h2>
+    <div class="loop"><span>① 专业分工深化</span> &rarr; 跨边界任务增加 &rarr; <span>② 数字技术扩大可见性和连接范围</span> &rarr; 各部门与项目沿原边界实施 &rarr; <span>③ 边界被编码进合同、数据、接口和模型</span> &rarr; 技术整合快于组织重组 &rarr; <span>④ 新的协调与责任问题出现</span> &rarr; 平台试图再次整合。</div>
+    <div class="four">
+      <article><h3>条件一｜高任务依赖</h3><p>一个事件需要多个部门、企业和系统连续行动；单项最优无法直接汇成场景最优。</p></article>
+      <article><h3>条件二｜项目化实施</h3><p>预算、采购和考核沿部门与项目分配，数字系统自然继承原有组织边界。</p></article>
+      <article><h3>条件三｜标准异质</h3><p>数据语义、事件分类、账号权限和接口义务不同，技术联通仍难形成业务协同。</p></article>
+      <article><h3>条件四｜责任未重配</h3><p>识别、派单、执行和解释分属不同主体，系统留痕无法自行决定谁对结果负责。</p></article>
+    </div>
+    <p><strong>需要防止技术决定论。</strong>某些碎片由新架构直接生成，更多碎片来自既有权责、利益与合同边界在数字系统中的显性化和程序化。同一种技术可以连接组织，也可以固化分割，结果取决于共同标准、组织载体、公共部门技术能力和责任安排。</p>
+  </section>
+
+  <section id="platform">
+    <h2>五、为什么平台会兴起</h2>
+    <p class="lead">平台的价值在于把“一次次临时协调”改造成“可持续的组织过程”。它既是共享的技术架构，也是规则安排和运营主体。</p>
+    <div class="four">
+      <article><h3>共享基础设施</h3><p>提供数据、身份、接口和可复用组件，减少多套系统重复建设。</p></article>
+      <article><h3>共同事件界面</h3><p>将客流、故障、投诉等完整事件转成跨主体可识别、可派发的任务。</p></article>
+      <article><h3>生态编排</h3><p>持续协调部门、企业与服务对象的进入规则、资源投入、工作流程和反馈关系。</p></article>
+      <article><h3>组织承载</h3><p>平台企业把合同、人员和现场能力接入系统，使数据对象能够进入实际处置。</p></article>
+    </div>
+    <p>平台也会形成新的中心。数据格式、接口权限与流程规则可能由平台运营者控制；定制开发会提高替换成本；多个平台之间可能再次封闭。平台能否缓解整体性张力，取决于跨平台编排、开放标准、政府内部技术能力和分层问责。</p>
+  </section>
+
+  <section id="urgency">
+    <h2>六、人工智能到来后的“急、难、愁、盼”</h2>
+    <div class="urgency">
+      <article><h3>急：部署速度快于组织准备</h3><p>AI应用正在扩散，数据治理、采购能力、风险评估和问责机制的发展并不同步。技术试点越密集，后续整合的技术债与合同债越容易累积。</p></article>
+      <article><h3>难：算法输出需要组织接续</h3><p>模型可以辅助识别和分类，却不能自行获得调度权限。谁接单、跨哪份合同、调用哪些人员和资产，仍是组织问题。</p></article>
+      <article><h3>愁：局部智能可能放大整体失灵</h3><p>不同系统与模型可能采用不同分类口径；识别速度上升而处置能力不变，任务积压、重复派单和责任推诿会更显眼。</p></article>
+      <article><h3>盼：平台提供可持续载体</h3><p>一个能够聚合合同、耦合能力并划清责任的平台，可为人工智能的规模化应用建立组织前提，使技术增强连续服务过程。</p></article>
+    </div>
+    <p class="note">紧迫性来自“能力发展不同步”，不宜写成对人工智能风险的泛化渲染。OECD 2026年的判断是，政府AI应用正在扩散，但可互操作数据、采购、技能与组织能力仍不均衡；基础薄弱或碎片化时，AI可能放大风险。</p>
+  </section>
+
+  <section id="question">
+    <h2>七、由此形成的问题意识与研究切口</h2>
+    <h3>研究中的反差</h3>
+    <p>技术的连接能力不断增强，公共服务的生产能力仍分散在不同权责、合同与企业之中；问题越来越容易被发现，行动资源和结果责任没有自动汇聚。智能化越深入，技术整合与组织整合之间的距离越难被临时协调掩盖。</p>
+    <h3>研究中的紧迫</h3>
+    <p>人工智能开始进入分类与分办环节，每增加一个模型，也可能增加一套数据依赖、标签标准、供应商关系和解释责任。若缺少统一的组织承载，智能化建设容易沿既有项目和部门边界复制，形成重复投资、模型孤岛和责任悬空。</p>
+    <h3>正式研究问题</h3>
+    <div class="rq"><p>在行政区划和法定权责基本不变的条件下，地方政府如何通过创制政企合资平台企业，将分散在多个政府部门和承包企业之间的资产、合同、人员、标准与数字系统重新组织起来，并形成跨部门城市运营服务的共同生产能力？人工智能在这一过程中发挥什么作用，又受到哪些责任边界的约束？</p></div>
+    <h3>从问题到案例分析的桥梁</h3>
+    <div class="bridge">
+      <div><b>平台创制</b><small>建立持续编排的组织锚点</small></div>
+      <div><b>契约聚合</b><small>校准原本分散的生产关系</small></div>
+      <div><b>能力耦合</b><small>重组政府与企业互补资源</small></div>
+      <div><b>责任分层</b><small>稳定技术、运营与行政边界</small></div>
+    </div>
+    <p><strong>研究中心句：</strong>南京南站通过政府创制的政企合资平台企业，将原来发生在政企之间和企业之间的协调转入平台内部的运营过程；数字系统把合作关系编码为事件识别、任务派发、现场处置和结果反馈的连续流程，人工智能主要增强其中的感知与分类能力。</p>
+  </section>
+
+  <section id="introduction">
+    <h2>八、新版引言：问题意识段落</h2>
+    <div class="intro">
+      <p>现代城市治理建立在专业分工之上。交通、公安、城管、属地政府和各类专业企业分别掌握特定权责、知识与资源，专业化使复杂城市得以保持日常运转。城市问题却常以完整事件的形式出现。一次枢纽拥堵、一处设施故障或一轮极端天气，可能同时穿过多个部门、辖区和服务单位。部门面对职责范围内的事项，市民经历的则是连续的城市生活。组织理论早已揭示分化与整合之间的基本张力：专业能力越细，任务之间的依赖越强，横向协调的要求也越高。治理碎片化因而并非专业分工的自然结果，它发生在跨边界任务持续增加，而信息交换、资源调度和责任衔接没有同步增长之时。<sup>[1][2]</sup></p>
+      <p>新公共管理改革进一步改变了这种张力的表现形式。机构拆分、购买者与提供者分离、竞争采购和服务外包，强化了单项事务的成本控制与绩效约束，也把公共服务的生产边界从行政组织延伸到政企合同网络。保洁、安保、设施维护、交通组织和信息系统可以分别采购，每份合同都有相对清楚的服务范围与考核指标；一个具体场景中的事件却很少按照合同边界发生。职责和合同越趋精细，跨合同处置越依赖持续协调。政府把事项交给多家企业以后，协调任务并未消失，它转移到了政企之间与企业之间，并在合同缝隙、剩余事项和责任交叉处重新出现。整体性政府与协同政府的兴起，正是对结构下放、单一目的组织和绩效分割所作的制度回应。<sup>[3][4][5]</sup></p>
+      <p>数字公共治理为缓解这一难题提供了新的可能。信息技术能够压缩信息传递层级，支持跨部门数据交换，借助统一门户、身份认证和事项标准把分散服务重新组织到公民需求周围。数字时代治理由此提出“再整合、需求导向的整体性和数字化”，试图修复新公共管理留下的制度分割。中国数字政府建设也从部门业务电子化逐步转向数据共享、一体化政务服务和城市运行协同。信息技术在这一进程中承担着明确的整体性承诺：扩大政府对问题的可见范围，缩短部门之间的信息距离，并把原本割裂的服务过程接续起来。<sup>[6][7]</sup></p>
+      <p>数字化改革的实际进程并未沿着碎片逐步消失的单一路径展开。早期业务系统提高了部门内部的信息处理效率，分散立项、采购和维护也使行政条块边界进入数据库与软件架构，形成系统孤岛、数据烟囱和标准差异；统一门户与数据交换平台连接了前台入口，事项语义、共享权限、部门利益和后台流程仍可能各自运转；城市大脑与“一网统管”扩大了事件感知和指挥范围，部分地方又出现平台衔接不畅、场景应用不兼容、部门“联而不动”以及线上发现快于线下处置等问题。技术连接增强了问题的可见度，也把以往依靠临时沟通处理的矛盾转化为数据标准、派单权限、接口义务和结果反馈问题。<sup>[8][9][10]</sup></p>
+      <p>这一演进呈现出一种递归性的“数字化整体性悖论”。每一轮技术都以化解上一阶段的碎片化为目标，并通过扩大数据、流程和行动者的连接范围提高治理的整体性；新的技术架构又会重新划定可见性、参与权和责任边界，使碎片化由部门和层级之间迁移到合同、系统、平台及其接口之间。技术并非这些问题的唯一来源。原有权责、利益和合同分割在数字系统中获得了更清晰、更稳定的表达，部分新架构又增加了标准选择、接口控制和供应商依赖。信息联通因此不能直接替代组织协同。数字技术能够提高连接能力，却无法自行决定谁投入资源、谁服从调度、谁承担成本以及谁对结果负责。</p>
+      <p>平台的兴起构成了对这组张力的新回应。平台以共用数据、技术组件和接口规则为基础，将部门、企业与服务对象接入共同的事件过程；平台运营者则持续维护进入规则、任务转换、资源调度和结果反馈。它使政府从逐一连接分散系统，转向提供可复用的共同基础；也使跨部门、跨企业的临时协调有机会沉淀为稳定流程。城市平台由此兼具技术基础设施与组织形态的双重属性：数据在平台上汇聚，完整事件被转换为可分派的任务，分散的专业能力再按照共同流程完成处置。平台没有取消专业分工，它为连接分工提供了中间层。<sup>[11][12][13]</sup></p>
+      <p>平台化也没有终结碎片化。不同部门和供应商分别建设平台时，单一部门的系统孤岛可能转化为平台之间的标准与接口壁垒；平台运营者掌握数据格式、接入权限和升级规则，又会形成新的控制中心；公共部门长期依赖定制系统，可能逐渐失去判断、修改和替换技术方案的能力。当行政授权、平台管理、算法开发与现场处置分属不同主体时，数字留痕能够记录事件经过，却不能自动确定法律责任和政治责任。平台能否形成整体治理，取决于政府是否具备编排多主体关系、维持开放标准、保有内部技术能力并划定责任边界的能力。<sup>[14][15]</sup></p>
+      <p>生成式人工智能的进入使问题更为紧迫。大模型具备语义理解、知识整合、内容生成和任务分类能力，为贯通分散文档、知识库与业务系统提供了新的工具。当前政务应用主要集中在智能问答、资料检索、辅助起草、智能分办和辅助办理等环节，跨部门自主智能体仍处在探索阶段。人工智能依赖既有数据、分类和流程；这些基础若彼此分割，模型便可能吸收并放大口径差异，还会增加知识库、模型版本、算力配置、供应商关系和解释责任等新边界。2025年发布的《政务领域人工智能大模型部署应用指引》已经要求统筹集约部署，防止“模型孤岛”、重复建设和碎片化安全风险，并强调大模型的辅助定位。人工智能能更快识别和分类问题，现场资源、合同权限和责任主体却不会随算法速度自动重组。<sup>[16][17]</sup></p>
+      <p>由此，智能化转型首先提出的是公共服务生产关系如何重新组织的问题。已有整体性治理研究揭示了跨部门协调的必要，政府即平台与城市平台主义解释了共享基础设施和接口规则的作用，共同生产研究则关注政府、企业与公众如何共同投入资源。现有讨论仍较少追踪一个更具体的过程：在法定权责与行政区划基本不变的情况下，地方政府如何创制一个长期运营的政企合资平台，把分散在部门和承包企业之间的资产、合同、人员、标准与数字系统纳入共同过程；平台如何吸收企业的运营与技术能力，同时维持公共目标、激励兼容和责任边界；人工智能又如何进入这一已经被组织起来的生产结构。</p>
+      <p>本文据此考察南京南站地区的城市运营实践。公共交通枢纽具有主体密集、权责交错、需求多元和事件高度关联等特征，为观察专业分工如何转化为场景碎片，以及平台如何连接多部门、多企业与多类服务对象提供了合适窗口。研究关注的问题是：在行政区划和法定权责基本不变的条件下，地方政府如何通过创制政企合资平台企业，将分散的资产、合同、人员、标准与数字系统重新组织为跨部门城市运营服务的共同生产能力？人工智能在这一过程中发挥什么作用，又受到哪些责任边界的约束？本文将这一过程概括为平台创制、契约聚合、能力耦合与责任分层，并据此分析平台化共同生产的形成机制及其适用边界。</p>
+    </div>
+  </section>
+
+  <section id="evidence">
+    <h2>九、证据地图与引用锚点</h2>
+    <details open><summary>管理学与公共管理：分化、外包与整体性回应</summary>
+      <div class="refs"><ol>
+        <li><strong>[1]</strong> Lawrence, P. R., &amp; Lorsch, J. W. (1967). <em>Differentiation and Integration in Complex Organizations</em>. Administrative Science Quarterly, 12(1), 1–47.</li>
+        <li><strong>[2]</strong> Galbraith, J. R. (1974). <em>Organization Design: An Information Processing View</em>. Interfaces, 4(3), 28–36. DOI: 10.1287/inte.4.3.28.</li>
+        <li><strong>[3]</strong> Hood, C. (1991). <em>A Public Management for All Seasons?</em> Public Administration, 69(1), 3–19. DOI: 10.1111/j.1467-9299.1991.tb00779.x.</li>
+        <li><strong>[4]</strong> Christensen, T., &amp; Lægreid, P. (2007). <em>The Whole-of-Government Approach to Public Sector Reform</em>. Public Administration Review, 67(6), 1059–1066. DOI: 10.1111/j.1540-6210.2007.00797.x.</li>
+        <li><strong>[5]</strong> Cordella, A., &amp; Willcocks, L. (2010). <em>Outsourcing, Bureaucracy and Public Value</em>. Government Information Quarterly, 27(1), 82–88. DOI: 10.1016/j.giq.2009.08.004.</li>
+      </ol></div>
+    </details>
+    <details><summary>数字治理：再整合、互操作与中国经验</summary>
+      <div class="refs"><ol start="6">
+        <li><strong>[6]</strong> Dunleavy, P., Margetts, H., Bastow, S., &amp; Tinkler, J. (2006). <em>New Public Management Is Dead—Long Live Digital-Era Governance</em>. JPART, 16(3), 467–494. DOI: 10.1093/jopart/mui057.</li>
+        <li><strong>[7]</strong> Gao, X., Song, Y., &amp; Zhu, X. (2013). <em>Integration and Coordination: Advancing China’s Fragmented E-Government to Holistic Governance</em>. Government Information Quarterly, 30(2), 173–181. DOI: 10.1016/j.giq.2012.12.003.</li>
+        <li><strong>[8]</strong> 黄璜（2020）：《中国“数字政府”的政策演变——兼论“数字政府”与“电子政务”的关系》，《行政论坛》第3期，47—55页。DOI：10.16637/j.cnki.23-1360/d.2020.03.007。</li>
+        <li><strong>[9]</strong> 徐连明（2022）：《超大城市数字化治理的协同障碍与发展路径研究——以上海市“一网统管”为例》，《华东师范大学学报（哲学社会科学版）》第5期。DOI：10.16382/j.cnki.1000-5579.2022.05.013。</li>
+        <li><strong>[10]</strong> 郁建兴、樊靓（2022）：《数字技术赋能社会治理及其限度——以杭州城市大脑为分析对象》，《经济社会体制比较》第1期，117—126页。</li>
+      </ol></div>
+    </details>
+    <details><summary>平台：共享基础、生态编排及其风险</summary>
+      <div class="refs"><ol start="11">
+        <li><strong>[11]</strong> O’Reilly, T. (2011). <em>Government as a Platform</em>. Innovations, 6(1), 13–40. DOI: 10.1162/INOV_a_00056.</li>
+        <li><strong>[12]</strong> Janssen, M., &amp; Estevez, E. (2013). <em>Lean Government and Platform-Based Governance</em>. Government Information Quarterly, 30, S1–S8. DOI: 10.1016/j.giq.2012.11.003.</li>
+        <li><strong>[13]</strong> 陈水生（2021）：《数字时代平台治理的运作逻辑：以上海“一网统管”为例》，《电子政务》第8期，2—10页。DOI：10.16582/j.cnki.dzzw.2021.08.001。</li>
+        <li><strong>[14]</strong> Cordella, A., &amp; Paletti, A. (2019). <em>Government as a Platform, Orchestration, and Public Value Creation</em>. Government Information Quarterly, 36(4), 101409. DOI: 10.1016/j.giq.2019.101409.</li>
+        <li><strong>[15]</strong> Lember, V., Kattel, R., &amp; Tõnurist, P. (2018). <em>Technological Capacity in the Public Sector: The Case of Estonia</em>. International Review of Administrative Sciences, 84(2), 214–230. DOI: 10.1177/0020852317735164.</li>
+      </ol></div>
+    </details>
+    <details><summary>人工智能：模型孤岛、组织条件与责任边界</summary>
+      <div class="refs"><ol start="16">
+        <li><strong>[16]</strong> 中央网信办、国家发展改革委（2025）：《政务领域人工智能大模型部署应用指引》。直接提出统筹集约部署、防止“模型孤岛”和避免碎片化安全风险。</li>
+        <li><strong>[17]</strong> OECD (2026). <em>Digital Government Outlook 2026: From Foundations to Transformational Impact</em>. DOI: 10.1787/0496b2bc-en.</li>
+        <li>Selten, F., &amp; Klievink, B. (2024). <em>Organizing Public Sector AI Adoption: Navigating between Separation and Integration</em>. Government Information Quarterly, 41(1), 101885. DOI: 10.1016/j.giq.2023.101885.</li>
+        <li>Busuioc, M. (2021). <em>Accountable Artificial Intelligence: Holding Algorithms to Account</em>. Public Administration Review, 81(5), 825–836. DOI: 10.1111/puar.13293.</li>
+      </ol></div>
+    </details>
+  </section>
+
+  <section id="boundaries">
+    <h2>十、写作边界与案例待验证项</h2>
+    <div class="four">
+      <article><h3><span class="tag open">OPEN</span> 股权与控制</h3><p>现有材料显示南京市铁路投资有限公司与万物云各持股50%。公司章程、董事会席位和重大事项表决规则尚未核实，不能推定政府拥有最终控制权。</p></article>
+      <article><h3><span class="tag open">OPEN</span> 合同聚合方式</h3><p>需要区分合同转签、统签、委托管理、标准统一与逐步聚合，不能直接写成“多份合同变为一份总包合同”。</p></article>
+      <article><h3><span class="tag open">OPEN</span> AI进入流程</h3><p>需用系统日志和访谈核实AI识别如何进入派单、现场单位是否必须接单，以及误识别、漏识别由谁解释和负责。</p></article>
+      <article><h3><span class="tag open">OPEN</span> 平台实际效果</h3><p>需比较平台成立前后的跨部门协调时间、重复派单、合同缝隙和责任推诿，排除“只增加一层组织”的替代解释。</p></article>
+    </div>
+    <p class="note">概念表述建议使用“政府创制的政企合资平台企业”或“场景型混合平台组织”。现有“政府创制平台企业”研究多以政府最终控制、国资多数持股的省级平台公司为经验对象，不能无条件套用于南京南站。工作区未找到文件名含“3.21”的稿件，本次参考了最接近的3.18版和现有平台化共同生产稿；若3.21为另一份文件，后续仍需补充核对。</p>
+  </section>
+
+  <footer>研究问题重构稿｜用于引言、文献综述与分析框架衔接｜正文已经过事实边界检查与中文去模板化处理</footer>
+</main>
+
+<nav class="toc" aria-label="页面目录">
+  <div class="toc-title">CONTENTS</div>
+  <a href="#claim">一、核心问题</a>
+  <a href="#responses">二、逐点回应</a>
+  <a href="#evolution">三、阶段演进</a>
+  <a href="#paradox">四、悖论机制</a>
+  <a href="#platform">五、平台兴起</a>
+  <a href="#urgency">六、急难愁盼</a>
+  <a href="#question">七、研究切口</a>
+  <a href="#introduction">八、新版引言</a>
+  <a href="#evidence">九、证据地图</a>
+  <a href="#boundaries">十、边界与验证</a>
+</nav>
+</div>
+<script>
+  var bar=document.getElementById('progress');
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  addEventListener('scroll',function(){
+    var d=document.documentElement,maximum=d.scrollHeight-d.clientHeight;
+    bar.style.width=(maximum>0?d.scrollTop/maximum*100:0)+'%';
+    var current=sections[0];
+    sections.forEach(function(s){if(s&&s.getBoundingClientRect().top<150){current=s;}});
+    links.forEach(function(a){a.classList.toggle('active',current&&a.getAttribute('href')==='#'+current.id);});
+  },{passive:true});
+</script>
+</body>
+</html>

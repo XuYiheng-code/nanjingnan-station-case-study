@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>南京南站正式参赛案例片｜南雍治道</title>
+  <style>
+    :root{--ink:#101316;--paper:#efe8dc;--red:#a8322f;--gold:#d6ad5a;--cyan:#5ba7c8;--muted:#a9a39a}
+    *{box-sizing:border-box}html{background:#080a0c;color:var(--paper);font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+    body{margin:0;min-height:100vh;background:radial-gradient(circle at 72% 2%,#22272b 0,#101316 35%,#080a0c 72%)}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E")}
+    main{position:relative;width:min(1500px,94vw);margin:auto;padding:54px 0 70px}
+    header{display:grid;grid-template-columns:1fr auto;align-items:end;gap:30px;margin-bottom:30px}
+    .eyebrow{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.28em}.eyebrow i{display:inline-block;width:54px;height:1px;background:var(--red);margin:0 14px 4px 0}
+    h1{font-family:"Songti SC","STSong",serif;font-size:clamp(28px,4.4vw,64px);line-height:1.08;margin:16px 0 0;letter-spacing:.02em}h1 span{display:inline-block;white-space:nowrap}
+    h1 span{color:#ee5a54}.meta{font-size:14px;color:var(--muted);letter-spacing:.08em;text-align:right;line-height:1.8}
+    .stage{background:#000;border:1px solid #393632;box-shadow:0 40px 100px #000c;position:relative;overflow:hidden}
+    video{display:block;width:100%;aspect-ratio:16/9;background:#000}.rail{height:3px;background:linear-gradient(90deg,var(--red),var(--gold),var(--cyan))}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:18px 0 28px}
+    .switch{display:flex;flex-wrap:wrap;gap:8px;background:#171b1e;border:1px solid #34383a;padding:5px}.switch button{min-height:44px;border:0;background:transparent;color:#969b9e;padding:9px 14px;white-space:nowrap;cursor:pointer;font:inherit}.switch button.active{background:var(--paper);color:var(--ink)}
+    .hint{font-size:13px;color:#8c9295}.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:32px}
+    .chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .chapter{min-height:112px;text-align:left;padding:17px;border:1px solid #303538;background:#14181b;color:var(--paper);cursor:pointer;transition:.22s ease}
+    .chapter:hover,.chapter:focus-visible{transform:translateY(-3px);border-color:var(--gold);outline:none}.chapter.active{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+    .chapter b{display:block;font-size:11px;letter-spacing:.2em;color:var(--red);margin-bottom:13px}.chapter span{font-family:"Songti SC","STSong",serif;font-size:20px}.chapter small{display:block;margin-top:9px;opacity:.62}
+    aside{border-left:1px solid #34383a;padding-left:28px}aside h2{font-family:"Songti SC","STSong",serif;font-size:27px;margin:0 0 16px}
+    aside p{font-size:15px;line-height:1.9;color:#c2bcb2;margin:0 0 16px}.question{color:var(--paper);font-family:"Songti SC","STSong",serif;font-size:24px;line-height:1.5;border-top:1px solid var(--red);padding-top:18px}
+    @media(max-width:980px){header{grid-template-columns:1fr}.meta{text-align:left}.grid{grid-template-columns:1fr}.chapters{grid-template-columns:repeat(2,1fr)}aside{border-left:0;border-top:1px solid #34383a;padding:26px 0 0}}
+    @media(max-width:560px){main{padding-top:30px}.chapters{grid-template-columns:1fr}.hint{display:none}.toolbar{justify-content:flex-end}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow"><i></i>中国智能社会治理公共政策案例分析大赛</div><h1>从平台化到智能化：<br><span>政企共创平台企业</span><br><span>何以化解行政分割难题？</span></h1></div>
+    <div class="meta">南雍治道<br>1920 × 1080 · 30 FPS · 07:43.1</div>
+  </header>
+  <section class="stage"><video id="film" controls preload="metadata" poster="南京南站正式参赛案例片_封面.jpg"><source src="南京南站正式参赛案例片_阿里云女声_含BGM.mp4" type="video/mp4"></video><div class="rail"></div></section>
+  <div class="toolbar"><div class="hint">点击章节可跳转；空格键可播放或暂停</div><div class="switch" aria-label="选择旁白与音乐版本"><button class="active" data-file="南京南站正式参赛案例片_阿里云女声_含BGM.mp4">女声 · 含 BGM</button><button data-file="南京南站正式参赛案例片_阿里云男声_含BGM.mp4">男声 · 含 BGM</button><button data-file="南京南站正式参赛案例片_阿里云女声_无BGM.mp4">女声 · 无 BGM</button><button data-file="南京南站正式参赛案例片_阿里云男声_无BGM.mp4">男声 · 无 BGM</button></div></div>
+  <div class="grid">
+    <nav class="chapters" aria-label="视频章节">
+      <button class="chapter active" data-time="0"><b>01 / 封面</b><span>问题从这里开始</span><small>00:00</small></button>
+      <button class="chapter" data-time="12"><b>02 / 现场</b><span>超级枢纽的日常</span><small>00:12</small></button>
+      <button class="chapter" data-time="48"><b>03 / 困境</b><span>三重治理分割</span><small>00:48</small></button>
+      <button class="chapter" data-time="102"><b>04 / 尝试</b><span>三种办法为何失灵</span><small>01:42</small></button>
+      <button class="chapter" data-time="177"><b>05 / 平台</b><span>一个责任界面</span><small>02:57</small></button>
+      <button class="chapter" data-time="226"><b>06 / 智能</b><span>工单怎样流转</span><small>03:46</small></button>
+      <button class="chapter" data-time="338"><b>07 / 边界</b><span>停车场红线</span><small>05:38</small></button>
+      <button class="chapter" data-time="392"><b>08 / 分析</b><span>交易成本的变化</span><small>06:32</small></button>
+    </nav>
+    <aside><h2>这支片子讲什么</h2><p>南京南站横跨两个行政区，日常运行牵涉十四个单位和部门。案例要回答的，是问题由谁发现、任务由谁派发、现场由谁处置，以及结果最终由谁负责。</p><p>交控万物将分散的服务事项、工作标准和任务流转放进同一运营界面。城市小脑提高了识别和协同速度，一线人员仍负责核实现场，法定主体仍负责授权、执法与责任认定。</p><div class="question">行政边界没有消失。变化发生在执行层：分散协商被改写为可追踪的协同过程。</div></aside>
+  </div>
+</main>
+<script>
+  const video=document.querySelector('#film');
+  const chapters=[...document.querySelectorAll('.chapter')];
+  const versions=[...document.querySelectorAll('.switch button')];
+  const setActive=()=>{let active=chapters[0];chapters.forEach(b=>{if(video.currentTime>=Number(b.dataset.time))active=b});chapters.forEach(b=>b.classList.toggle('active',b===active))};
+  chapters.forEach(b=>b.addEventListener('click',()=>{video.currentTime=Number(b.dataset.time);setActive();video.play()}));
+  video.addEventListener('timeupdate',setActive);
+  versions.forEach(b=>b.addEventListener('click',()=>{const t=video.currentTime,playing=!video.paused;video.src=b.dataset.file;video.addEventListener('loadedmetadata',()=>{video.currentTime=t;setActive();if(playing)video.play()},{once:true});versions.forEach(x=>x.classList.toggle('active',x===b))}));
+  document.addEventListener('keydown',e=>{if(e.code==='Space'&&e.target.tagName!=='BUTTON'){e.preventDefault();video.paused?video.play():video.pause()}});
+</script>
+</body>
+</html>

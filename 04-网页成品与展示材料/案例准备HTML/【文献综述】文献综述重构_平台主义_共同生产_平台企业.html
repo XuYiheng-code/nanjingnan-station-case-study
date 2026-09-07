@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>三条文献如何汇成一个研究问题</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --paper: #ffffff;
+      --ink: #171a20;
+      --muted: #626a76;
+      --rule: #e2e6eb;
+      --blue: #2864dc;
+      --blue-soft: #eaf1ff;
+      --green: #147d70;
+      --green-soft: #e8f6f3;
+      --amber: #9a6211;
+      --amber-soft: #fff3dc;
+      --red: #a33a3a;
+      --red-soft: #fff0f0;
+      --shadow: 0 18px 50px rgba(26, 35, 50, .08);
+      --radius: 18px;
+      --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+      --serif: "Songti SC", "STSong", "SimSun", serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: var(--sans);
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+    }
+    .progress {
+      position: fixed; inset: 0 auto auto 0; z-index: 20;
+      width: 0; height: 3px; background: var(--blue);
+    }
+    .hero {
+      padding: 84px 24px 66px;
+      background:
+        radial-gradient(circle at 84% 10%, rgba(40,100,220,.12), transparent 30%),
+        linear-gradient(180deg, #fff 0%, #f4f6f8 100%);
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-inner { max-width: 1120px; margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: .12em;
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--blue); }
+    h1 { margin: 18px 0 16px; max-width: 850px; font-size: clamp(36px, 6vw, 68px); line-height: 1.08; letter-spacing: -.04em; }
+    .lead { max-width: 820px; margin: 0; color: var(--muted); font-size: 19px; }
+    .hero-note {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+    }
+    .tag { padding: 6px 11px; border: 1px solid var(--rule); border-radius: 999px; background: rgba(255,255,255,.78); font-size: 12px; color: var(--muted); }
+    .layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 36px; max-width: 1180px; margin: 0 auto; padding: 40px 24px 90px; }
+    nav { position: sticky; top: 26px; align-self: start; padding: 18px 8px; }
+    nav .nav-title { margin: 0 12px 9px; font-size: 12px; color: #8b929c; letter-spacing: .12em; }
+    nav a { display: block; padding: 8px 12px; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: 13px; line-height: 1.4; }
+    nav a:hover, nav a.active { color: var(--blue); border-left-color: var(--blue); background: linear-gradient(90deg, var(--blue-soft), transparent); }
+    main { min-width: 0; }
+    section { scroll-margin-top: 28px; margin-bottom: 34px; }
+    .card { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(24px, 4vw, 42px); }
+    .section-kicker { color: var(--blue); font-weight: 700; font-size: 12px; letter-spacing: .1em; }
+    h2 { margin: 7px 0 15px; font-size: clamp(25px, 3.3vw, 38px); line-height: 1.22; letter-spacing: -.025em; }
+    h3 { margin: 30px 0 10px; font-size: 20px; line-height: 1.4; }
+    h4 { margin: 23px 0 7px; font-size: 16px; }
+    p { margin: 0 0 14px; }
+    .muted { color: var(--muted); }
+    .thesis {
+      margin: 24px 0 4px; padding: 22px 24px; border-left: 4px solid var(--blue);
+      background: var(--blue-soft); font-family: var(--serif); font-size: 19px; line-height: 1.85;
+    }
+    .stack { display: grid; gap: 12px; margin: 26px 0; }
+    .layer { display: grid; grid-template-columns: 58px 170px 1fr; gap: 16px; align-items: center; padding: 17px 19px; border: 1px solid var(--rule); border-radius: 14px; background: #fff; }
+    .layer .no { color: var(--blue); font-size: 25px; font-weight: 800; letter-spacing: -.04em; }
+    .layer strong { font-size: 15px; }
+    .layer span:last-child { color: var(--muted); font-size: 14px; }
+    .bridge { display: flex; gap: 7px; align-items: center; justify-content: center; color: #89919c; font-size: 12px; }
+    .bridge::before, .bridge::after { content: ""; height: 1px; flex: 1; background: var(--rule); }
+    .callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
+    .callout { padding: 17px; border-radius: 13px; border: 1px solid var(--rule); background: #fafbfc; }
+    .callout b { display: block; margin-bottom: 5px; font-size: 13px; }
+    .callout p { margin: 0; color: var(--muted); font-size: 13px; }
+    .label { display: inline-block; margin-right: 6px; padding: 2px 7px; border-radius: 5px; font-size: 10px; font-weight: 800; letter-spacing: .08em; vertical-align: 1px; }
+    .source { color: var(--green); background: var(--green-soft); }
+    .infer { color: var(--blue); background: var(--blue-soft); }
+    .open { color: var(--amber); background: var(--amber-soft); }
+    .map-head { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; }
+    .map-index { flex: none; color: #d8dee7; font-size: 52px; line-height: 1; font-weight: 800; letter-spacing: -.06em; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin: 25px 0 19px; background: var(--rule); border: 1px solid var(--rule); border-radius: 13px; overflow: hidden; }
+    .time { padding: 17px 15px; background: #fff; }
+    .time .year { color: var(--blue); font-size: 12px; font-weight: 800; }
+    .time b { display: block; margin: 4px 0; font-size: 14px; }
+    .time p { color: var(--muted); font-size: 12px; line-height: 1.58; margin: 0; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+    .panel { padding: 19px; border-radius: 13px; border: 1px solid var(--rule); }
+    .panel.good { background: var(--green-soft); border-color: #cde9e3; }
+    .panel.limit { background: var(--red-soft); border-color: #f1d6d6; }
+    .panel h4 { margin: 0 0 8px; }
+    .panel p, .panel li { color: #48515d; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 1.2em; }
+    li { margin: 5px 0; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; font-size: 13px; line-height: 1.55; }
+    th, td { padding: 13px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; text-align: left; }
+    th { background: #f6f8fa; color: #4a5360; font-size: 12px; }
+    tr:last-child td { border-bottom: 0; }
+    .doi { color: #747d89; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .boundary { padding: 18px 20px; border: 1px solid #f0d9ac; background: var(--amber-soft); border-radius: 13px; }
+    .boundary strong { color: #704707; }
+    .logic { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 24px 0 8px; }
+    .logic-item { position: relative; min-height: 132px; padding: 17px; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+    .logic-item:not(:last-child)::after { content: "→"; position: absolute; right: -15px; top: 50%; z-index: 2; color: var(--blue); font-weight: 800; transform: translateY(-50%); }
+    .logic-item small { color: var(--blue); font-weight: 700; }
+    .logic-item b { display: block; margin: 4px 0 7px; }
+    .logic-item p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .rq { counter-reset: rq; display: grid; gap: 11px; margin-top: 22px; }
+    .rq div { position: relative; padding: 15px 17px 15px 54px; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+    .rq div::before { counter-increment: rq; content: counter(rq); position: absolute; left: 16px; top: 14px; width: 24px; height: 24px; display: grid; place-items: center; color: #fff; background: var(--blue); border-radius: 50%; font-size: 12px; font-weight: 800; }
+    .rq b { display: block; margin-bottom: 3px; }
+    .rq span { color: var(--muted); font-size: 13px; }
+    .paper { background: #fffefa; border-color: #e8e1d2; }
+    .paper .paper-title { margin-bottom: 26px; text-align: center; }
+    .paper .paper-title h2 { font-family: var(--serif); font-size: 31px; }
+    .paper-copy { max-width: 800px; margin: 0 auto; font-family: var(--serif); font-size: 17px; line-height: 2.05; text-align: justify; }
+    .paper-copy p { margin-bottom: 17px; text-indent: 2em; }
+    details { margin: 11px 0; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+    summary { cursor: pointer; padding: 14px 17px; font-weight: 700; }
+    details ol { margin: 0; padding: 0 35px 18px 48px; color: #4f5864; font-size: 13px; }
+    .footnote { margin-top: 20px; color: var(--muted); font-size: 12px; }
+    footer { max-width: 1180px; margin: 0 auto; padding: 0 24px 45px 290px; color: #89919c; font-size: 12px; }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; padding-top: 20px; }
+      nav { position: static; display: flex; overflow-x: auto; padding: 6px 0 13px; gap: 2px; }
+      nav .nav-title { display: none; }
+      nav a { white-space: nowrap; border-left: 0; border-bottom: 2px solid transparent; }
+      nav a:hover, nav a.active { border-bottom-color: var(--blue); }
+      footer { padding-left: 24px; }
+      .timeline { grid-template-columns: 1fr 1fr; }
+      .logic { grid-template-columns: 1fr 1fr; }
+      .logic-item:nth-child(2)::after { display: none; }
+    }
+    @media (max-width: 620px) {
+      .hero { padding: 58px 20px 44px; }
+      .layout { padding: 18px 14px 60px; }
+      .card { padding: 23px 18px; border-radius: 14px; }
+      .lead { font-size: 16px; }
+      .layer { grid-template-columns: 42px 1fr; gap: 10px; }
+      .layer span:last-child { grid-column: 1 / -1; }
+      .callouts, .two-col, .timeline, .logic { grid-template-columns: 1fr; }
+      .logic-item::after { display: none !important; }
+      .map-index { font-size: 38px; }
+      .paper-copy { font-size: 16px; line-height: 1.95; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      body { background: #fff; }
+      .progress, nav { display: none; }
+      .hero { padding: 30px 0; }
+      .layout { display: block; max-width: none; padding: 0; }
+      section { break-inside: avoid; }
+      .card { box-shadow: none; border-radius: 0; }
+      footer { padding: 20px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">LITERATURE SYNTHESIS · 2026</div>
+      <h1>三条文献如何汇成一个研究问题</h1>
+      <p class="lead">城市平台主义讨论治理关系的重组，共同生产讨论公共服务的生产关系，政府创制平台企业讨论这种关系由何种组织承载。三条脉络逐层收束，才能准确说明南京南站案例的理论位置。</p>
+      <div class="hero-note">
+        <span class="tag">城市数字化转型</span>
+        <span class="tag">平台化共同生产</span>
+        <span class="tag">场景型政企合资平台</span>
+        <span class="tag">50/50股权边界</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="页面目录">
+      <div class="nav-title">内容导航</div>
+      <a href="#answer">核心判断</a>
+      <a href="#map-a">一、城市平台主义</a>
+      <a href="#map-b">二、平台与共同生产</a>
+      <a href="#map-c">三、平台企业</a>
+      <a href="#relation">三条脉络的关系</a>
+      <a href="#questions">研究切口</a>
+      <a href="#review">五段文献综述</a>
+      <a href="#references">核心文献</a>
+      <a href="#boundaries">证据边界</a>
+    </nav>
+
+    <main>
+      <section id="answer" class="card">
+        <div class="section-kicker">核心判断</div>
+        <h2>三条文献沿着一条逐级收束的解释链展开</h2>
+        <p class="muted">平台主义回答城市治理为何转向平台化；共同生产说明平台中的多元主体如何共同投入；平台企业研究进一步追问，这些投入靠什么组织和制度维持。</p>
+        <div class="stack">
+          <div class="layer"><span class="no">01</span><strong>宏观治理形态</strong><span>城市平台主义：平台如何重组城市中的数据、服务、权力与主体关系。</span></div>
+          <div class="bridge">从连接关系进入生产过程</div>
+          <div class="layer"><span class="no">02</span><strong>中观生产关系</strong><span>平台化共同生产：政府、企业、承包商与使用者各自投入什么，这些投入如何变为服务。</span></div>
+          <div class="bridge">从临时协作转向稳定承载</div>
+          <div class="layer"><span class="no">03</span><strong>具体组织载体</strong><span>政府创制的政企合资平台企业：产权、契约、人员、系统和责任如何进入同一组织。</span></div>
+        </div>
+        <div class="thesis">现有研究分别解释了平台的关系结构、共同生产的参与逻辑与公共服务公司化的组织选择，却较少追踪一个政府创制的场景型合资平台，如何把外部的政企协调和企业间协调转化为平台内部的运营过程。</div>
+        <div class="callouts">
+          <div class="callout"><b><span class="label source">SOURCE</span>文献事实</b><p>可由论文、专著或期刊信息直接核验的观点。</p></div>
+          <div class="callout"><b><span class="label infer">INFERENCE</span>本文推论</b><p>由三条文献共同推出、需要案例材料检验的判断。</p></div>
+          <div class="callout"><b><span class="label open">OPEN</span>待核事实</b><p>股权、合同、数据权和责任配置等尚需访谈或制度材料确认。</p></div>
+        </div>
+      </section>
+
+      <section id="map-a" class="card">
+        <div class="map-head">
+          <div><div class="section-kicker">文献地图 A</div><h2>城市数字化转型中的平台主义</h2></div>
+          <div class="map-index">01</div>
+        </div>
+        <p><span class="label source">SOURCE</span>这条脉络经历了从“政府即平台”的技术架构想象，到“城市即平台”的创新基础设施，再到“平台城市主义”对权力、数据和中介关系的分析。研究焦点也由平台能提供什么，转向平台如何改变城市。</p>
+        <div class="timeline">
+          <div class="time"><span class="year">2011—2013</span><b>政府即平台</b><p>共享数据、标准和基础设施，支持外部主体参与服务开发。</p></div>
+          <div class="time"><span class="year">2016—2018</span><b>城市即平台</b><p>平台成为组织城市创新和持续协作的架构。</p></div>
+          <div class="time"><span class="year">2018—2022</span><b>平台城市主义</b><p>关注平台化、基础设施化及其塑造的权力几何。</p></div>
+          <div class="time"><span class="year">2022—2026</span><b>类型化与本土化</b><p>讨论公共服务中介、混合能动性和中国城市的国家—平台关系。</p></div>
+        </div>
+        <h3>经典观点与前沿推进</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>文献节点</th><th>主要观点</th><th>对本文的启发</th></tr></thead>
+            <tbody>
+              <tr><td>O’Reilly（2011）；Janssen与Estevez（2013）</td><td>政府提供可复用的规则、数据与基础设施，使服务创新分布于多元主体。</td><td>平台具有制度接口和组织接口，功能不能缩减为一套信息系统。</td></tr>
+              <tr><td>Anttiroiko（2016）；Ansell与Gash（2018）</td><td>城市平台和协作平台依靠专门资源、中介能力与持续编排维持多项协作。</td><td>平台可以承接反复发生的跨部门协作，减少逐事协调。</td></tr>
+              <tr><td>Plantin等（2018）；van Dijck等（2018）；Barns（2020）</td><td>平台逐渐基础设施化，数据提取、接口规则和生态控制随之成为治理问题。</td><td>考察谁控制接口、分类、准入和数据，才能看见平台背后的权力。</td></tr>
+              <tr><td>Caprotti等（2022）；Caprotti与Liu（2022）</td><td>平台城市主义是新的社会技术中介，可表现为公共服务中介与公私混合能动性。</td><td>中国城市平台需要同时分析政府主动塑造与企业能力进入。</td></tr>
+              <tr><td>陈水生（2021）；孙志建（2022）；锁利铭等（2025）；吴晓林（2026）</td><td>“一网统管”和平台主义城市治理说明，平台通过事件化、网络连接与政府的生态塑造重组城市运行。</td><td>平台缓和组织碎片化，也可能形成新的平台边界和控制集中。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="two-col">
+          <div class="panel good"><h4>贡献</h4><ul><li>把平台从技术工具提升为城市治理关系和权力结构。</li><li>揭示数据、接口、标准、准入规则的组织含义。</li><li>解释平台为何能够连接多部门、多企业与多类使用者。</li></ul></div>
+          <div class="panel limit"><h4>边界</h4><ul><li>宏观批判和商业平台研究较多，对平台内部的合同、人员和现场运营关注较少。</li><li>“城市即平台”“政府即平台”“平台企业”时常混用，组织层次并不清楚。</li><li>连接关系如何转化为稳定服务生产，仍缺少过程机制。</li></ul></div>
+        </div>
+        <p><span class="label infer">INFERENCE</span>这条文献提供了“平台何以兴起”的解释，却不能单独回答南京南站平台由谁创制、怎样经营。研究需要由平台的宏观关系结构进入平台中的服务生产。</p>
+      </section>
+
+      <section id="map-b" class="card">
+        <div class="map-head">
+          <div><div class="section-kicker">文献地图 B</div><h2>围绕数字化平台的共同生产</h2></div>
+          <div class="map-index">02</div>
+        </div>
+        <p><span class="label source">SOURCE</span>共同生产研究从公共服务生产函数出发，核心标准是专业生产者之外的主体直接投入时间、信息、能力或行为，并对服务产出发生影响。数字平台扩展了连接范围，也用准入、界面和分类规则重新分配参与机会。</p>
+        <div class="timeline">
+          <div class="time"><span class="year">1981—1996</span><b>生产性投入</b><p>常规生产者与消费者生产者共同投入资源。</p></div>
+          <div class="time"><span class="year">2007—2017</span><b>类型与阶段</b><p>区分参与者、共同设计、共同交付与共同评价。</p></div>
+          <div class="time"><span class="year">2012—2020</span><b>数字化扩展</b><p>众包、政府即平台、自助服务和信息分布差异。</p></div>
+          <div class="time"><span class="year">2021—2026</span><b>包容与风险</b><p>平台设计、数字能力、公共价值和价值损耗进入研究中心。</p></div>
+        </div>
+        <h3>共同生产的概念门槛</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>概念</th><th>识别标准</th><th>与本文的关系</th></tr></thead>
+            <tbody>
+              <tr><td>共同生产</td><td>外部主体直接、积极地向公共服务生产投入资源。</td><td>需要证明政府、企业或使用者的投入进入了实际服务过程。</td></tr>
+              <tr><td>组织间协作</td><td>组织共同决策、协调或执行任务。</td><td>可以支持共同生产，但一般协调本身不足以证明共同生产。</td></tr>
+              <tr><td>外包／PPP</td><td>合同配置政府与企业之间的交付责任。</td><td>一次性购买服务仍属合同生产；持续共同投入才接近共同生产。</td></tr>
+              <tr><td>平台</td><td>以接口、规则、共享资源、匹配、路由和反馈组织多边互动。</td><td>平台可以支持共同生产，门户或App本身不能作为充分证据。</td></tr>
+              <tr><td>共同创造</td><td>多主体互动中形成价值，范围延伸到使用情境。</td><td>范围较宽，需同时关注价值创造和价值损耗。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="boundary"><strong>概念控制：</strong>若案例只呈现政府与万科之间的合资关系，经典“共同生产”并不能自动成立。本文可将“平台化共同生产”限定为组织间协作生产与使用者共同生产两个嵌套层次：前者关注部门、平台企业、承包商和技术企业的互补投入；后者关注乘客、商户、出租车司机的报告、配合、自助与反馈是否进入生产过程。</div>
+        <div class="two-col">
+          <div class="panel good"><h4>贡献</h4><ul><li>提供判断“共同”的严格尺度：生产性投入，而非一般参与。</li><li>说明数字平台可将识别、派发、处置和反馈组织为连续流程。</li><li>提醒平台的界面和分类规则会决定谁能参与、哪些诉求可见。</li></ul></div>
+          <div class="panel limit"><h4>边界</h4><ul><li>经典研究以政府—公民、专业人员—使用者为中心。</li><li>数字共同生产多讨论众包、311系统和在线参与。</li><li>对政府部门、合资企业、承包商共同投入资源的组织间生产解释不足。</li></ul></div>
+        </div>
+        <p><span class="label infer">INFERENCE</span>南京南站的材料需要证明企业从可替换的受托服务商转为持续的生产主体，也要说明使用者如何进入事件识别、现场处置或服务评价。由此才可把“政企合作”推进为“平台化共同生产”。</p>
+      </section>
+
+      <section id="map-c" class="card">
+        <div class="map-head">
+          <div><div class="section-kicker">文献地图 C</div><h2>政府创制平台企业及其相邻理论</h2></div>
+          <div class="map-index">03</div>
+        </div>
+        <p><span class="label source">SOURCE</span>中文研究提出“政府创制平台企业”，解释政府通过控股平台公司集中数据、标准和技术能力。国际上的公共服务公司化、混合公司与边界组织研究，则分别解释设立独立法人的原因、公私共同持有的治理难题，以及异质制度逻辑如何在组织内部共存。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>理论脉络</th><th>核心问题</th><th>能够解释什么</th><th>主要风险</th></tr></thead>
+            <tbody>
+              <tr><td>政府创制平台企业</td><td>政府为何创制并控制数字公共服务平台公司？</td><td>平台权力集中、标准整合、需求信息汇集。</td><td>“公司化／平台化领地”与基层自主性收缩。</td></tr>
+              <tr><td>公共服务公司化</td><td>为什么把服务移入独立法人？</td><td>专业管理、自主用工、独立核算和跨项目经营。</td><td>公司化没有稳定的成本优势，公共控制可能弱化。</td></tr>
+              <tr><td>制度化PPP／混合公司</td><td>为什么由公私双方共同持有？</td><td>资本、知识与治理权进入共同法人，形成关系性承诺。</td><td>目标冲突、决策僵局、利润挤压公共利益。</td></tr>
+              <tr><td>混合组织／边界组织</td><td>政企逻辑怎样进入同一组织？</td><td>通过董事会、协议、合同和标准配置多种制度逻辑。</td><td>双重问责、商业保密与公共透明的冲突。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>南京南站不能直接套用既有类型</h3>
+        <div class="boundary"><strong>关键边界：</strong>宋锴业、徐雅倩（2025）的经验对象主要是国资控股、政府保有最终控制权的省级数字政府平台公司。现有材料显示南京南站平台为政企各持50%，因此宜称“政府创制的场景型政企合资平台企业”或“对等股权的场景型混合平台组织”。政府创制说明组织来源，对等股权说明产权结构，场景型说明平台边界。</div>
+        <div class="two-col">
+          <div class="panel good"><h4>贡献</h4><ul><li>把平台的技术架构落实到产权、法人和公司治理。</li><li>解释独立组织如何承载资产、合同、人员和经营风险。</li><li>为分析激励兼容、多重委托和公共责任提供制度变量。</li></ul></div>
+          <div class="panel limit"><h4>边界</h4><ul><li>国内核心研究集中于政府最终控制的省级数字平台。</li><li>公司化研究尚未证明企业形式天然带来效率。</li><li>对等股权的表决、僵局化解和兜底责任需由案例材料确认。</li></ul></div>
+        </div>
+        <p><span class="label infer">INFERENCE</span>南京南站可把研究推进到“场景型、对等股权、运营导向”的混合平台：法定权责留在原部门，反复发生的跨部门与跨企业协调进入合资企业的日常经营。该判断是否成立，取决于平台是否实际拥有合同管理、人员编组、任务配置、供应商选择和绩效监督能力。</p>
+      </section>
+
+      <section id="relation" class="card">
+        <div class="section-kicker">综合关系</div>
+        <h2>从治理形态到生产关系，再到组织载体</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>层次</th><th>核心问题</th><th>已有解释</th><th>尚未解释</th><th>本文承接</th></tr></thead>
+            <tbody>
+              <tr><td>平台主义</td><td>平台如何改变城市治理？</td><td>连接多边主体、制定接口规则、重组数据与权力。</td><td>连接如何进入现场运营。</td><td>观察平台怎样把关系转为任务流程。</td></tr>
+              <tr><td>共同生产</td><td>服务由谁共同投入和完成？</td><td>识别生产性投入、参与阶段和价值形成。</td><td>组织间投入如何长期稳定。</td><td>区分协作生产与使用者共同生产。</td></tr>
+              <tr><td>平台企业</td><td>合作由什么组织承载？</td><td>公司化、混合产权、边界组织与公共问责。</td><td>场景型50/50平台怎样聚合分散要素。</td><td>分析平台创制、契约聚合、能力耦合、责任分层。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="logic">
+          <div class="logic-item"><small>机制 1</small><b>平台创制</b><p>以独立法人提供稳定合作入口，把临时协调变为可持续组织关系。</p></div>
+          <div class="logic-item"><small>机制 2</small><b>契约聚合</b><p>将分散合同、服务标准和绩效要求纳入可统一管理的关系结构。</p></div>
+          <div class="logic-item"><small>机制 3</small><b>能力耦合</b><p>组合政府权威与资源、企业运营能力、供应商技术和使用者信息。</p></div>
+          <div class="logic-item"><small>机制 4</small><b>责任分层</b><p>区分重大决策、日常经营、行政执法、技术性能与最终政治责任。</p></div>
+        </div>
+      </section>
+
+      <section id="questions" class="card">
+        <div class="section-kicker">文献之后</div>
+        <h2>进一步需要追问的五个问题</h2>
+        <div class="rq">
+          <div><b>何时构成共同生产？</b><span>企业和使用者必须作出持续、不可替代的生产性投入，才能与采购、外包和一般参与区分。</span></div>
+          <div><b>为什么选择50/50的场景型合资平台？</b><span>需要比较科层协调、政府控股平台、普通外包与对等合资在控制、激励和经营能力上的差异。</span></div>
+          <div><b>平台怎样把外部协调转成内部运营？</b><span>重点追踪资产、合同、人员、标准、数据和任务如何进入同一工作过程。</span></div>
+          <div><b>对等股权如何防止僵局与责任悬空？</b><span>董事会席位、重大事项、日常授权、绩效考核、异常升级和兜底责任需要逐项识别。</span></div>
+          <div><b>人工智能改变了什么？</b><span>人工智能主要增强事件感知与分类；算法的采购、校验、追溯和责任仍受既有平台制度约束。</span></div>
+        </div>
+        <div class="thesis">据此，本文的问题可表述为：在行政区划和法定权责基本不变的条件下，地方政府如何创制场景型政企合资平台，将分散于部门和承包企业之间的生产要素重新组织为跨部门城市运营服务；这种平台化共同生产如何形成，又怎样通过责任分层维持公共控制？</div>
+      </section>
+
+      <section id="review" class="card paper">
+        <div class="paper-title">
+          <div class="section-kicker">可直接入文的版本 · 五段</div>
+          <h2>平台化共同生产的三条研究脉络</h2>
+        </div>
+        <div class="paper-copy">
+          <p>平台进入城市治理，推动数字化转型的研究重心由技术应用转向关系重组。围绕这一变化，现有研究形成了三条彼此关联的脉络：城市平台主义关注平台如何改变城市中的数据、服务与权力关系；共同生产研究讨论政府、企业和服务使用者如何向公共服务投入资源；政府创制平台企业研究则将视线推进到产权结构与组织载体。三者分别对应治理形态、生产关系与组织安排，共同构成理解平台化城市运营的文献基础。</p>
+          <p>城市平台主义由“政府即平台”和“城市即平台”的讨论发展而来。早期研究强调政府通过共享数据、标准和基础设施支持外部主体开发公共服务（O’Reilly，2011；Janssen和Estevez，2013），此后平台逐渐被视为组织城市创新与持续协作的治理架构（Anttiroiko，2016；Ansell和Gash，2018）。平台城市主义研究进一步揭示，平台在提供连接的同时也通过数据提取、接口控制与分类规则重组城市权力（Plantin等，2018；Barns，2020；Caprotti等，2022）。国内对“一网统管”和平台主义城市治理的研究说明，平台可以通过事件化管理和网络连接缓解部门分割（陈水生，2021；孙志建，2022；锁利铭等，2025；吴晓林，2026）。这条脉络解释了平台为何成为城市数字化转型的重要组织形态，但对平台内部的合同、人员、经营和现场处置关注较少。</p>
+          <p>共同生产研究提供了分析平台内多主体关系的生产视角。Parks等（1981）将共同生产界定为常规生产者与消费者生产者共同投入资源，Ostrom（1996）进一步强调不同组织边界中的行动者共同形成公共物品或服务。后续研究从参与主体、生产阶段与贡献内容细化了共同生产的类型，并把价值创造及价值损耗纳入分析（Bovaird，2007；Brandsen和Honingh，2016；Nabatchi等，2017；Osborne等，2016）。数字技术扩大了信息汇集和服务协作的范围，也会通过数字能力、界面设计和分类标准形成新的参与差异（Linders，2012；Meijer，2012；Lember等，2019；Clifton等，2020）。这类研究多以政府—公民和专业人员—使用者关系为中心，对政府部门、平台企业、承包商和技术供应商共同投入资源的组织间生产着墨有限。为避免概念泛化，平台化共同生产仍须以直接、持续的生产性投入为识别标准。</p>
+          <p>政府创制平台企业研究把平台问题落实到独立法人和组织控制。宋锴业、徐雅倩（2025）指出，政府通过控股平台企业集中数据、标准和技术能力，可以降低跨部门公共服务中的信息分散，同时也可能形成新的“公司化／平台化领地”。公共服务公司化研究表明，独立法人有利于形成专业管理、自主用工和持续经营能力，却没有稳定的成本优势（Andrews等，2022；Bernier等，2022；Bel等，2022）。制度化公私伙伴关系与混合公司研究则发现，共同法人能够将公私双方的资本、知识与治理权纳入持续协商，也会带来目标冲突、决策僵局和公共利益保护问题（Cappellaro和Longo，2011；da Cruz和Marques，2012）。混合组织和边界组织理论由此提醒研究者考察董事会、股东协议、合同、标准与问责制度如何配置公共责任和商业经营。既有“政府创制平台企业”研究主要以政府最终控制的省级数字平台为对象，对政企对等持股、围绕具体城市场景持续经营的平台组织解释不足。</p>
+          <p>三条文献之间仍有一段尚未打通的机制链：平台主义揭示多边连接和规则控制，共同生产说明多元主体的生产性投入，平台企业研究解释产权与组织选择，现有研究较少说明三者如何在具体城市运营场景中结合。南京南站案例的理论价值正在于此。本文将其界定为政府创制的场景型政企合资平台企业，考察平台创制如何提供稳定的组织入口，契约聚合如何重整分散的服务关系，能力耦合如何组合政府权威、企业运营、供应商技术与使用者信息，责任分层如何在企业经营、行政执法和最终政治责任之间划定边界。由此可以进一步解释，在行政区划和法定权责基本不变的条件下，平台如何把外部的政企协调和企业间协调转化为连续的公共服务生产过程，以及人工智能的感知与分类能力如何嵌入这一过程。</p>
+        </div>
+      </section>
+
+      <section id="references" class="card">
+        <div class="section-kicker">REFERENCE MAP</div>
+        <h2>核心文献与核验信息</h2>
+        <p class="muted">以下文献承担概念源流、前沿推进或关键边界功能。DOI以文本保留，便于后续导入正式参考文献表。</p>
+        <details open>
+          <summary>城市平台主义与平台治理</summary>
+          <ol>
+            <li>O’Reilly, T. (2011). Government as a Platform. <i>Innovations</i>, 6(1), 13–40. <span class="doi">doi:10.1162/INOV_a_00056</span></li>
+            <li>Janssen, M., &amp; Estevez, E. (2013). Lean Government and Platform-based Governance. <i>Government Information Quarterly</i>, 30(S1), S1–S8. <span class="doi">doi:10.1016/j.giq.2012.11.003</span></li>
+            <li>Anttiroiko, A.-V. (2016). City-as-a-Platform. <i>Sustainability</i>, 8(9), 922. <span class="doi">doi:10.3390/su8090922</span></li>
+            <li>Ansell, C., &amp; Gash, A. (2018). Collaborative Platforms as a Governance Strategy. <i>JPART</i>, 28(1), 16–32. <span class="doi">doi:10.1093/jopart/mux030</span></li>
+            <li>Plantin, J.-C., Lagoze, C., Edwards, P. N., &amp; Sandvig, C. (2018). Infrastructure Studies Meet Platform Studies. <i>New Media &amp; Society</i>, 20(1), 293–310. <span class="doi">doi:10.1177/1461444816661553</span></li>
+            <li>Barns, S. (2020). <i>Platform Urbanism</i>. Palgrave Macmillan. <span class="doi">doi:10.1007/978-981-32-9725-8</span></li>
+            <li>Caprotti, F., Chang, I.-C. C., &amp; Joss, S. (2022). Beyond the Smart City: A Typology of Platform Urbanism. <i>Urban Transformations</i>, 4, 4. <span class="doi">doi:10.1186/s42854-022-00033-9</span></li>
+            <li>陈水生，2021：《数字时代平台治理的运作逻辑：以上海“一网统管”为例》，《电子政务》第8期，第2—10页。<span class="doi">doi:10.16582/j.cnki.dzzw.2021.08.001</span></li>
+            <li>孙志建，2022：《平台化运作的整体性政府——基于城市运行“一网统管”的个案研究》，《政治学研究》第5期，第39—48页。</li>
+            <li>锁利铭、耿佳皓、卫荷宁，2025：《平台驱动的城市网络治理：生成、连接与耦合》，《公共行政评论》第2期，第104—122页。</li>
+            <li>吴晓林，2026：《平台主义城市治理：理论建构与运行逻辑》，《上海行政学院学报》第27卷第4期，第39—49页。</li>
+          </ol>
+        </details>
+        <details>
+          <summary>共同生产与数字共同生产</summary>
+          <ol>
+            <li>Parks, R. B., et al. (1981). Consumers as Coproducers of Public Services. <i>Policy Studies Journal</i>, 9(7), 1001–1011. <span class="doi">doi:10.1111/j.1541-0072.1981.tb01208.x</span></li>
+            <li>Ostrom, E. (1996). Crossing the Great Divide. <i>World Development</i>, 24(6), 1073–1087. <span class="doi">doi:10.1016/0305-750X(96)00023-X</span></li>
+            <li>Bovaird, T. (2007). Beyond Engagement and Participation. <i>Public Administration Review</i>, 67(5), 846–860. <span class="doi">doi:10.1111/j.1540-6210.2007.00773.x</span></li>
+            <li>Linders, D. (2012). From E-government to We-government. <i>Government Information Quarterly</i>, 29(4), 446–454. <span class="doi">doi:10.1016/j.giq.2012.06.003</span></li>
+            <li>Meijer, A. (2012). Co-production in an Information Age. <i>VOLUNTAS</i>, 23, 1156–1172. <span class="doi">doi:10.1007/s11266-012-9311-z</span></li>
+            <li>Brandsen, T., &amp; Honingh, M. (2016). Distinguishing Different Types of Coproduction. <i>Public Administration Review</i>, 76(3), 427–435. <span class="doi">doi:10.1111/puar.12465</span></li>
+            <li>Nabatchi, T., Sancino, A., &amp; Sicilia, M. (2017). Varieties of Participation in Public Services. <i>Public Administration Review</i>, 77(5), 766–776. <span class="doi">doi:10.1111/puar.12765</span></li>
+            <li>Lember, V., Brandsen, T., &amp; Tõnurist, P. (2019). The Potential Impacts of Digital Technologies on Co-production and Co-creation. <i>Public Management Review</i>, 21(11), 1665–1686. <span class="doi">doi:10.1080/14719037.2019.1619807</span></li>
+            <li>Clifton, J., Díaz-Fuentes, D., &amp; Llamosas García, G. (2020). ICT-enabled Co-production of Public Services. <i>Information Polity</i>, 25(1), 25–48. <span class="doi">doi:10.3233/IP-190122</span></li>
+            <li>Kirklies, P.-C., Neumann, O., &amp; Hohensinn, L. (2024). Promoting Digital Equality in Co-production. <i>Government Information Quarterly</i>, 41(1), 101903. <span class="doi">doi:10.1016/j.giq.2023.101903</span></li>
+          </ol>
+        </details>
+        <details>
+          <summary>平台企业、公司化与混合组织</summary>
+          <ol>
+            <li>宋锴业、徐雅倩，2025：《公共服务平台化变革下“政府创制平台企业”兴起的动因及影响》，《管理世界》第41卷第4期，第112—136页。<span class="doi">doi:10.19744/j.cnki.11-1235/f.2025.0050</span></li>
+            <li>Cappellaro, G., &amp; Longo, F. (2011). Institutional Public Private Partnerships for Core Health Services. <i>BMC Health Services Research</i>, 11, 82. <span class="doi">doi:10.1186/1472-6963-11-82</span></li>
+            <li>da Cruz, N. F., &amp; Marques, R. C. (2012). Mixed Companies and Local Governance. <i>Public Administration</i>, 90(3), 737–758. <span class="doi">doi:10.1111/j.1467-9299.2011.02020.x</span></li>
+            <li>Pache, A.-C., &amp; Santos, F. (2013). Inside the Hybrid Organization. <i>Academy of Management Journal</i>, 56(4), 972–1001. <span class="doi">doi:10.5465/amj.2011.0405</span></li>
+            <li>Skelcher, C., &amp; Smith, S. R. (2015). Theorizing Hybridity. <i>Public Administration</i>, 93(2), 433–448. <span class="doi">doi:10.1111/padm.12105</span></li>
+            <li>Andrews, R., Clifton, J., &amp; Ferry, L. (2022). Corporatization of Public Services. <i>Public Administration</i>, 100(2), 179–192. <span class="doi">doi:10.1111/padm.12848</span></li>
+            <li>Bernier, L., Juillet, L., &amp; Deschamps, C. (2022). Why Create Government Corporations? <i>Public Administration</i>, 100(2), 216–231. <span class="doi">doi:10.1111/padm.12791</span></li>
+            <li>Bel, G., Esteve, M., Garrido, J. C., &amp; Zafra-Gómez, J. L. (2022). The Costs of Corporatization. <i>Public Administration</i>, 100(2), 232–249. <span class="doi">doi:10.1111/padm.12713</span></li>
+            <li>Voorn, B., &amp; van Genugten, M. (2022). Dealing with Multiple Principals in at Arm’s Length Organizations. <i>Public Administration</i>, 100(2), 291–307. <span class="doi">doi:10.1111/padm.12746</span></li>
+            <li>O’Mahony, S., &amp; Bechky, B. A. (2008). Boundary Organizations. <i>Administrative Science Quarterly</i>, 53(3), 422–459. <span class="doi">doi:10.2189/asqu.53.3.422</span></li>
+          </ol>
+        </details>
+      </section>
+
+      <section id="boundaries" class="card">
+        <div class="section-kicker">证据纪律</div>
+        <h2>目前应当保留的开放问题</h2>
+        <p>这些问题不宜由理论推断替代，需要在章程、合同、访谈和运营记录中逐项确认。</p>
+        <ul>
+          <li><span class="label open">OPEN</span>50/50股权是否对应表决权严格对等，政府方是否保有特别表决权或否决事项？</li>
+          <li><span class="label open">OPEN</span>原有合同是转签至合资公司、委托统一管理，还是仍由公司进行联络协调？</li>
+          <li><span class="label open">OPEN</span>人员是否进入统一劳动与指挥关系，平台能否选择、更换和考核下游供应商？</li>
+          <li><span class="label open">OPEN</span>数据、算法、设备和服务标准由谁控制，合作退出后如何处置？</li>
+          <li><span class="label open">OPEN</span>公共安全、行政执法、应急处置、系统性能和最终政治责任分别由谁承担？</li>
+          <li><span class="label open">OPEN</span>平台带来的改善体现为服务结果、协调成本下降，还是两者兼有？</li>
+        </ul>
+        <p class="footnote">资料说明：本页综合经典文献、2024—2026年前沿研究与本地已核验论文。未核实DOI和页码的线索未收入正式文献表。文献中的理论主张与南京南站案例事实分开标识。</p>
+      </section>
+    </main>
+  </div>
+
+  <footer>研究用途 · 离线单文件 · 生成日期：2026年8月24日</footer>
+  <script>
+    const bar = document.querySelector('.progress');
+    const links = [...document.querySelectorAll('nav a')];
+    const sections = [...document.querySelectorAll('main section')];
+    const update = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
+      let current = sections[0]?.id;
+      for (const section of sections) if (section.getBoundingClientRect().top <= 150) current = section.id;
+      links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+    };
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  </script>
+</body>
+</html>

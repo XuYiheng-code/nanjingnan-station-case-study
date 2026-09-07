@@ -1,0 +1,48 @@
+{
+  "scenario_id": "SC-01",
+  "title": "列车晚点与停车场外溢",
+  "mode": "case_teaching_simulation",
+  "data_status": "simulated",
+  "disclaimer": "本情景用于案例教学与模拟推演。时间、事件线索、角色回执和结果均为人工构造，不对应真实运行记录。",
+  "learning_goal": "让使用者看见：平台可整理线索和提出协同请求，但不能替代事实核验、权责确认或行政处置。",
+  "timeline": [
+    {"time": "T+00", "title": "列车晚点", "space": "铁路运行域", "summary": "模拟晚点信息进入研判，只能先作为待确认线索。"},
+    {"time": "T+08", "title": "旅客出站", "space": "站内集散域", "summary": "模拟到达客流开始集中，运营人员可以观察和补充现场情况。"},
+    {"time": "T+15", "title": "车辆集中", "space": "停车运营域", "summary": "接站车辆排队延长，但具体停车场权属与管理权限仍需人工核对。"},
+    {"time": "T+25", "title": "风险外溢", "space": "场内外边界", "summary": "场内排队可能影响外围道路，事件跨过单一服务合同的责任界面。"},
+    {"time": "T+35", "title": "提出协同", "space": "跨主体协调域", "summary": "系统可以整理证据并起草协同事项，不能向外部主体发送处置指令。"},
+    {"time": "T+45", "title": "角色确认", "space": "人工决定域", "summary": "规定角色分别说明理由并确认；涉及执法的事项只能拒绝或升级。"}
+  ],
+  "runtime_evidence_refs": [
+    "EV-SC01-01", "EV-SC01-04",
+    "EV-CT-01", "EV-CT-02", "EV-CT-03", "EV-CT-04", "EV-CT-05",
+    "EV-CA-01", "EV-CA-02", "EV-CA-03", "EV-CA-04", "EV-CA-05"
+  ],
+  "action_evidence_refs": {
+    "verify_evidence": ["EV-SC01-01", "EV-CT-04", "EV-CA-03"],
+    "request_cross_party_confirmation": ["EV-SC01-01", "EV-SC01-04", "EV-CT-01", "EV-CT-03", "EV-CA-01", "EV-CA-02"],
+    "direct_enforcement": ["EV-SC01-04", "EV-CT-05", "EV-CA-05"]
+  },
+  "runtime_authority_rule_refs": ["AR-SC01-01", "AR-SC01-02", "AR-SC01-03"],
+  "roles": [
+    {"role_id": "operator_supervisor", "label": "交控万物现场主管", "can": ["补充现场观察", "确认服务范围内的引导建议", "发起模拟协同请求"], "cannot": ["作出行政执法决定", "要求其他主体共享未授权数据"]},
+    {"role_id": "management_office_duty", "label": "综管办值守人员", "can": ["核对协同事项", "确认是否升级", "记录模拟回执"], "cannot": ["把模型草稿视为正式指令"]},
+    {"role_id": "hub_liaison", "label": "铁路／枢纽联络人", "can": ["发起或确认模拟协同事项", "说明联络限制"], "cannot": ["直接处置道路交通秩序"]}
+  ],
+  "events": [
+    {
+      "event_id": "NJS-DEMO-SC01-E01",
+      "scenario_id": "SC-01",
+      "event_type": "passenger_traffic_coupling",
+      "data_status": "simulated",
+      "occurred_at": "2026-08-20T18:10:00+08:00",
+      "spatial_scope": "cross_boundary",
+      "status": "new",
+      "signals": [
+        {"signal_id": "SIG-SC01-01", "source_kind": "simulated_report", "summary": "模拟列车晚点信息触发接站车辆集中到达预警。", "verification_status": "corroborated"},
+        {"signal_id": "SIG-SC01-02", "source_kind": "simulated_sensor", "summary": "模拟停车区域出现排队延长提示，需人工核验是否影响外围道路。", "verification_status": "unverified"},
+        {"signal_id": "SIG-SC01-03", "source_kind": "redacted_note", "summary": "演示版只使用研究团队已审阅、可用于本次展示的证据卡；脱敏研究材料在审阅完成前不参与生成。", "verification_status": "corroborated"}
+      ]
+    }
+  ]
+}

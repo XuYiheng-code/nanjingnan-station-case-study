@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例分析与投稿摘要｜平台化共同生产</title>
+  <style>
+    :root{
+      --bg:#f5f0e6;--surface:#fbf8f1;--surface-2:#eee5d5;--ink:#1c1815;--ink-soft:#5b5247;
+      --rule:#d8cdb8;--accent:#b5431f;--accent-dark:#7f2c15;--accent-2:#2f5d54;
+      --ok:#2f5d54;--warn:#8b6722;--danger:#973622;
+      --font-display:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",Georgia,serif;
+      --font-body:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",sans-serif;
+      --font-kai:"Kaiti SC","STKaiti","KaiTi",serif;
+      --font-mono:"SF Mono",Menlo,Consolas,monospace;
+      --s1:.5rem;--s2:1rem;--s3:1.6rem;--s4:2.6rem;--s5:4rem;--s6:6.5rem;
+      --shadow:0 1px 0 rgba(28,24,21,.06),0 18px 40px -28px rgba(28,24,21,.45);
+      --measure:40em;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;line-break:strict}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:clamp(16px,.45vw + 14px,17px);line-height:1.82}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;background-image:radial-gradient(rgba(28,24,21,.12) .55px,transparent .7px);background-size:8px 8px;z-index:-1}
+    a{color:var(--accent-dark);text-decoration-thickness:1px;text-underline-offset:3px}
+    .progress{position:fixed;z-index:50;top:0;left:0;height:3px;width:0;background:var(--accent)}
+    .masthead{border-top:8px solid var(--ink);border-bottom:1px solid var(--rule);padding:clamp(3.4rem,8vw,7.5rem) max(1.2rem,calc((100vw - 1180px)/2));position:relative;overflow:hidden}
+    .masthead::after{content:"CASE ANALYSIS";position:absolute;right:-.05em;bottom:-.26em;font-family:var(--font-display);font-size:clamp(5.8rem,16vw,15rem);line-height:1;color:rgba(181,67,31,.055);white-space:nowrap}
+    .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:1.1rem}
+    h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;color:var(--ink)}
+    h1{font-size:clamp(2.65rem,7vw,5.7rem);line-height:1.04;letter-spacing:-.045em;max-width:12ch;margin:0 0 1.4rem}
+    .dek{max-width:38em;color:var(--ink-soft);font-size:clamp(1rem,1vw + .72rem,1.32rem);margin:0}
+    .layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 15rem;gap:clamp(2rem,5vw,5rem);padding:clamp(2rem,5vw,5rem) 1.25rem var(--s6)}
+    main{min-width:0}
+    nav{position:sticky;top:2rem;align-self:start;border-top:3px solid var(--ink);padding-top:1rem;font-size:.82rem}
+    nav .nav-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;color:var(--accent);margin-bottom:.75rem}
+    nav a{display:block;color:var(--ink-soft);text-decoration:none;padding:.37rem 0;border-bottom:1px solid transparent}
+    nav a:hover,nav a:focus,nav a.active{color:var(--accent);border-color:var(--accent)}
+    section{scroll-margin-top:2rem;margin-bottom:var(--s6)}
+    .section-no{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.16em;color:var(--accent);margin-bottom:.6rem}
+    h2{font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.14;letter-spacing:-.025em;margin:0 0 1.5rem;max-width:18ch}
+    h3{font-size:clamp(1.35rem,2vw,1.78rem);line-height:1.4;margin:3.4rem 0 1.1rem}
+    h4{font-size:1.12rem;margin:2rem 0 .7rem}
+    p{max-width:var(--measure);margin:0 auto 1.25rem;color:#342e28;text-align:justify;text-justify:inter-ideograph}
+    .lead{font-family:var(--font-display);font-size:clamp(1.1rem,1vw + .85rem,1.4rem);line-height:1.72;color:var(--ink);border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:1.5rem 0;margin-bottom:2.2rem}
+    .note-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:3px solid var(--ink);border-left:1px solid var(--rule);margin:2rem 0}
+    .note{background:rgba(251,248,241,.66);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:1.35rem}
+    .note .tag,.evidence .tag{display:inline-block;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;color:var(--accent);border:1px solid currentColor;padding:.12rem .34rem;margin-bottom:.65rem}
+    .note b{display:block;font-family:var(--font-display);font-size:1.15rem;margin-bottom:.35rem}
+    .note span{display:block;color:var(--ink-soft);font-size:.9rem;line-height:1.65}
+    .causal{background:var(--ink);color:var(--bg);padding:clamp(1.3rem,3vw,2.2rem);margin:2rem 0;box-shadow:var(--shadow)}
+    .causal-title{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.15em;color:#e9b6a4;margin-bottom:1rem}
+    .flow{display:grid;grid-template-columns:repeat(7,auto);align-items:center;gap:.7rem;overflow-x:auto;padding-bottom:.25rem}
+    .node{min-width:8.5rem}
+    .node small{display:block;font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;color:#d9a28e}
+    .node b{display:block;font-family:var(--font-display);font-size:1.05rem;margin:.15rem 0}
+    .node span{display:block;font-size:.76rem;color:#d1c7ba;line-height:1.5}
+    .arrow{color:#c96d4e;font-size:1.35rem}
+    .boundary{border-top:1px solid rgba(255,255,255,.22);margin-top:1.2rem;padding-top:.85rem;color:#d9d0c5;font-size:.82rem}
+    .table-wrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface);margin:2rem 0}
+    table{width:100%;border-collapse:collapse;min-width:780px;font-size:.86rem}
+    th,td{text-align:left;vertical-align:top;padding:.78rem .85rem;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);line-height:1.6}
+    th:last-child,td:last-child{border-right:0}
+    thead th{background:var(--ink);color:var(--bg);font-weight:600}
+    tbody tr:last-child td{border-bottom:0}
+    .evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:2rem 0}
+    .evidence{background:var(--surface);padding:1.25rem}
+    .evidence.ok .tag{color:var(--ok)}.evidence.infer .tag{color:var(--warn)}.evidence.open .tag{color:var(--danger)}
+    .evidence ul{margin:.35rem 0 0;padding-left:1.1rem;color:var(--ink-soft);font-size:.88rem}
+    .evidence li{margin:.38rem 0}
+    .draft{background:rgba(251,248,241,.78);border-top:6px solid var(--ink);padding:clamp(1.2rem,4vw,3.5rem);box-shadow:var(--shadow)}
+    .draft-header{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;border-bottom:1px solid var(--rule);padding-bottom:1.2rem;margin-bottom:2rem}
+    .draft-label{font-family:var(--font-mono);font-size:.67rem;letter-spacing:.14em;color:var(--accent)}
+    .copy-btn{appearance:none;border:1px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-size:.78rem;padding:.48rem .72rem;cursor:pointer;transition:background .2s,color .2s}
+    .copy-btn:hover,.copy-btn:focus{background:var(--ink);color:var(--bg);outline:2px solid var(--accent);outline-offset:2px}
+    .paper h2{max-width:none;font-size:clamp(1.8rem,4vw,2.8rem);margin-top:0}
+    .paper h3{max-width:var(--measure);margin-left:auto;margin-right:auto;margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+    blockquote.interview{max-width:34em;margin:1.7rem auto;padding:1.1rem 1.3rem 1rem;border-left:3px solid var(--accent);background:var(--surface-2);font-family:var(--font-kai);font-style:italic;font-size:1.03rem;color:#2f2a25}
+    blockquote.interview footer{margin-top:.6rem;font-family:var(--font-body);font-style:normal;font-size:.73rem;color:var(--ink-soft)}
+    .mechanism-note{max-width:var(--measure);margin:1.5rem auto;padding:.9rem 1rem;border:1px solid var(--rule);background:var(--surface);font-size:.86rem;color:var(--ink-soft)}
+    .mechanism-note b{color:var(--accent-dark)}
+    .abstract{border-top:6px solid var(--accent);background:var(--surface);padding:clamp(1.3rem,4vw,3.4rem);box-shadow:var(--shadow)}
+    .abstract .keywords{font-size:.88rem;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:1rem;margin-top:1.4rem}
+    .abstract p{font-family:var(--font-display);font-size:1.04rem;line-height:1.95;color:#28231f}
+    .warning-list{max-width:var(--measure);margin:1.5rem auto;padding:1.2rem 1.2rem 1.2rem 2.3rem;background:#efe3d7;border-left:3px solid var(--danger);color:#4a382e}
+    .warning-list li{margin:.48rem 0}
+    footer.page{border-top:1px solid var(--rule);padding:1.4rem;text-align:center;font-size:.74rem;color:var(--ink-soft)}
+    @media (prefers-reduced-motion:no-preference){.fx{opacity:0;transform:translateY(10px);animation:reveal .55s forwards}.fx:nth-child(2){animation-delay:.08s}.fx:nth-child(3){animation-delay:.16s}@keyframes reveal{to{opacity:1;transform:none}}}
+    @media (max-width:900px){.layout{grid-template-columns:1fr;max-width:760px}.layout nav{position:static;display:flex;gap:.75rem;overflow-x:auto;order:-1;border-top:0;border-bottom:1px solid var(--rule);padding:.6rem 0}.layout nav .nav-label{display:none}.layout nav a{white-space:nowrap}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);justify-self:center}.note-grid,.evidence-grid{grid-template-columns:1fr}.masthead{padding-left:1.25rem;padding-right:1.25rem}}
+    @media (max-width:560px){h1{max-width:12ch;font-size:2.35rem}.layout nav{flex-wrap:wrap;overflow:visible;column-gap:.8rem;row-gap:.15rem;font-size:.75rem}.draft{padding:1rem}.draft-header{display:block}.copy-btn{margin-top:.8rem}.paper h3{font-size:1.27rem}p{text-align:left}.masthead::after{font-size:6rem}.abstract p{font-size:1rem}.node{min-width:0}}
+    @media print{
+      @page{size:A4;margin:18mm 17mm 19mm}
+      body{background:#fff;font-size:10.5pt;line-height:1.75}body::before,.progress,.layout nav,.copy-btn{display:none!important}
+      .masthead{border-top:0;padding:0 0 18mm}.masthead::after{display:none}.layout{display:block;max-width:none;padding:0}.draft,.abstract,.causal,.table-wrap{box-shadow:none}
+      .draft,.abstract{background:#fff;padding:0;border-top:2px solid #222}.causal{background:#fff;color:#111;border:1px solid #aaa}.node span,.boundary{color:#444}.causal-title,.node small{color:#666}.arrow{color:#777}
+      section{margin-bottom:16mm}h2,h3,h4,blockquote,tr,.note,.evidence,.mechanism-note{break-inside:avoid}p{max-width:none}.paper h3{max-width:none}blockquote.interview{max-width:none;background:#f4f4f4}
+      a::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header class="masthead">
+    <div class="kicker">Case analysis · revised draft · 24 August 2026</div>
+    <h1>从外部协作到平台化共同生产</h1>
+    <p class="dek">南京南站案例分析的写作结构、理论—证据对应关系、第五部分全文初稿与投稿摘要。全文以平台创制为组织起点，以契约、能力和责任的重新安排解释共同生产的形成。</p>
+  </header>
+
+  <div class="layout">
+    <main>
+      <section id="decision" class="fx">
+        <div class="section-no">01 · EDITORIAL DECISION</div>
+        <h2>写作判定：四节足以承载机制，不再另设“技术成效”一节</h2>
+        <p class="lead">案例分析的中心任务，是说明一个共享持股的合资平台如何从组织身份走向实际运营，并在何种边界前停止。技术进入第三节，作为连接标准、人员和任务的工作接口；绩效尚缺前后对比数据，不单列为既成结果。</p>
+        <div class="note-grid">
+          <article class="note"><span class="tag">G1 · 生成条件</span><b>协调何以走向平台</b><span>多边依赖反复出现，综合协调和分散外包都难以形成持续执行，由此解释合资平台为何产生。</span></article>
+          <article class="note"><span class="tag">G1 → G2 · 运营位置</span><b>平台如何取得行动范围</b><span>公司成立只提供法人身份；服务包、资产关系与任务接口逐步进入，平台才获得实际运营位置。</span></article>
+          <article class="note"><span class="tag">G2 · 能力形成</span><b>连接如何转化为生产</b><span>人员、供应商、作业标准和数字工单进入同一任务序列，政企互补资源才形成连续生产能力。</span></article>
+          <article class="note"><span class="tag">G2 · 范围条件</span><b>平台何以止步于权责边界</b><span>合同、数据授权、行政执法和属地责任限定平台的整合范围，也防止运营权扩张为公共权力。</span></article>
+        </div>
+      </section>
+
+      <section id="mapping" class="fx">
+        <div class="section-no">02 · THEORY–EVIDENCE ALIGNMENT</div>
+        <h2>分析如何嵌入故事：从生成、展开到受限</h2>
+        <div class="causal" role="img" aria-label="南京南站平台化共同生产机制链">
+          <div class="causal-title">CAUSAL SEQUENCE</div>
+          <div class="flow">
+            <div class="node"><small>CONDITION</small><b>多边依赖</b><span>行政、资产和合同边界叠加</span></div><div class="arrow">→</div>
+            <div class="node"><small>ORGANIZATION</small><b>平台创制</b><span>形成持续合作的组织节点</span></div><div class="arrow">→</div>
+            <div class="node"><small>POSITION</small><b>契约聚合</b><span>部分服务进入共同运营界面</span></div><div class="arrow">→</div>
+            <div class="node"><small>CAPACITY</small><b>能力耦合</b><span>资源进入识别—处置—反馈流程</span></div>
+          </div>
+          <div class="boundary">贯穿性边界：行政执法、数据授权、采购责任和最终公共问责持续约束平台；这些边界也会反向影响合同进入与数字连接。</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>案例小节</th><th>理论问题</th><th>主要事实</th><th>反事实或受阻材料</th><th>可支持的判断</th></tr></thead>
+            <tbody>
+              <tr><td>平台创制</td><td>谁来持续组织多项合作？</td><td>跨区、跨条线和铁路—地方并存；2024年成立50∶50合资企业</td><td>综管机构缺少跨区调度权；专项协调难以转为日常执行</td><td>持续性多边依赖催生共同组织节点，支持G1</td></tr>
+              <tr><td>契约聚合</td><td>法人身份如何取得运营位置？</td><td>平台分别争取资产管养权和政府采购包，部分业务逐步进入</td><td>六点几平方公里业务尚未全部纳入；采购和考核仍分立</td><td>合同进入决定平台实际范围，公司身份本身不足以完成整合</td></tr>
+              <tr><td>能力耦合</td><td>多方连接如何变成连续处置？</td><td>500余项流程与标准；多入口报事；工单派发、现场处置、拍照反馈和后台复核</td><td>AI准确率、自动派单比例和跨系统调度尚无数据</td><td>标准与任务接口将互补资源编入同一生产过程，支持G2</td></tr>
+              <tr><td>责任分层</td><td>共同生产的边界在哪里？</td><td>企业负责服务执行与发现上报；执法、数据授权、属地及采购责任仍归法定主体</td><td>政府与铁路平台尚未贯通；停车场内外仍需交警与属地协商</td><td>责任边界既稳定合作，也限制平台的整合范围</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="evidence" class="fx">
+        <div class="section-no">03 · EVIDENCE CONTROL</div>
+        <h2>事实使用边界：写到材料能够承担的位置</h2>
+        <div class="evidence-grid">
+          <article class="evidence ok"><span class="tag">已有直接材料</span><ul><li>双方各持50%股份</li><li>多来源服务包渐进进入</li><li>企业称已输入500余项流程和标准</li><li>企业称AI可识别25类常见问题</li><li>政府及铁路数据尚未全面接入</li><li>企业不具有行政执法权</li></ul></article>
+          <article class="evidence infer"><span class="tag">可以谨慎推论</span><ul><li>合资法人延长了政企合作的组织期限</li><li>已纳入事项的协调部分转入企业运营过程</li><li>标准和工单把互补资源连接成连续作业</li><li>AI的效果受合同、数据和执行权限约束</li><li>南站平台仍处于形成与扩展阶段</li></ul></article>
+          <article class="evidence open"><span class="tag">仍待补证</span><ul><li>实际控制权与董事会安排</li><li>全部合同、金额、期限与考核条款</li><li>500余项标准在南站的启用范围</li><li>AI准确率和自动派单比例</li><li>平台前后的成本、时效与服务绩效</li><li>行政事项转交与反馈的正式规则</li></ul></article>
+        </div>
+        <ol class="warning-list">
+          <li>删除“国有控股”表述，50∶50股权无法推出政府最终控制。</li>
+          <li>删除“29类公共服务”和“一份总包合同”，现有材料没有原始清单与合同支持。</li>
+          <li>“唯一乙方”写成平台设计目标，不能当作全域整合已经完成的事实。</li>
+          <li>政府、铁路与企业平台尚未贯通，保留会议、电话和人工转交等传统协调方式。</li>
+          <li>成本下降、30分钟响应和绩效显著改善仍缺比较数据，不进入研究结论。</li>
+        </ol>
+      </section>
+
+      <section id="draft" class="draft paper">
+        <div class="draft-header">
+          <div><div class="draft-label">04 · FULL CHAPTER DRAFT</div><h2>五、案例分析：从外部协作到平台化共同生产</h2></div>
+          <button class="copy-btn" type="button" data-copy="case-text">复制第五部分</button>
+        </div>
+        <article id="case-text">
+          <p>南京南站平台化转型包含两个彼此衔接的过程。前一个过程解释政府何以在既有行政结构之外参与创制合资平台，后一个过程考察平台如何取得合同和资源，并将分散在多个主体之间的合作转化为连续的公共服务生产。平台创制、契约聚合、能力耦合与责任分层具有逻辑上的承接关系，现实运行中却会彼此交叠：合同范围随采购和委托关系调整，数字系统的作用受数据权限与现场能力制约，责任边界则从平台成立之初就参与规定其行动范围。因而，南京南站所呈现的是一个正在形成的平台，而非已经完成的全域整合。</p>
+
+          <h3>（一）协调何以走向平台：分散生产困境与合资组织创制</h3>
+          <p>南京南站的治理难题源于枢纽空间的整体运行与管理结构的多重分割。旅客在站区内完成进出站、换乘、候车和接驳，现场发生的环境、秩序、设施和交通问题往往跨越道路、停车场、广场与铁路管理空间；承担管理和服务的主体却分别隶属雨花台区、江宁区、铁路系统以及交通、公安、城管等条线部门。空间相连，权责分置。停车场是这一矛盾的缩影：铁投企业管理停车场内部资产，车辆拥堵却可能始于红线外道路；企业若要调整出入口和行车路线，仍须同交警及属地部门协调。</p>
+          <p>专业分工又被合同关系进一步固定。保洁、绿化、市政维护、停车和巡查等服务由不同主体采购或自行组织，每份合同有自己的空间范围、服务人员和考核标准。一个现场事件发生后，工作人员往往要先确认资产归属和合同责任，再寻找对应的承包单位。问题因而停留在多个生产单元之间。既有综合管理机构能够召集协调，却难以直接调动所有平行部门、另一属地和铁路系统的资源；专项整治可以在特定时期集中注意力，日常运行仍要回到原有职责、预算与合同体系。</p>
+          <blockquote class="interview">“南站是各个条口管各个条口的事……如果政府没有专班，我们现在处理的办法就是分而治之，通过跟各条块对接，拿他们下游的业务，在我们这个层面实现整合。”<footer>访谈记录：202510—市场企业管理人员Q</footer></blockquote>
+          <p>这段访谈揭示出行政协调与服务生产之间的落差。政府可以要求各方配合，却很难经由一次协调持续组织现场人员和承包商；市场外包能够引入专业服务，也会把执行能力锁定在不同项目之中。在行政区划和法定权责难以频繁调整的条件下，南站需要一个能够长期承接服务、保存运行经验并同政府保持稳定联系的组织载体。</p>
+          <p>2024年，南京市交通集团所属铁投企业与万物云所属企业共同成立交控万物，双方各持50%股份。合资安排使两类资源进入同一法人：国资一侧提供南站资产联系、地方信用和协调条件，市场一侧带入城市空间运营经验、专业人员、供应链和数字系统。双方的合作由项目采购关系延伸为持续性的共同所有关系，平台因而获得跨项目积累人员、标准和运行经验的组织位置。</p>
+          <blockquote class="interview">“这是我们的两个股东方，一个是铁投，一个是深圳市万物云。股权比例分别是50%对50%，一半对一半。”<footer>访谈记录：202601—平台企业管理人员J</footer></blockquote>
+          <blockquote class="interview">“因为我们国资在这里面的重要作用，其实说白了，我是做信用背书的。那具体的活是用了他的专业能力。”<footer>访谈记录：202601—交通集团相关负责人K</footer></blockquote>
+          <p>50∶50股权说明双方共同出资，尚不足以判断政府最终控制或双方实质权力完全对等。重大事项表决、经理层任命和僵局处理仍需公司章程及董事会材料核实。现有证据能够确认的是，合资法人为持续政企合作设置了组织节点，并使双方有条件围绕南站运营投入专门能力。平台创制由此验证了命题G1的前半部分：持续出现的多边依赖与既有协调限度，推动政府相关主体在正式行政结构之外设置协作平台。</p>
+          <div class="mechanism-note"><b>机制判断：</b>平台创制解决了“谁来持续组织合作”的问题。其直接作用是形成组织位置，尚不能由此推出服务绩效已经提高。</div>
+
+          <h3>（二）平台如何取得运营位置：契约聚合与共同执行界面</h3>
+          <p>公司成立只提供法人身份。平台究竟能够组织哪些服务，取决于哪些资产运营关系、政府采购包和现场任务进入公司。交控万物没有经由一次行政授权取得全域运营权，而是从铁投自有资产的管养业务起步，再分别同综管办、属地部门及其他主体对接，争取保洁、绿化、停车、巡查和设施维护等服务。访谈将这一过程概括为“分头拿包”：每一项服务仍需依照既有产权关系和采购程序进入平台。</p>
+          <blockquote class="interview">“铁投下面自有资产要管养，会有一部分预算做发包。雨花综管办对自己的资产管养，也是单独进行市场化发包。我们就通过拿它的市场化包的方式到我这边来，我来统一对整个片区实行管理。如果你想打通业务和服务，就需要分头去拿他们的资产管养权。”<footer>访谈记录：202510—市场企业管理人员Q</footer></blockquote>
+          <p>契约聚合并未取消多甲方结构，却改变了已纳入事项的执行关系。过去，各甲方分别面对各自承包商，跨合同事件需要在不同单位之间反复确认；若多项服务进入同一平台，平台可以先在自身服务目录和人员体系内分解任务，再按照原合同完成考核、费用处理和责任反馈。外部政企协调及企业间协调由此有一部分进入平台的项目管理、供应商管理和现场调度过程。</p>
+          <blockquote class="interview">“一旦有什么问题，我不管谁是甲方，我就一个唯一的乙方。”<footer>访谈记录：202510—市场企业管理人员Q</footer></blockquote>
+          <p>“唯一乙方”表达的是平台设计所追求的共同执行界面。受访者同时说明，南站六点几平方公里范围内的业务尚未全部进入公司，不同区和部门的项目仍按政府采购规则分别招标，交控万物也可能无法中标。因而，南京南站目前形成的是“多甲方—共同运营者”的局部结构：已经取得的服务在平台运营层汇合，尚未进入的事项继续沿用原有组织方式。契约聚合呈现渐进性，也会受到合同周期、采购竞争和资产边界的反复调整。</p>
+          <p>这一过程补全了命题G1。协作平台只有获得稳定合同、资产联系或任务接口，才能从名义上的合资公司转化为实际运营节点。平台也可能停留在协调窗口：若合同继续完全分散，公司又无权调动服务商，新设法人只会增加一道转交层级。南京南站的材料说明，在已纳入平台的事项中，协调关系开始向公司运营过程移动；其覆盖程度仍需合同清单和采购材料进一步检验。</p>
+          <div class="mechanism-note"><b>机制判断：</b>契约聚合决定平台“凭什么组织”。聚合允许多份合同并存，判断标准在于它们是否形成共同任务入口、作业接口和供应商管理关系。</div>
+
+          <h3>（三）连接如何转化为生产：能力耦合、数字流程与智能感知</h3>
+          <p>合同为平台划定行动范围，资源组合决定平台能否完成现场处置。国资一侧所提供的资产联系、公共信用与协调条件，需要同市场企业的人员管理、专业供应链、作业标准和数字工具进入同一任务序列。资源并置只说明双方各有所长；当现场事件可以沿着识别、派发、处置和反馈持续流动，平台才获得共同生产能力。</p>
+          <p>交控万物将企业积累的物业作业经验调整到交通枢纽情境。据平台企业受访者介绍，系统中已经输入500余项业务流程和作业标准，用以规定巡查对象、作业动作、处理时限和反馈方式。现场信息可以来自设备和传感器告警、市民扫码报事、员工日常巡查以及人工智能识别。事件进入平台后，系统或调度人员依据事项类型和空间位置生成并派发工单，现场人员完成处置、上传照片，再由后台调度中心复核。数字系统由此把合同要求、服务标准和人员行动连接在同一张任务链上。</p>
+          <blockquote class="interview">“我们给它输入了500多个业务流程和作业标准……形成这种任务指令给到我们的前端员工。”<footer>访谈记录：202601—平台企业管理人员J</footer></blockquote>
+          <blockquote class="interview">“员工处置完成后，后台调度中心复查，整个事件从而形成闭环。”<footer>访谈记录：202510—市场企业管理人员Q</footer></blockquote>
+          <p>企业还将人工智能用于部分常见问题的发现与分类。受访者称，算法可以识别游商摊贩、门前三包、单车倒伏、垃圾桶满溢、积水和白色垃圾等25类常见问题。现有材料尚未提供完整清单、准确率、误报率和自动派单比例，因而本文将人工智能的作用限定在前端感知与初步分类。任务能否进入现场，仍由平台是否拥有相应合同、作业标准、人员和供应商决定。</p>
+          <blockquote class="interview">“目前我们通过AI发掘的城市治理已经达到了25项基本问题，比如游商摊贩、门前三包、自行车辆倒了，或者垃圾桶满了，或者旁边有积水、有白色垃圾。”<footer>访谈记录：202510—市场企业管理人员Q</footer></blockquote>
+          <p>能力耦合并未覆盖全部跨组织协同。交控万物的平台主要汇集员工、供应商、停车和设备信息，政府与铁路系统尚未全面接入。列车晚点和大客流等信息仍可能通过会议、通知和单位间沟通传递。技术上具备接口，并不等同于现实中取得数据授权。因而，数字系统编码的是已经形成的组织关系，其可见范围也受组织边界规定。</p>
+          <p>上述材料支持命题G2。平台通过标准转译、人员调度和任务接口，将政企双方的互补资源编入连续生产过程；数字系统把这一关系保存为可重复运行的工作流程，人工智能扩展其中的感知和分类。由于缺少成立前后的工单与绩效数据，本文只能确认生产过程的组织方式发生变化，尚不能据此判断成本、时效和服务质量已经显著改善。</p>
+          <div class="mechanism-note"><b>机制判断：</b>能力耦合解决了“合作如何变成生产”的问题。AI进入已经形成的生产流程，主要扩展问题发现与分类，其作用范围由组织可调动的资源决定。</div>
+
+          <h3>（四）平台何以止步于权责边界：责任分层与有限整合</h3>
+          <p>平台化共同生产扩大了运营整合，却没有改写法定权责。受访者将现场处置原则概括为“先解决问题，再慢慢回复谁的责任”。这一做法把即时处置与最终归责分开：对于已经纳入合同范围的环境、设施和秩序事项，平台可以先调动人员处理；合同责任、费用承担和行政责任仍需回到相应主体。协调由事前等待转向事后核对，其成立的前提是平台已经具有相应服务权限。</p>
+          <p>行政执法构成第一层边界。平台可以巡查、劝导、记录和上报，在存在合同或协议时提供辅助服务；行政处罚和强制措施仍由城管、交警等法定机关实施。企业书面反馈对此作了清楚限定：</p>
+          <blockquote class="interview">“我们明确自身是服务执行与问题发现上报方，而非行政执法的替代者。”<footer>企业书面反馈：南京南站一体化智慧运营创新实践情况</footer></blockquote>
+          <p>数据授权构成第二层边界。企业系统具备端到端连接能力，仍无法自行取得政府和铁路数据。受访者明确表示，平台与政府系统目前没有打通，铁路方面也没有提供详细数据。大客流和班次变化主要依靠会前沟通、电话通知或粗粒度信息传递。数据连接的障碍因而位于授权、责任与安全要求之中，技术接口只能提供连接的可能。</p>
+          <blockquote class="interview">“现在是没有打通的，但是它具备打通的底座和功能，是可以打通的。”<footer>访谈记录：202510—市场企业管理人员Q</footer></blockquote>
+          <p>资产和属地责任构成第三层边界。停车场内部运营与外围道路交通彼此牵连，平台若要调整停车场出入口或车行动线，仍需同交警及属地部门协商。雨花台区与江宁区的管理要求也可能存在差异，企业需要分别开会并配置人员。平台能够统一自身控制范围内的岗位和流程，却无权改变资产产权、行政区划和属地考核。</p>
+          <p>采购责任构成第四层边界。交控万物具有国资股东背景，取得公共服务项目仍需遵循采购和竞争规则；合同期满后的续约、重新招标和业务退出，也会改变平台的运营范围。这一制度约束防止合资关系替代市场竞争，同时使平台化共同生产具有可变边界。平台未中标或合同退出时，相关人员、数据与服务如何移交，仍是后续研究需要追问的问题。</p>
+          <p>责任分层由此具有双重作用。一方面，它使企业能够在合同范围内组织服务，同时保留政府在行政决定、数据授权和最终公共问责上的责任；另一方面，边界之间缺少稳定接口时，企业发现问题后仍要等待法定主体接力，原有碎片化也可能进入平台。南京南站的经验显示，平台化共同生产是一种有边界的组织整合：它把部分外部协调转入持续运营过程，却没有取消政府、铁路和属地部门的制度位置。</p>
+          <p>回到命题G1和命题G2，南京南站案例呈现出一条条件性的机制链。持续的多边依赖与分散外包构成平台创制的压力；共享持股的合资法人提供稳定组织节点；不同来源的服务合同逐步进入，使平台取得局部运营位置；人员、供应商、标准与工单进一步形成连续生产；行政权力、数据授权、采购制度和最终公共责任则持续限定这一过程。人工智能在其中承担前端感知和分类功能。平台能否继续扩展，取决于合同、数据与责任接口能否随服务范围共同调整。</p>
+          <div class="mechanism-note"><b>机制判断：</b>责任分层解决了“平台可以组织到哪里”的问题。它既是合法性边界，也是平台能否持续运行的组织条件。</div>
+        </article>
+      </section>
+
+      <section id="abstract" class="abstract">
+        <div class="draft-header">
+          <div><div class="draft-label">05 · SUBMISSION ABSTRACT</div><h2>投稿摘要（约1000字）</h2></div>
+          <button class="copy-btn" type="button" data-copy="abstract-text">复制摘要</button>
+        </div>
+        <article id="abstract-text">
+          <p>平台正在成为城市公共服务智能化转型的重要组织形式。人工智能和数字系统扩展了事件感知、信息汇集与任务分类能力，城市运营所需的资产、合同、人员、专业标准和处置资源却仍分散在政府部门、产权主体与承包企业之间。算法可以更快发现问题，行政授权、服务合同和执行能力不会自动汇集，传统的部门碎片化也可能延伸为合同、数据、系统和责任边界之间的分割。城市平台主义、共同生产与政府创制平台企业研究分别揭示了平台的关系重组效应、政企双方的生产性投入以及独立法人的组织作用，却较少解释共享持股、嵌入具体城市空间的合资平台如何在法定权责基本不变时形成跨组织运营能力。</p>
+          <p>本文以协作平台为中层组织视角，引入平台编排解释契约关系、互补资源与任务接口的调整，将平台化共同生产作为待解释结果，并以公共责任规定其作用范围。研究选取南京南站开展解释性单案例研究。经验材料包括2025年10月至2026年1月对地方国资企业、站区综合管理部门、铁路公安、合资平台企业和市场企业相关人员开展的16人次访谈，多次现场观察，以及地方规章和企业材料；依据关键事件的时间顺序，对组织创制、合同进入、资源调用和责任配置进行过程分析。</p>
+          <p>研究发现，南京南站由分散外包走向平台化共同生产，包含四个相互衔接又反复调整的机制。平台创制方面，地方国资企业与市场企业各持50%成立合资平台，为持续的政企合作设置共同组织节点，但股权对等不能直接推出政府最终控制。契约聚合方面，平台分别取得部分资产管养权和政府采购包，使分散服务逐步进入共同运营界面，未纳入事项及其合同责任仍然分立。能力耦合方面，国资一侧提供资产联系、公共信用与协调条件，市场一侧投入人员管理、专业供应链、作业标准和数字系统，共同标准与工单接口将其连接为事件识别、任务派发、现场处置和结果反馈的连续流程；人工智能目前主要增强前端感知与事项分类，其作用受到合同覆盖、数据可用性、任务标准化和现场权限的共同限制。责任分层方面，平台可以组织日常运营，行政执法、数据授权、竞争性采购、属地责任与最终公共问责仍由法定主体承担。责任边界维持了合作的合法性，也在跨界任务中形成新的接口成本。</p>
+          <p>本文将城市平台主义的宏观关系分析推进到合资法人、服务合同与现场生产层面，说明协作平台经由契约聚合和能力耦合，将部分外部协调转化为持续运营过程；责任分层则构成公共服务情境对一般平台编排理论的必要修正。研究同时表明，智能技术的治理作用产生于既有组织关系，不能脱离合同、人员与公共责任单独解释。南京南站平台仍处形成阶段，现有材料可以识别组织能力的生成机制及其边界，尚不足以证明成本下降、服务质量改善或该模式的普遍优势。后续研究可结合公司章程、合同清单、工单数据和第三方评价，并与政府直接协调、普通外包及国有独资平台开展比较。</p>
+          <div class="keywords"><strong>关键词：</strong>平台化共同生产；协作平台；政企合作；政府创制平台企业；智能化转型；南京南站</div>
+        </article>
+      </section>
+    </main>
+
+    <nav aria-label="页面目录">
+      <div class="nav-label">CONTENTS</div>
+      <a href="#decision">01 写作判定</a>
+      <a href="#mapping">02 理论—证据结合</a>
+      <a href="#evidence">03 事实边界</a>
+      <a href="#draft">04 第五部分全文初稿</a>
+      <a href="#abstract">05 投稿摘要</a>
+    </nav>
+  </div>
+
+  <footer class="page">案例分析与投稿摘要修订稿 · 研究对象：南京南站平台化共同生产 · 2026年8月24日</footer>
+  <script>
+    const bar=document.getElementById('progress');
+    const links=[...document.querySelectorAll('nav a')];
+    const sections=[...document.querySelectorAll('main > section')];
+    function update(){
+      const root=document.documentElement,max=root.scrollHeight-root.clientHeight;
+      bar.style.width=(max>0?root.scrollTop/max*100:0)+'%';
+      let id=sections[0]?.id;
+      for(const section of sections){if(section.getBoundingClientRect().top<150)id=section.id;}
+      links.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+id));
+    }
+    addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+    document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{
+      const target=document.getElementById(button.dataset.copy);
+      const original=button.textContent;
+      try{await navigator.clipboard.writeText(target.innerText);button.textContent='已复制';}
+      catch(error){button.textContent='请手动选择复制';}
+      setTimeout(()=>button.textContent=original,1600);
+    }));
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071926" />
+    <meta name="description" content="南雍治道团队参赛影像作品：南京南站跨区域公共交通枢纽治理案例短片。" />
+    <title>参赛影像作品｜南京南站治理案例｜南雍治道</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./showcase.css" />
+  </head>
+  <body class="film-page">
+    <a class="skip-link" href="#film-main">跳到案例视频</a>
+    <main class="film-shell" id="film-main">
+      <div class="film-grid" aria-hidden="true"></div>
+      <header class="film-header">
+        <a class="film-brand" href="index.html" aria-label="返回案例封面">
+          <span class="brand-mark" aria-hidden="true"><img src="./assets/nanyong-mark.svg" alt="" /></span>
+          <span><strong>南雍治道</strong><small>跨区域枢纽治理案例</small></span>
+        </a>
+        <nav aria-label="影像作品导航">
+          <a href="story.html">案例故事</a>
+          <a href="analysis.html">案例分析</a>
+          <a href="demo.html">协同实验</a>
+        </nav>
+      </header>
+
+      <div class="film-layout">
+        <section class="film-copy" aria-labelledby="film-title">
+          <p class="kicker">CASE FILM · 参赛影像作品</p>
+          <h1 id="film-title"><span>两分钟，看见一座车站</span><span class="accent">如何重新组织协作</span></h1>
+          <p>短片从南京南站的多重治理边界出发，呈现平台企业如何统一服务与责任界面，也记录技术走到执法权、数据权和属地责任之前时必须停下的位置。</p>
+          <dl class="film-meta">
+            <div><dt>作品</dt><dd>南京南站案例短片</dd></div>
+            <div><dt>画幅</dt><dd>16:9 · 1080P</dd></div>
+            <div><dt>团队</dt><dd>南雍治道</dd></div>
+          </dl>
+          <div class="film-actions">
+            <a class="film-download" href="./assets/films/nanjing-south-case-film.mp4" download="南京南站案例视频_参赛提交版.mp4">下载参赛提交版</a>
+            <a class="film-back" href="index.html">返回案例封面 <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
+        <section class="film-stage" aria-label="案例视频播放器">
+          <div class="film-frame" id="filmFrame">
+            <video id="caseFilm" controls playsinline preload="metadata" poster="./assets/films/nanjing-south-case-film-poster.webp" aria-label="南京南站案例参赛影像作品">
+              <source src="./assets/films/nanjing-south-case-film.mp4" type="video/mp4" />
+              <p>当前浏览器无法播放本视频。请<a href="./assets/films/nanjing-south-case-film.mp4" download>下载视频</a>后观看。</p>
+            </video>
+            <button class="film-play" id="filmPlay" type="button" aria-label="播放南京南站案例视频">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z" /></svg>
+              <span>播放参赛短片</span>
+            </button>
+          </div>
+          <div class="film-caption"><span>建议横屏观看并开启声音</span><span>约 2 分钟 · 含背景音乐</span></div>
+          <p class="film-error" id="filmError" role="status" hidden>视频暂时无法载入。可以使用左侧按钮下载后观看。</p>
+        </section>
+      </div>
+
+      <footer class="film-footer"><span>清华大学 · 2026 中国智能社会治理公共政策案例分析大赛</span><span>CASE PRESENTATION · NANJING SOUTH STATION</span></footer>
+    </main>
+    <script src="./showcase.js" defer></script>
+  </body>
+</html>

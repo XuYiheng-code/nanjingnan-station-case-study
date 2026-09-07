@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11100e" />
+    <meta name="description" content="南京南站治理案例旧入口，自动跳转到统一成品站点的案例故事页面。" />
+    <meta http-equiv="refresh" content="0; url=../南站协同官-离线演示与源码/nanjing-south-hubcoord/static/story.html" />
+    <title>正在打开案例正文｜南京南站治理案例</title>
+    <link rel="icon" href="../南站协同官-离线演示与源码/nanjing-south-hubcoord/static/assets/favicon.svg" type="image/svg+xml" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #fff8eb;
+        --muted: rgba(255, 248, 235, 0.72);
+        --paper: #14110d;
+        --line: rgba(255, 248, 235, 0.18);
+        --accent: #d9823b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100svh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, rgba(255, 248, 235, 0.04) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(255, 248, 235, 0.04) 1px, transparent 1px),
+          radial-gradient(circle at 28% 24%, rgba(217, 130, 59, 0.22), transparent 30%),
+          var(--paper);
+        background-size: 52px 52px, 52px 52px, auto, auto;
+        font-family: "Songti SC", "Noto Serif CJK SC", "STSong", serif;
+      }
+
+      main {
+        width: min(720px, 100%);
+        border: 1px solid var(--line);
+        background: rgba(20, 17, 13, 0.82);
+        padding: clamp(28px, 6vw, 56px);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      h1 {
+        margin: 12px 0 16px;
+        font-size: clamp(38px, 9vw, 72px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .kicker {
+        color: var(--accent);
+        font-size: 15px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 18px;
+        border: 1px solid var(--line);
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      a.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #1a1008;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="kicker">Redirect</p>
+      <h1>正在打开案例正文</h1>
+      <p>这个旧入口已并入统一成品站点。若页面没有自动跳转，可以从这里进入案例正文或案例分析。</p>
+      <div class="links">
+        <a class="primary" href="../南站协同官-离线演示与源码/nanjing-south-hubcoord/static/story.html">案例正文</a>
+        <a href="../南站协同官-离线演示与源码/nanjing-south-hubcoord/static/analysis.html">案例分析</a>
+      </div>
+    </main>
+    <script>
+      window.location.replace("../南站协同官-离线演示与源码/nanjing-south-hubcoord/static/story.html");
+    </script>
+  </body>
+</html>

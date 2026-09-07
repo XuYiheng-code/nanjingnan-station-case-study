@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>理论选择与分析框架：南京南站案例的决策参考</title>
+  <style>
+    :root{
+      --bg:#f5f0e6; --surface:#fbf8f1; --paper:#fffdf8; --ink:#1c1815; --ink-2:#3d3731;
+      --ink-soft:#6b6258; --rule:#d8cdb8; --rule-dark:#a99c87; --accent:#b5431f;
+      --accent-soft:#f2dfd5; --green:#2f5d54; --green-soft:#dfe9e5; --amber:#8a6b26;
+      --amber-soft:#eee5cc; --blue:#355c7d; --blue-soft:#dfe7ee; --danger:#8f3321;
+      --font-display:"Songti SC","STSong","Noto Serif SC",Georgia,serif;
+      --font-body:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+      --font-mono:"SF Mono",Menlo,Consolas,monospace;
+      --s1:.5rem; --s2:1rem; --s3:1.6rem; --s4:2.6rem; --s5:4rem;
+      --shadow:0 1px 0 rgba(28,24,21,.06),0 18px 40px -28px rgba(28,24,21,.45);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;line-break:strict}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:clamp(15px,.45vw + 14px,17px);line-height:1.78;-webkit-font-smoothing:antialiased}
+    .progress{position:fixed;inset:0 auto auto 0;height:3px;width:0;background:var(--accent);z-index:20}
+    .masthead{border-top:8px solid var(--ink);border-bottom:1px solid var(--rule);padding:clamp(2.4rem,7vw,6rem) clamp(1.25rem,5vw,4.5rem) clamp(2rem,5vw,4.5rem);background:linear-gradient(135deg,rgba(255,255,255,.36),transparent 55%)}
+    .mast-inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) 15rem;gap:3rem;align-items:end}
+    .issue{font:700 .73rem/1.2 var(--font-body);letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+    h1{max-width:880px;margin:.7rem 0 1.1rem;font:800 clamp(2.5rem,6.6vw,5.7rem)/1.03 var(--font-display);letter-spacing:-.045em}
+    .deck{max-width:760px;margin:0;color:var(--ink-soft);font-size:clamp(1rem,1.35vw,1.22rem);line-height:1.75}
+    .mast-note{border-left:3px solid var(--accent);padding-left:1rem;color:var(--ink-soft);font-size:.82rem}
+    .mast-note strong{display:block;color:var(--ink);font-size:1rem;margin-bottom:.35rem}
+    .layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(2rem,5vw,5rem);max-width:1240px;margin:0 auto;padding:2.3rem 1.3rem 6rem}
+    nav{position:sticky;top:1.6rem;align-self:start;border-top:3px solid var(--ink);padding-top:.8rem}
+    nav .toc-label{font-size:.68rem;letter-spacing:.17em;color:var(--accent);font-weight:700;margin-bottom:.65rem}
+    nav a{display:block;color:var(--ink-soft);text-decoration:none;padding:.42rem .25rem;border-bottom:1px solid transparent;font-size:.79rem;line-height:1.4}
+    nav a:hover,nav a:focus,nav a.active{color:var(--accent);border-bottom-color:var(--accent)}
+    main{min-width:0;max-width:900px}
+    section{scroll-margin-top:1.6rem;margin:0 0 4.8rem}
+    .section-no{font:700 .72rem/1 var(--font-body);letter-spacing:.16em;color:var(--accent)}
+    h2{margin:.55rem 0 1.35rem;font:800 clamp(1.75rem,3.4vw,3rem)/1.16 var(--font-display);letter-spacing:-.025em}
+    h3{margin:2rem 0 .75rem;font:700 clamp(1.18rem,2vw,1.48rem)/1.35 var(--font-display)}
+    h4{margin:1.35rem 0 .45rem;font-size:1rem}
+    p{max-width:42em;margin:0 0 1rem;color:var(--ink-2)}
+    .lede{font:500 clamp(1.12rem,1.55vw,1.34rem)/1.85 var(--font-display);color:var(--ink);max-width:39em}
+    .rule{height:1px;background:var(--rule);margin:2rem 0}
+    .status{display:inline-block;padding:.15rem .43rem;margin-right:.35rem;border:1px solid currentColor;font:700 .62rem/1.2 var(--font-body);letter-spacing:.09em;vertical-align:.12rem}
+    .source{color:var(--green)} .infer{color:var(--blue)} .option{color:var(--accent)} .open{color:var(--amber)}
+    .verdict{display:grid;grid-template-columns:10rem 1fr;border-top:4px solid var(--ink);border-bottom:1px solid var(--rule);background:var(--surface);box-shadow:var(--shadow);margin:2rem 0}
+    .verdict .grade{padding:1.5rem;border-right:1px solid var(--rule);font:800 3.6rem/1 var(--font-display);color:var(--accent)}
+    .verdict .grade small{display:block;margin-top:.6rem;color:var(--ink-soft);font:500 .69rem/1.4 var(--font-body);letter-spacing:.1em}
+    .verdict .copy{padding:1.35rem 1.55rem}
+    .verdict .copy b{display:block;margin-bottom:.4rem;font-size:1.04rem}
+    .verdict .copy p{font-size:.88rem;margin:0;color:var(--ink-soft)}
+    .audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.5rem}
+    .audit{background:var(--paper);padding:1.25rem}
+    .audit .mark{font:700 .65rem/1 var(--font-body);letter-spacing:.1em;color:var(--accent)}
+    .audit h4{margin:.5rem 0}
+    .audit p{font-size:.82rem;color:var(--ink-soft);margin:0}
+    .paper-note{margin:1.7rem 0;padding:1.35rem 1.55rem;background:var(--paper);border-left:5px solid var(--accent);box-shadow:var(--shadow);font-family:var(--font-display);font-size:1.08rem;line-height:1.9}
+    .table-wrap{overflow-x:auto;border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);margin:1.4rem 0 1.7rem}
+    table{width:100%;border-collapse:collapse;min-width:720px;font-size:.79rem;line-height:1.55}
+    th,td{text-align:left;vertical-align:top;padding:.78rem .72rem;border-bottom:1px solid var(--rule)}
+    thead th{background:var(--ink);color:var(--bg);font-weight:600;letter-spacing:.03em}
+    tbody tr:last-child td{border-bottom:0}
+    .good{color:var(--green);font-weight:700}.mid{color:var(--amber);font-weight:700}.low{color:var(--danger);font-weight:700}
+    .gap-list{counter-reset:gap;display:grid;gap:0;border-top:3px solid var(--ink);margin:1.6rem 0}
+    .gap{position:relative;display:grid;grid-template-columns:2.2rem 1fr 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--rule)}
+    .gap::before{counter-increment:gap;content:counter(gap,decimal-leading-zero);font:700 1.05rem/1 var(--font-mono);color:var(--accent);padding-top:.2rem}
+    .gap b{font-size:.9rem}.gap span{font-size:.8rem;color:var(--ink-soft)}
+    .routes{display:grid;gap:1rem;margin:1.7rem 0}
+    .route{position:relative;display:grid;grid-template-columns:8rem minmax(0,1fr) 8rem;border:1px solid var(--rule-dark);background:var(--paper);box-shadow:var(--shadow)}
+    .route.recommended{border:3px solid var(--accent)}
+    .route .route-name{padding:1.3rem;background:var(--ink);color:var(--bg)}
+    .route.recommended .route-name{background:var(--accent)}
+    .route-name small{display:block;font-size:.62rem;letter-spacing:.1em;opacity:.75;margin-bottom:.35rem}
+    .route-name b{font-family:var(--font-display);font-size:1.1rem;line-height:1.3}
+    .route .route-body{padding:1.25rem 1.4rem}
+    .route-body p{font-size:.82rem;margin:0 0 .7rem;color:var(--ink-soft)}
+    .route-body .chain{color:var(--ink);font-weight:600;font-size:.8rem}
+    .route .route-fit{padding:1.25rem .8rem;border-left:1px solid var(--rule);text-align:center;display:grid;place-content:center}
+    .route-fit strong{font:800 1.4rem/1 var(--font-display)}
+    .route-fit span{font-size:.66rem;color:var(--ink-soft);margin-top:.35rem}
+    .criteria{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.5rem 0}
+    .criterion{background:var(--surface);padding:1rem .8rem;text-align:center}
+    .criterion b{display:block;font-family:var(--font-display);font-size:.9rem}
+    .criterion span{display:block;margin-top:.3rem;color:var(--ink-soft);font-size:.7rem;line-height:1.45}
+    .theory-stack{position:relative;margin:2rem 0;padding-left:2.6rem}
+    .theory-stack::before{content:"";position:absolute;left:.72rem;top:.8rem;bottom:.8rem;width:2px;background:var(--accent)}
+    .station{position:relative;display:grid;grid-template-columns:10rem 1fr;gap:1.2rem;padding:.85rem 0 1.25rem}
+    .station::before{content:"";position:absolute;left:-2.23rem;top:1.1rem;width:.8rem;height:.8rem;border:3px solid var(--accent);background:var(--bg);border-radius:50%}
+    .station strong{font-family:var(--font-display);font-size:1rem}
+    .station p{font-size:.82rem;margin:0;color:var(--ink-soft)}
+    .framework{margin:2rem 0;border-top:5px solid var(--ink);background:var(--surface);box-shadow:var(--shadow);padding:1.6rem}
+    .context{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.3rem}
+    .context span{border:1px solid var(--rule-dark);padding:.38rem .65rem;background:var(--paper);font-size:.72rem}
+    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;position:relative}
+    .flow::before{content:"";position:absolute;left:8%;right:8%;top:1.55rem;height:2px;background:var(--accent);z-index:0}
+    .step{position:relative;z-index:1;text-align:center}
+    .step .node{width:3.1rem;height:3.1rem;margin:0 auto .6rem;border:3px solid var(--accent);border-radius:50%;display:grid;place-items:center;background:var(--surface);font:800 .8rem/1 var(--font-mono);color:var(--accent)}
+    .step b{display:block;font-family:var(--font-display);font-size:.92rem}.step p{font-size:.7rem;line-height:1.45;margin:.35rem auto 0;color:var(--ink-soft)}
+    .outcome{margin-top:1.35rem;padding:1rem;border:1px solid var(--green);background:var(--green-soft);text-align:center;font-family:var(--font-display);font-weight:700}
+    .boundary-band{margin-top:.75rem;padding:.68rem 1rem;background:var(--ink);color:var(--bg);font-size:.74rem;text-align:center;letter-spacing:.03em}
+    .ai-note{margin-top:.7rem;padding:.7rem 1rem;border:1px dashed var(--blue);color:var(--blue);font-size:.74rem;text-align:center}
+    .propositions{counter-reset:prop;border-top:3px solid var(--ink);margin-top:1.5rem}
+    .prop{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.4rem 0;border-bottom:1px solid var(--rule)}
+    .prop::before{counter-increment:prop;content:"P" counter(prop);font:800 1.1rem/1 var(--font-mono);color:var(--accent);padding-top:.25rem}
+    .prop b{display:block;font-family:var(--font-display);font-size:1.02rem;margin-bottom:.4rem}
+    .prop p{font-size:.82rem;margin:0 0 .55rem;color:var(--ink-soft)}
+    .test{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+    .test div{padding:.65rem .75rem;background:var(--surface);font-size:.7rem;color:var(--ink-soft)}
+    .test strong{color:var(--ink)}
+    .warning{margin:1.4rem 0;border:1px solid var(--amber);background:var(--amber-soft);padding:1rem 1.2rem;color:#5f4b1d;font-size:.82rem}
+    .revised{padding:1.7rem;background:var(--paper);border-top:4px solid var(--accent);box-shadow:var(--shadow)}
+    .revised h3{margin-top:0}.revised p{font-family:var(--font-display);font-size:1.02rem;line-height:2;text-indent:2em;max-width:43em;margin:0}
+    .decision{background:var(--ink);color:var(--bg);padding:clamp(1.5rem,4vw,2.5rem);position:relative;overflow:hidden}
+    .decision::after{content:"A / B / C";position:absolute;right:-.5rem;bottom:-1rem;color:rgba(245,240,230,.06);font:800 5rem/1 var(--font-display)}
+    .decision h2{color:var(--bg);margin-top:.4rem}.decision p{color:#d9d0c1}.decision ul{padding-left:1.2rem;max-width:45em}.decision li{margin:.55rem 0}
+    .refs details{border-top:1px solid var(--rule);padding:.75rem 0}.refs summary{cursor:pointer;font-weight:700}.refs ol{padding-left:1.4rem;color:var(--ink-soft);font-size:.76rem}.refs li{margin:.48rem 0}.doi{font-family:var(--font-mono);font-size:.68rem;color:var(--blue)}
+    footer{border-top:1px solid var(--rule);padding:1.6rem 1.3rem 3rem;color:var(--ink-soft);font-size:.7rem;text-align:center}
+    @media (prefers-reduced-motion:no-preference){.fx{opacity:0;transform:translateY(10px);animation:rise .55s forwards}@keyframes rise{to{opacity:1;transform:none}}}
+    @media (max-width:940px){.mast-inner{grid-template-columns:1fr}.mast-note{max-width:36em}.layout{grid-template-columns:1fr}nav{position:static;display:flex;overflow-x:auto;gap:.4rem;border-top:0;border-bottom:2px solid var(--ink);padding:.5rem 0}nav .toc-label{display:none}nav a{white-space:nowrap}.criteria{grid-template-columns:1fr 1fr 1fr}.route{grid-template-columns:7rem 1fr}.route .route-fit{grid-column:1/-1;border-left:0;border-top:1px solid var(--rule);display:flex;gap:.5rem;align-items:center}.flow{grid-template-columns:1fr 1fr}.flow::before{display:none}}
+    @media (max-width:620px){.masthead{padding-left:1rem;padding-right:1rem}.layout{padding-left:.8rem;padding-right:.8rem}.audit-grid,.criteria{grid-template-columns:1fr}.gap{grid-template-columns:2rem 1fr}.gap span{grid-column:2}.route{grid-template-columns:1fr}.route .route-name{padding:1rem}.route .route-fit{grid-column:auto}.station{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.framework{padding:1rem}.test{grid-template-columns:1fr}.verdict{grid-template-columns:1fr}.verdict .grade{border-right:0;border-bottom:1px solid var(--rule);font-size:2.8rem}.lede{font-size:1.04rem}}
+    @media print{.progress,nav{display:none}body{background:#fff;font-size:10.5pt}.masthead{padding:1.2cm 0;border-top:4px solid #000}.mast-inner{display:block}.layout{display:block;max-width:none;padding:0}.route,.verdict,.framework,.revised{box-shadow:none}section{margin-bottom:1.3cm}h2,h3,tr,.route,.prop,.audit,.framework{break-inside:avoid}.decision{background:#fff;color:#000;border:2px solid #000}.decision h2,.decision p{color:#000}.decision::after{display:none}}
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="masthead">
+    <div class="mast-inner">
+      <div>
+        <div class="issue">Theory decision memo · 24 August 2026</div>
+        <h1>理论如何顺着问题意识自然长出来</h1>
+        <p class="deck">从现有文献综述反推南京南站必须解释的机制，再比较协作平台、生态系统编排与混合组织三条理论路径。目标是确定一个能够解释平台创制、运营组织和责任边界的中层框架。</p>
+      </div>
+      <div class="mast-note"><strong>本轮停在理论选择节点</strong>给出推荐，不替研究者作最终决定。事实、推论、理论选项和待核材料分别标识。</div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="目录">
+      <div class="toc-label">CONTENTS</div>
+      <a href="#verdict">01 综述是否合格</a>
+      <a href="#gaps">02 缺口与案例任务</a>
+      <a href="#criteria">03 理论选择标准</a>
+      <a href="#routes">04 三条理论路径</a>
+      <a href="#recommend">05 推荐架构</a>
+      <a href="#framework">06 命题与框架</a>
+      <a href="#evidence">07 证据与反证</a>
+      <a href="#rewrite">08 述评如何改</a>
+      <a href="#decision">09 等待你的决定</a>
+      <a href="#references">10 核心文献</a>
+    </nav>
+
+    <main>
+      <section id="verdict" class="fx">
+        <div class="section-no">01 · LITERATURE REVIEW AUDIT</div>
+        <h2>现有综述已经回应了问题，解释缺口还需要再收紧一步</h2>
+        <p class="lede"><span class="status infer">INFERENCE</span>五段综述已经把城市平台主义、共同生产和政府创制平台企业接到同一案例上，也控制住了两个容易失真的概念：需求汇集不等于使用者共同生产，50∶50股权不等于政府最终控制。它目前更像一张清楚的文献地图，尚未完全形成一条严密的理论争论。</p>
+        <div class="verdict">
+          <div class="grade">B+<small>方向成立<br>机制待收束</small></div>
+          <div class="copy"><b>最需要修改的是第五段。</b><p>当前述评由三条文献的不足直接跳到“平台创制—契约聚合—能力耦合—责任分层”，四项机制出现得太快。文献综述应先提出共同的解释对象：多边相互依赖怎样被组织成连续的公共服务生产；四项机制随后在理论部分作为待检验的分析命题出现。</p></div>
+        </div>
+        <div class="audit-grid">
+          <article class="audit"><div class="mark">可保留 01</div><h4>三层文献地图</h4><p>治理形态、生产关系、组织载体的区分有效，能够避免把平台、共同生产和平台企业写成同义词。</p></article>
+          <article class="audit"><div class="mark">可保留 02</div><h4>共同生产的门槛</h4><p>以直接、持续的生产性投入为判断标准。乘客、商户和司机目前更稳妥的身份仍是需求主体。</p></article>
+          <article class="audit"><div class="mark">需修正 01</div><h4>平台概念层级混合</h4><p>平台城市主义是关系与权力研究，政府即平台是数字架构，协作平台是治理策略，“一网统管”研究行政流程整合，不能顺写成一条同质理论。</p></article>
+          <article class="audit"><div class="mark">需修正 02</div><h4>类型差异还不是理论缺口</h4><p>从省级控股平台转向场景型50∶50平台，只能说明对象不同。理论问题应追问产权身份如何转化为合同控制、运营能力和责任秩序。</p></article>
+          <article class="audit"><div class="mark">需修正 03</div><h4>平台接入不保证共同生产</h4><p>平台为合作持续化提供条件。合同、人员、标准、供应商和责任没有进入时，新平台也可能只是协调窗口或新增承包商。</p></article>
+          <article class="audit"><div class="mark">需修正 04</div><h4>人工智能的位置过于突然</h4><p>综述需要补一句：算法扩大感知和分类，却无法自行取得合同、数据授权和现场执行权，由此把智能化问题接回平台组织。</p></article>
+        </div>
+        <div class="warning"><span class="status open">OPEN</span>“政府主导”目前仍是待核判断。已知事实是市属国企与万物云各持股50%；实际控制要看章程、董事会席位、重大事项表决、经理层任命与预算权限。</div>
+      </section>
+
+      <section id="gaps">
+        <div class="section-no">02 · GAP TO CASE</div>
+        <h2>好的缺口会直接规定案例分析必须拿出什么证据</h2>
+        <p><span class="status infer">INFERENCE</span>本文的增量不应停在“研究了一个新平台”。更有解释力的缺口是：当行政权、资产权、合同关系和现场能力仍分散在不同组织时，新设合资平台如何取得组织多边依赖的实际能力；这种能力怎样形成，又在哪些权责边界前停止。</p>
+        <div class="gap-list">
+          <div class="gap"><b>关系怎样获得组织载体</b><span>平台主义说明多边连接，却很少进入法人、股权和现场经营。案例要呈现平台为何成立、取得了哪些新增位置和权限。</span></div>
+          <div class="gap"><b>组织身份怎样转成生产结构</b><span>平台企业成立不等于分散外包已经改变。案例要追踪合同来源、服务覆盖、供应商选择和任务配置权。</span></div>
+          <div class="gap"><b>资源并置怎样变成联合能力</b><span>政企双方各有资源，资源进入同一活动顺序才产生服务。案例要呈现标准、人员、工单和跨专业调度。</span></div>
+          <div class="gap"><b>数字连接怎样改变协作</b><span>系统记录和算法识别只是环节。案例要比较事件如何识别、派发、处置、反馈，并说明人工和线下协调保留在哪里。</span></div>
+          <div class="gap"><b>整合怎样维持公共责任</b><span>责任分层可能稳定平台，也可能复制碎片化。案例要追踪执法转交、数据授权、采购监管、应急接管和争议事件。</span></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>文献留下的问题</th><th>南京南站可提供的材料</th><th>可以形成的解释增量</th><th>暂时不能声称</th></tr></thead>
+            <tbody>
+              <tr><td>协作平台如何长期承载多项合作</td><td>综管办、专项协调、分散外包与合资平台的过程材料</td><td>平台创制把临时协调转为持续组织关系的条件</td><td>合资平台普遍优于行政协调</td></tr>
+              <tr><td>混合产权如何进入公共服务生产</td><td>50∶50股权、双方资源投入、公司内部运营</td><td>混合产权经合同与经营权限转化为生产能力的过程</td><td>政府最终控制或双方实质对等</td></tr>
+              <tr><td>共同生产如何获得组织基础</td><td>多来源合同、供应商、500余项标准及工单流程</td><td>组织间联合生产从分散协作走向平台化的机制</td><td>乘客等需求主体已普遍共同生产</td></tr>
+              <tr><td>平台整合如何受到责任约束</td><td>合同内外、红线内外、数据通与不通、执法与运营事件</td><td>责任分层既是平台边界，也是稳定合作的条件</td><td>平台已经化解全部行政分割</td></tr>
+              <tr><td>人工智能如何进入组织过程</td><td>25类识别事项、人工复核、派单与处置去向</td><td>算法效应受合同、数据、标准和执行权共同制约</td><td>人工智能主导了南站治理转型</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="criteria">
+        <div class="section-no">03 · SELECTION CRITERIA</div>
+        <h2>理论选择从研究问题出发，不从概念的新颖程度出发</h2>
+        <p class="lede">你的问题是一个“在固定法定权责下，平台如何重组生产关系”的过程问题。主理论至少要同时处理组织载体、多边依赖、过程变化和公共责任。</p>
+        <div class="criteria">
+          <div class="criterion"><b>分析单位</b><span>场景型合资平台及其服务网络</span></div>
+          <div class="criterion"><b>解释对象</b><span>分散协调向连续生产的变化</span></div>
+          <div class="criterion"><b>核心机制</b><span>角色、合同、资源与活动的组织</span></div>
+          <div class="criterion"><b>结果变量</b><span>平台化共同生产能力</span></div>
+          <div class="criterion"><b>边界条件</b><span>法定权责、数据授权与公共问责</span></div>
+        </div>
+        <div class="paper-note">理论要能够解释平台为何出现、创制以后做了什么，以及做不到什么。只能描述参与主体很多、资源相互依赖的理论，无法独立承担因果解释。</div>
+      </section>
+
+      <section id="routes">
+        <div class="section-no">04 · COMPETING ROUTES</div>
+        <h2>三条可行路径，分别对应三种论文重心</h2>
+        <div class="routes">
+          <article class="route recommended">
+            <div class="route-name"><small>方案 A · 推荐</small><b>混合型协作平台<br>与平台编排</b></div>
+            <div class="route-body"><p>把合资企业界定为具有混合产权的协作平台，以平台编排解释合同、标准、能力和数字接口如何进入持续运营；共同生产是结果，混合问责限定责任边界。</p><div class="chain">平台主义〔问题背景〕 → 协作平台〔组织创制〕 → 平台编排〔运行机制〕 → 共同生产〔结果〕 → 混合问责〔边界〕</div></div>
+            <div class="route-fit"><strong>最连贯</strong><span>适合现题目与问题</span></div>
+          </article>
+          <article class="route">
+            <div class="route-name"><small>方案 B</small><b>生态系统结构<br>与双层编排</b></div>
+            <div class="route-body"><p>以活动、行动者、位置和联结界定南站公共服务生态；政府或国资主体负责制度创制与元治理，合资平台负责运营编排，混合组织理论补足产权和责任。</p><div class="chain">数字治理生态〔总体视野〕 → 生态系统结构〔依赖关系〕 → 双层编排〔过程〕 → 混合组织〔责任修正〕</div></div>
+            <div class="route-fit"><strong>机制强</strong><span>理论拼接成本较高</span></div>
+          </article>
+          <article class="route">
+            <div class="route-name"><small>方案 C</small><b>混合组织<br>与制度逻辑</b></div>
+            <div class="route-body"><p>以50∶50合资法人为中心，分析公共逻辑、商业逻辑和专业逻辑怎样在治理结构、人员和问责中选择性耦合；平台编排只作过程补充。</p><div class="chain">公司化〔组织选择〕 → 混合组织〔结构〕 → 制度逻辑〔冲突与调和〕 → 混合问责〔边界〕</div></div>
+            <div class="route-fit"><strong>结构强</strong><span>需要更多公司治理材料</span></div>
+          </article>
+          <article class="route">
+            <div class="route-name"><small>参照方案</small><b>交易成本<br>与混合治理</b></div>
+            <div class="route-body"><p>可以解释高频交易、资产专用性和不确定性为何促使组织从市场外包转向混合治理，但难以覆盖城市平台、多边需求、数字接口和公共责任。</p><div class="chain">交易属性 → 市场／混合／科层选择 → 适应性与控制</div></div>
+            <div class="route-fit"><strong>可比较</strong><span>不宜承担全文</span></div>
+          </article>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>判断项目</th><th>方案A<br>协作平台—编排</th><th>方案B<br>生态结构—编排</th><th>方案C<br>混合组织</th><th>交易成本</th></tr></thead>
+            <tbody>
+              <tr><td>接续平台主义叙事</td><td class="good">高</td><td class="good">高</td><td class="mid">中</td><td class="low">低</td></tr>
+              <tr><td>解释平台为何持续存在</td><td class="good">高</td><td class="mid">中</td><td class="good">高</td><td class="good">高</td></tr>
+              <tr><td>解释合同与能力进入</td><td class="good">高</td><td class="good">高</td><td class="mid">中</td><td class="mid">中</td></tr>
+              <tr><td>解释50∶50与责任</td><td class="mid">中，需补充</td><td class="mid">中，需补充</td><td class="good">高</td><td class="mid">中</td></tr>
+              <tr><td>容纳数字系统与AI</td><td class="good">高</td><td class="good">高</td><td class="low">低</td><td class="low">低</td></tr>
+              <tr><td>与现有材料匹配</td><td class="good">高</td><td class="good">高</td><td class="mid">取决于章程材料</td><td class="mid">缺比较数据</td></tr>
+              <tr><td>主要风险</td><td>概念组合过多</td><td>“生态”过宽、商业理论移植</td><td>论文偏离平台与运营过程</td><td>压缩公共价值与多边关系</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warning"><span class="status option">OPTION</span>若论文重点改为“为什么采取50∶50合资而非国有独资或普通外包”，方案C会更合适。按照当前题目“从分散外包到平台化共同生产”和既定四层案例结构，方案A的连续性最好。</div>
+      </section>
+
+      <section id="recommend">
+        <div class="section-no">05 · RECOMMENDED ARCHITECTURE</div>
+        <h2>推荐写法：以协作平台定组织，以平台编排解释过程</h2>
+        <p><span class="status option">OPTION</span>建议将理论框架命名为<strong>“混合型协作平台的组织化编排”</strong>。它保留平台作为全文中心，又能把合资企业、合同聚合、资源调动和责任边界纳入同一条机制链。</p>
+        <div class="theory-stack">
+          <div class="station"><strong>问题视角<br>城市平台主义</strong><p>说明平台为何成为缓和碎片化与整体性张力的城市治理形态。它负责提出问题，不承担平台绩效的因果解释。</p></div>
+          <div class="station"><strong>组织理论<br>协作平台</strong><p>Ansell与Gash将协作平台界定为拥有专门资源和能力、能够持续支持多项协作的组织或项目。它解释临时协调为何转为稳定平台。</p></div>
+          <div class="station"><strong>过程理论<br>平台／生态编排</strong><p>编排关注缺少完整科层权威的枢纽如何调整行动者位置、活动联结、互补资源和规则。它解释平台成立以后怎样运行。</p></div>
+          <div class="station"><strong>结果概念<br>平台化共同生产</strong><p>政府、平台企业与专业供应商持续投入不可替代资源，并进入可追踪的共同服务流程。使用者是否进入共同生产须另行检验。</p></div>
+          <div class="station"><strong>边界概念<br>混合组织与问责</strong><p>解释50∶50平台中公共、商业和专业逻辑如何配置，也提醒责任分层可能稳定合作或制造新的责任断点。</p></div>
+        </div>
+        <div class="paper-note">核心理论只有一条：协作平台如何通过编排形成共同生产。数字生态用于说明关系范围，混合组织用于处理产权和责任，都不与主理论争夺解释中心。</div>
+        <h3>理论部分可以这样命名</h3>
+        <p>“混合型协作平台何以组织共同生产：一个平台编排的分析框架”</p>
+        <h3>理论中心句</h3>
+        <p class="lede">在反复出现的多边依赖而法定权责难以调整的条件下，政府参与创制具有混合产权的协作平台；平台取得合同与运营权限后，通过规则校准和能力编排，将分散投入组织为连续的公共服务生产；责任接口决定这种整合能够延伸到哪里。</p>
+      </section>
+
+      <section id="framework">
+        <div class="section-no">06 · PROPOSITIONS & FRAMEWORK</div>
+        <h2>保留原有四层结构，但改变它们的理论身份</h2>
+        <p><span class="status infer">INFERENCE</span>平台创制、契约聚合、能力耦合和责任分层适合继续作为案例章节。它们不是某一经典理论现成给出的四个维度，应明确写成理论与案例往返形成的分析机制，并为每项机制设置失败条件。</p>
+        <div class="framework">
+          <div class="context"><span>高频跨边界任务</span><span>多边相互依赖</span><span>行政权责难以调整</span><span>分散外包反复协调</span></div>
+          <div class="flow">
+            <div class="step"><div class="node">01</div><b>平台创制</b><p>组织锚定：谁取得持续组织合作的位置</p></div>
+            <div class="step"><div class="node">02</div><b>契约聚合</b><p>关系校准：哪些任务和控制权进入平台</p></div>
+            <div class="step"><div class="node">03</div><b>能力耦合</b><p>活动编排：资源怎样进入共同工作次序</p></div>
+            <div class="step"><div class="node">04</div><b>责任分层</b><p>边界治理：决定权、执行权和问责如何匹配</p></div>
+          </div>
+          <div class="outcome">结果变量：连续组织跨边界城市运营服务的“平台化共同生产能力”</div>
+          <div class="boundary-band">稳定条件：合同覆盖 × 标准兼容 × 执行权限 × 转交反馈规则</div>
+          <div class="ai-note">人工智能进入感知与分类环节，其作用受数据可得性、任务标准化、合同范围和现场执行权制约。</div>
+        </div>
+        <div class="propositions">
+          <article class="prop"><div><b>组织位置命题</b><p>当合资平台取得跨越原有组织边界的合同控制、资产运营或任务配置权时，平台创制才会改变原有服务结构；只有法人身份时，平台可能停留在协调窗口。</p><div class="test"><div><strong>支持：</strong>成立前后权限、组织图和任务入口发生变化。</div><div><strong>反证：</strong>平台没有新增控制权，却仍使协调全面转入内部。</div></div></div></article>
+          <article class="prop"><div><b>关系校准命题</b><p>多来源合同进入同一平台后，服务目录、作业标准、绩效指标和任务接口得到校准，契约聚合才会减少跨企业交接；规则继续分立时，平台容易退化为转包层级。</p><div class="test"><div><strong>支持：</strong>合同进入伴随标准转换、供应商管理与转派次数下降。</div><div><strong>反证：</strong>合同和标准均未改变，跨企业交接仍持续减少。</div></div></div></article>
+          <article class="prop"><div><b>能力编排命题</b><p>公共资源与企业能力经共同标准和数字任务接口进入稳定活动顺序后，资源并置才会转化为跨场景联合生产能力。</p><div class="test"><div><strong>支持：</strong>政府、企业与供应商出现在同一完整任务链中。</div><div><strong>反证：</strong>标准和系统齐备后，各方仍按原合同孤立作业。</div></div></div></article>
+          <article class="prop"><div><b>责任匹配命题</b><p>运营决定权、行政权、数据权与最终问责之间存在清楚的转交和反馈规则时，平台能力可以稳定扩展；只有职责切分而缺少接口时，责任分层会复制碎片化。</p><div class="test"><div><strong>支持：</strong>边界事件有明确转交、反馈、升级和倒查记录。</div><div><strong>反证：</strong>权责长期模糊，却没有停滞、推诿或反复协调。</div></div></div></article>
+          <article class="prop"><div><b>技术条件命题</b><p>数字系统编码已经形成的组织关系。人工智能可以缩短合同范围内的识别和分类，在数据不通、合同外或需要行政执法的事项上主要承担发现与上报。</p><div class="test"><div><strong>支持：</strong>平台内外事件的处置链和技术效果存在明显差异。</div><div><strong>反证：</strong>缺少数据、合同和权限时，算法仍能独立完成连续处置。</div></div></div></article>
+        </div>
+      </section>
+
+      <section id="evidence">
+        <div class="section-no">07 · EVIDENCE & RIVAL EXPLANATIONS</div>
+        <h2>理论框架成立之前，需要主动寻找反例</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>可能的替代解释</th><th>如果它成立，应观察到什么</th><th>如何与平台编排解释区分</th></tr></thead>
+            <tbody>
+              <tr><td>股东资产经营动机</td><td>公司主要围绕停车、商业和自有资产经营，公共服务协调只是附带结果</td><td>核对创制决策、项目收入构成、政府参与理由与公共服务合同进入顺序</td></tr>
+              <tr><td>万物云能力输入</td><td>改善来自成熟物业标准和供应链，合资平台形式并非必要</td><td>寻找单纯外包同类项目，对比合资平台是否新增跨甲方协调和控制权</td></tr>
+              <tr><td>国资科层协调</td><td>平台只是市属国企行政资源的延伸，市场企业并未持续投入不可替代能力</td><td>核对人员、标准、系统、供应商和经营决策分别来自哪一方</td></tr>
+              <tr><td>数字系统驱动</td><td>工单和算法直接造成整合，组织和合同变化并不重要</td><td>比较系统上线、合同进入和人员调度的时间次序，并观察合同外事件</td></tr>
+              <tr><td>新增承包商</td><td>交控万物只是合同链上增加一层，外部协调没有实质转入平台</td><td>检查平台能否选换供应商、统一标准、跨项目调人和承担结果责任</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>当前材料足以支撑</h3>
+        <p><span class="status source">SOURCE</span>企业访谈已经呈现多来源采购包逐步进入、平台作为“唯一乙方”管理供应商、双方投入不同资源、统一工单和人工智能巡查，以及停车场红线、行政执法和铁路数据等边界。</p>
+        <h3>决定理论选择的缺失材料</h3>
+        <div class="gap-list">
+          <div class="gap"><b>公司控制</b><span>章程、股东协议、董事会席位、保留事项、经理层和财务负责人提名权、僵局与退出机制。</span></div>
+          <div class="gap"><b>合同控制</b><span>合同清单、采购文件、服务覆盖、供应商选择与考核权、付款和违约安排。</span></div>
+          <div class="gap"><b>过程证据</b><span>完整工单样本、跨合同事件、失败与争议事件、转交和升级记录。</span></div>
+          <div class="gap"><b>政府视角</b><span>政府和国资主体为何创制平台、怎样评价企业能力、哪些权力拒绝进入平台。</span></div>
+          <div class="gap"><b>结果数据</b><span>平台成立前后的响应时间、协调次数、成本、服务质量和第三方评价。</span></div>
+        </div>
+      </section>
+
+      <section id="rewrite">
+        <div class="section-no">08 · REVISED LITERATURE CRITIQUE</div>
+        <h2>文献述评的落点应改成“缺少连续的组织机制”</h2>
+        <div class="revised">
+          <h3>建议替换现有第五段</h3>
+          <p>上述研究分别揭示了城市平台化的关系结构、公共服务共同生产的投入逻辑，以及平台企业的组织属性，却尚未形成对多边相互依赖如何转化为连续服务生产的完整解释。平台城市主义说明平台可以重新连接城市中的数据、服务与权力，共同生产研究提出了多元主体进入生产过程的判断标准，政府创制平台企业和公共服务公司化研究则解释了独立法人、组织自主与公共控制之间的关系。三条脉络之间仍缺少一个中观过程：在行政权责和产权边界基本不变的条件下，合资平台怎样取得组织合作的实际位置，分散合同如何进入共同运营界面，公共资源与企业能力如何形成稳定的活动顺序，运营整合又如何受到行政权、数据权和最终问责的限制。人工智能扩大了事件感知和分类能力，也使合同覆盖、数据授权和现场执行之间的断点更容易暴露。本文据此考察，在何种条件下以及通过何种机制，政府参与创制的政企合资平台能够将分散协调组织为平台化共同生产，并分析这一过程在何处受阻。</p>
+        </div>
+        <div class="warning"><span class="status infer">INFERENCE</span>这一版本仍保持原先要求的五段结构：第一段总起，随后三段梳理文献，末段完成述评。需要调整的是每段内部的概念层级和第五段的解释焦点，无需把综述扩写成更长的理论史。</div>
+      </section>
+
+      <section id="decision" class="decision">
+        <div class="section-no">09 · H3 DECISION POINT</div>
+        <h2>现在需要你决定论文的理论重心</h2>
+        <p>按照研究问题审计流程，本轮停在理论方案比较阶段。三个选择会把同一案例写成三篇不同的论文：</p>
+        <ul>
+          <li><strong>选择 A：</strong>平台是中心。解释合资协作平台如何通过编排形成共同生产。最符合当前题目、问题意识和四层案例结构。</li>
+          <li><strong>选择 B：</strong>生态是中心。解释多边依赖如何经政府元治理与企业运营编排形成场景型公共服务生态。理论机制更强，移植与拼接工作更多。</li>
+          <li><strong>选择 C：</strong>合资企业是中心。解释公共与商业逻辑如何在50∶50混合组织中结合。需要补齐公司控制与责任材料，平台和人工智能会退居次位。</li>
+        </ul>
+        <p>基于现有标题和研究问题，本报告推荐 A。若你决定采用，我再把“理论基础与分析框架”写成正式论文文本，并同步调整五段文献综述。</p>
+      </section>
+
+      <section id="references" class="refs">
+        <div class="section-no">10 · CORE SOURCES</div>
+        <h2>支撑理论选择的核心文献</h2>
+        <details open><summary>协作平台、平台编排与数字接口</summary><ol>
+          <li>Ansell, C., &amp; Gash, A. (2018). Collaborative Platforms as a Governance Strategy. <i>Journal of Public Administration Research and Theory</i>, 28(1), 16–32. <span class="doi">doi:10.1093/jopart/mux030</span></li>
+          <li>Ansell, C., &amp; Miura, S. (2020). Can the Power of Platforms Be Harnessed for Governance? <i>Public Administration</i>, 98(1), 261–276. <span class="doi">doi:10.1111/padm.12636</span></li>
+          <li>Cordella, A., &amp; Paletti, A. (2019). Government as a Platform, Orchestration, and Public Value Creation. <i>Government Information Quarterly</i>, 36(4), 101409. <span class="doi">doi:10.1016/j.giq.2019.101409</span></li>
+          <li>Dhanaraj, C., &amp; Parkhe, A. (2006). Orchestrating Innovation Networks. <i>Academy of Management Review</i>, 31(3), 659–669. <span class="doi">doi:10.5465/amr.2006.21318923</span></li>
+          <li>Ghazawneh, A., &amp; Henfridsson, O. (2013). Balancing Platform Control and External Contribution. <i>Information Systems Journal</i>, 23(2), 173–192. <span class="doi">doi:10.1111/j.1365-2575.2012.00406.x</span></li>
+        </ol></details>
+        <details><summary>生态系统结构与治理</summary><ol>
+          <li>Adner, R. (2017). Ecosystem as Structure. <i>Journal of Management</i>, 43(1), 39–58. <span class="doi">doi:10.1177/0149206316678451</span></li>
+          <li>Jacobides, M. G., Cennamo, C., &amp; Gawer, A. (2018). Towards a Theory of Ecosystems. <i>Strategic Management Journal</i>, 39(8), 2255–2276. <span class="doi">doi:10.1002/smj.2904</span></li>
+          <li>Wareham, J., Fox, P. B., &amp; Cano Giner, J. L. (2014). Technology Ecosystem Governance. <i>Organization Science</i>, 25(4), 1195–1215. <span class="doi">doi:10.1287/orsc.2014.0895</span></li>
+          <li>Gupta, A., Panagiotopoulos, P., &amp; Bowen, F. (2020). An Orchestration Approach to Smart City Data Ecosystems. <i>Technological Forecasting and Social Change</i>, 153, 119929. <span class="doi">doi:10.1016/j.techfore.2020.119929</span></li>
+          <li>孟天广，2022：《数字治理生态：数字政府的理论迭代与模型演化》，《政治学研究》第5期，第13—26页。</li>
+          <li>邱泽奇、乔天宇、宋洁、张平文，2025：《数字生态：概念源流与建构》，《社会学研究》第5期，第21—41页。</li>
+        </ol></details>
+        <details><summary>混合组织、公司化与共同生产</summary><ol>
+          <li>Pache, A.-C., &amp; Santos, F. (2013). Inside the Hybrid Organization. <i>Academy of Management Journal</i>, 56(4), 972–1001. <span class="doi">doi:10.5465/amj.2011.0405</span></li>
+          <li>Skelcher, C., &amp; Smith, S. R. (2015). Theorizing Hybridity. <i>Public Administration</i>, 93(2), 433–448. <span class="doi">doi:10.1111/padm.12105</span></li>
+          <li>Andrews, R., Clifton, J., &amp; Ferry, L. (2022). Corporatization of Public Services. <i>Public Administration</i>, 100(2), 179–192. <span class="doi">doi:10.1111/padm.12848</span></li>
+          <li>Rajala, T., &amp; Kokko, P. (2022). Biased by Design: The Case of Horizontal Accountability in a Hybrid Organization. <i>Accounting, Auditing &amp; Accountability Journal</i>, 35(3), 830–862. <span class="doi">doi:10.1108/AAAJ-11-2019-4272</span></li>
+          <li>Ostrom, E. (1996). Crossing the Great Divide: Coproduction, Synergy, and Development. <i>World Development</i>, 24(6), 1073–1087. <span class="doi">doi:10.1016/0305-750X(96)00023-X</span></li>
+          <li>Brandsen, T., &amp; Honingh, M. (2016). Distinguishing Different Types of Coproduction. <i>Public Administration Review</i>, 76(3), 427–435. <span class="doi">doi:10.1111/puar.12465</span></li>
+        </ol></details>
+      </section>
+    </main>
+  </div>
+
+  <footer>多智能体理论评估汇编 · 离线决策参考 · 南京南站案例研究 · 2026年8月24日</footer>
+  <script>
+    const bar=document.querySelector('.progress');
+    const links=[...document.querySelectorAll('nav a')];
+    const sections=[...document.querySelectorAll('main section')];
+    const update=()=>{
+      const max=document.documentElement.scrollHeight-innerHeight;
+      bar.style.width=(max>0?scrollY/max*100:0)+'%';
+      let id=sections[0]?.id;
+      for(const s of sections){if(s.getBoundingClientRect().top<150) id=s.id;}
+      links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+    };
+    addEventListener('scroll',update,{passive:true}); addEventListener('resize',update); update();
+  </script>
+</body>
+</html>

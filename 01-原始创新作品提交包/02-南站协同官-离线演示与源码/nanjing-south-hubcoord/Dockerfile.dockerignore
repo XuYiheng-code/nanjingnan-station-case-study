@@ -1,0 +1,17 @@
+*
+!nanjing-south-hubcoord/
+!nanjing-south-hubcoord/**
+!data/
+!data/**
+!contracts/
+!contracts/**
+!eval/
+!eval/**
+nanjing-south-hubcoord/.venv/
+nanjing-south-hubcoord/__pycache__/
+nanjing-south-hubcoord/runtime/
+nanjing-south-hubcoord/*.png
+nanjing-south-hubcoord/.env
+nanjing-south-hubcoord/.DS_Store
+**/__pycache__/
+**/*.pyc

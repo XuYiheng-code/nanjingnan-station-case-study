@@ -1,0 +1,10 @@
+{
+  "record_id": "AL-DEMO-SC01-001",
+  "card_id": "CC-DEMO-SC01-E01-001",
+  "event_id": "NJS-DEMO-SC01-E01",
+  "action": "confirmed",
+  "actor_role": "operator_supervisor",
+  "occurred_at": "2026-08-20T18:12:00+08:00",
+  "reason": "确认以模拟协同议题形式提交综管办值守人员复核。",
+  "data_status": "simulated"
+}

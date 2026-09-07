@@ -1,0 +1,50 @@
+{
+  "model": "qwen3-tts-instruct-flash",
+  "voice": "Maia",
+  "segments": [
+    {
+      "id": "opening",
+      "duration": 16.32
+    },
+    {
+      "id": "parking",
+      "duration": 15.04
+    },
+    {
+      "id": "fragmentation",
+      "duration": 22.72
+    },
+    {
+      "id": "history",
+      "duration": 19.84
+    },
+    {
+      "id": "platform",
+      "duration": 23.68
+    },
+    {
+      "id": "brain",
+      "duration": 17.92
+    },
+    {
+      "id": "loop",
+      "duration": 17.76
+    },
+    {
+      "id": "people",
+      "duration": 17.52
+    },
+    {
+      "id": "boundary",
+      "duration": 19.04
+    },
+    {
+      "id": "judgment",
+      "duration": 17.6
+    },
+    {
+      "id": "ending",
+      "duration": 20.48
+    }
+  ]
+}
