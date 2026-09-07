@@ -1,0 +1,86 @@
+{
+  "registry_version": "v1.0",
+  "purpose": "登记候选资料的来源、允许用途和进入比赛展示版前必须完成的处理。本文件不等同于证据卡库，不包含原始访谈摘录。",
+  "sources": [
+    {
+      "source_id": "ORG-2026-01",
+      "title": "调研问题反馈：南京南站一体化智慧运营创新实践情况",
+      "source_type": "organization_response",
+      "location": "【录音】对交控万物的调研资料：录音与文本/调研问题反馈：南京南站一体化智慧运营创新实践情况.docx",
+      "candidate_topics": ["一体化运营", "服务执行与问题上报边界", "工单流转"],
+      "data_class": "internal_review_required",
+      "allowed_for_demo": false,
+      "required_processing": ["研究组确认可引用范围", "删除可识别内部人员和业务信息", "把组织陈述标为受访方观点或经核验事实"]
+    },
+    {
+      "source_id": "INT-20251022-01",
+      "title": "1.20 备忘录版本：对南京南站的访谈资料汇总",
+      "source_type": "interview_summary",
+      "location": "【录音】对交控万物的调研资料：录音与文本/1.20 备忘录版本：对南京南站的访谈资料汇总 .docx",
+      "candidate_topics": ["城市小脑", "AI 巡查", "停车场与空间边界", "跨主体协同"],
+      "data_class": "sensitive_research_material",
+      "allowed_for_demo": false,
+      "required_processing": ["逐段去标识", "保留说话人或时间定位但不公开身份", "区分原话、研究者备注和模拟设定"]
+    },
+    {
+      "source_id": "REG-NJS-01",
+      "title": "南京市铁路南京南站地区综合管理办法",
+      "source_type": "public_regulation",
+      "location": "【资料】南京南站与万物云的资料/南京市铁路南京南站地区综合管理办法.pdf",
+      "candidate_topics": ["管理边界", "组织职责", "法定权限"],
+      "data_class": "public",
+      "allowed_for_demo": true,
+      "required_processing": ["登记生效版本和条款位置", "引用前由研究组核对现行有效性"]
+    },
+    {
+      "source_id": "REG-AI-2025-01",
+      "title": "国务院关于深入实施“人工智能+”行动的意见",
+      "source_type": "public_policy",
+      "location": "【资料】南京南站与万物云的资料/国务院关于深入实施“人工智能+”行动的意见__2025年第25号国务院公报_中国政府网.pdf",
+      "candidate_topics": ["人工智能应用", "安全和治理要求"],
+      "data_class": "public",
+      "allowed_for_demo": true,
+      "required_processing": ["只用于背景和原则说明", "不得据此推导具体执法或数据处理授权"]
+    },
+    {
+      "source_id": "SIM-SC01-01",
+      "title": "SC-01 列车晚点与停车场外溢模拟设定",
+      "source_type": "simulation_design",
+      "location": "data/sc-01-delay-parking-overflow.json",
+      "candidate_topics": ["跨域协同", "证据核验", "人工确认"],
+      "data_class": "simulated",
+      "allowed_for_demo": true,
+      "required_processing": ["所有界面保留模拟标识", "不混入真实指标或真实工单"]
+    },
+    {
+      "source_id": "SIM-SC01-02",
+      "title": "SC-01 展示安全约束",
+      "source_type": "simulation_design",
+      "location": "data/sc-01-delay-parking-overflow.json",
+      "candidate_topics": ["人工确认", "行政执法边界", "数据边界"],
+      "data_class": "simulated",
+      "allowed_for_demo": true,
+      "required_processing": ["所有界面保留模拟标识", "不混入真实指标或真实工单"]
+    },
+    {
+      "source_id": "ORG-CASE-TEXT-2026",
+      "title": "案例文本：清华大学公共管理案例大赛（团队稿，2026年9月）",
+      "source_type": "team_case_draft",
+      "location": "团队提交的案例文本 Word 文档",
+      "candidate_topics": ["碎片化治理", "平台企业", "人机协同", "制度边界"],
+      "data_class": "team_authorized_draft",
+      "allowed_for_demo": true,
+      "required_processing": ["只抽取两稿相互支持的机制性判断", "争议数字与权属表述进入核验清单", "不公开访谈原话与内部身份线索"]
+    },
+    {
+      "source_id": "ORG-CASE-ANALYSIS-2026",
+      "title": "案例分析：清华大学公共管理案例大赛（团队稿，2026年9月）",
+      "source_type": "team_analysis_draft",
+      "location": "团队提交的案例分析 Word 文档",
+      "candidate_topics": ["交易成本", "组织调适", "平台化", "智能化", "合法性边界"],
+      "data_class": "team_authorized_draft",
+      "allowed_for_demo": true,
+      "required_processing": ["仅作为研究团队的分析判断", "保留章节定位", "不把理论解释写成外部事实"]
+    }
+  ]
+}

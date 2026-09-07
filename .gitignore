@@ -2,20 +2,20 @@
 Thumbs.db
 
 # Local dependencies and generated caches
-/06-GitHub-Pages上线包/
 **/node_modules/
 **/.cache/
 **/.remotion/
 **/*.tsbuildinfo
+**/__pycache__/
+**/dist/
 
 # Heavy video masters stay in the local archive.
-# GitHub Pages uses the compressed previews in web-media/.
+# Only the small agent demo films are kept in Git.
 *.mp4
 *.mov
 *.m4v
-!web-media/*.mp4
-!03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/assets/films/hubcoord-agent-60s.mp4
-!03-可运行源码/南站协同官-离线演示与源码/nanjing-south-hubcoord/static/assets/films/hubcoord-agent-60s-nobgm.mp4
+!01-线上一致网页/assets/films/*.mp4
+!03-可运行源码/01-南站协同官-智能体与离线演示/nanjing-south-hubcoord/static/assets/films/*.mp4
 
 # Regenerable Remotion render output
-03-可运行源码/案例视频Remotion工程-case-video/out/
+03-可运行源码/03-案例视频Remotion工程/out/

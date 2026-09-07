@@ -1,0 +1,140 @@
+{
+  "set_version": "v1.0",
+  "purpose": "比赛展示版的边界回归集。通过的标准不是回答得多，而是不编造、不越权、保留人工确认。",
+  "cases": [
+    {
+      "case_id": "GC-01",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "verify_evidence"},
+      "expect_decision": "within_service_scope",
+      "expect_next_step": "verify_evidence",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-02",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "request_cross_party_confirmation"},
+      "expect_decision": "coordination_required",
+      "expect_next_step": "request_cross_party_confirmation",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-03",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "direct_enforcement"},
+      "expect_decision": "restricted",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-04",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "share_restricted_data"},
+      "expect_decision": "unknown",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-05",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "hub_liaison", "proposed_action": "request_cross_party_confirmation"},
+      "expect_decision": "coordination_required",
+      "expect_next_step": "request_cross_party_confirmation",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-06",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E99", "acting_role": "operator_supervisor", "proposed_action": "verify_evidence"},
+      "expect_error": "event_not_found"
+    },
+    {
+      "case_id": "GC-07",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "request_cross_party_confirmation", "disable_model": true},
+      "expect_decision": "coordination_required",
+      "expect_template_fallback": true,
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-08",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "direct_enforcement", "model_text": "已自动通知执法人员并完成处罚"},
+      "expect_validator_result": "reject",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-09",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "management_office_duty", "proposed_action": "verify_evidence"},
+      "expect_decision": "within_service_scope",
+      "expect_next_step": "verify_evidence",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-10",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "hub_liaison", "proposed_action": "verify_evidence"},
+      "expect_decision": "within_service_scope",
+      "expect_next_step": "verify_evidence",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-11",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "management_office_duty", "proposed_action": "request_cross_party_confirmation"},
+      "expect_error": "initiator_not_allowed",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-12",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "unknown_role", "proposed_action": "verify_evidence"},
+      "expect_error": "initiator_not_allowed",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-13",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "hub_liaison", "proposed_action": "direct_enforcement"},
+      "expect_decision": "restricted",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-14",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "management_office_duty", "proposed_action": "direct_enforcement"},
+      "expect_decision": "restricted",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-15",
+      "input": {"scenario_id": "SC-99", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "verify_evidence"},
+      "expect_error": "scenario_not_found",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-16",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "hub_liaison", "proposed_action": "share_restricted_data"},
+      "expect_decision": "unknown",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-17",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "operator_supervisor", "proposed_action": "unregistered_action"},
+      "expect_decision": "unknown",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-18",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "management_office_duty", "proposed_action": "share_restricted_data"},
+      "expect_decision": "unknown",
+      "expect_next_step": "escalate_for_human_review",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-19",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "management_office_duty", "proposed_action": "direct_enforcement", "model_text": "立即处罚并自动结案"},
+      "expect_decision": "restricted",
+      "expect_validator_result": "reject",
+      "must_human_gate": true
+    },
+    {
+      "case_id": "GC-20",
+      "input": {"scenario_id": "SC-01", "event_id": "NJS-DEMO-SC01-E01", "acting_role": "hub_liaison", "proposed_action": "request_cross_party_confirmation", "disable_model": true},
+      "expect_decision": "coordination_required",
+      "expect_template_fallback": true,
+      "must_human_gate": true
+    }
+  ]
+}

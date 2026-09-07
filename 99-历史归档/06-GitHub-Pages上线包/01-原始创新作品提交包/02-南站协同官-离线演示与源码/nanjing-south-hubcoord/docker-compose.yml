@@ -1,0 +1,33 @@
+services:
+  hubcoord:
+    build:
+      context: ..
+      dockerfile: nanjing-south-hubcoord/Dockerfile
+    image: nanjing-south-hubcoord:1.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HUBCOORD_PUBLIC_PORT:-8152}:8152"
+    environment:
+      HUBCOORD_DATA_DIR: /data
+      HUBCOORD_PORT: 8152
+      HUBCOORD_WORKERS: ${HUBCOORD_WORKERS:-2}
+      HUBCOORD_THREADS: ${HUBCOORD_THREADS:-4}
+      HUBCOORD_TIMEZONE: ${HUBCOORD_TIMEZONE:-Asia/Shanghai}
+      HUBCOORD_AUTH_USER: ${HUBCOORD_AUTH_USER:-}
+      HUBCOORD_AUTH_PASSWORD: ${HUBCOORD_AUTH_PASSWORD:-}
+    volumes:
+      - hubcoord_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8152/readyz', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  hubcoord_data:

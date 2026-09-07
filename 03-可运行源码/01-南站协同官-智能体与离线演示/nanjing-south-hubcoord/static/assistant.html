@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN" data-page="assistant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="问答助手小南：基于南京南站治理案例材料的可溯源问答、分析梳理与利益相关方视角模拟。">
+  <title>问答助手·小南｜南京南站治理案例</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="assistant.css">
+</head>
+<body class="assistant-page">
+  <a class="skip-link" href="#conversation">跳到对话区</a>
+  <main class="assistant-workbench">
+    <aside class="history-panel" id="historyPanel" aria-labelledby="history-title">
+      <div class="assistant-identity">
+        <span class="assistant-seal" aria-hidden="true"><img src="assets/nanyong-mark.svg" alt=""></span>
+        <div><p>南雍治道 · 案例智能体</p><h1>小南</h1></div>
+        <button class="history-close" id="historyClose" type="button" aria-label="关闭对话记录">×</button>
+      </div>
+      <p class="identity-note">南京南站案例教学专用问答助手。先检索已审阅材料，再组织回答与出处。</p>
+      <button class="new-chat-button" id="newChat" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        新建对话
+      </button>
+
+      <section class="history-section">
+        <div class="panel-label"><h2 id="history-title">对话记录</h2><span id="sessionCount">0</span></div>
+        <ol class="session-list" id="sessionList" aria-label="历史对话"></ol>
+        <p class="history-empty" id="historyEmpty">提问后，对话会保存在当前浏览器。</p>
+      </section>
+
+      <div class="history-footer">
+        <a href="agent-home.html"><span aria-hidden="true">←</span> 返回作品首页</a>
+        <p>案例教学与模拟推演工具<br>回答不能代替正式行政判断</p>
+      </div>
+    </aside>
+    <div class="history-scrim" id="historyScrim" hidden></div>
+
+    <section class="conversation-panel" id="conversation" aria-labelledby="workspace-title">
+      <header class="conversation-header">
+        <div>
+          <p class="workspace-kicker">NANJING SOUTH · RAG CASE DESK</p>
+          <h2 id="workspace-title">小南问答工作台</h2>
+        </div>
+        <div class="conversation-tools">
+          <span class="connection-status" id="connectionStatus"><i aria-hidden="true"></i><span>等待提问</span></span>
+          <button class="icon-button mobile-history-button" id="mobileHistory" type="button" aria-label="打开对话记录" aria-expanded="false" aria-controls="historyPanel">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </button>
+          <button class="icon-button" id="clearChat" type="button" aria-label="清空当前对话" title="清空当前对话">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="mode-switcher" role="radiogroup" aria-label="问题模式">
+        <button class="mode-button is-active" type="button" role="radio" aria-checked="true" data-mode="facts"><span>01</span><b>案例事实</b><small>查材料与证据</small></button>
+        <button class="mode-button" type="button" role="radio" aria-checked="false" data-mode="analysis"><span>02</span><b>分析梳理</b><small>拆机制与逻辑</small></button>
+        <button class="mode-button" type="button" role="radio" aria-checked="false" data-mode="stakeholder"><span>03</span><b>相关方模拟</b><small>理解立场分歧</small></button>
+      </div>
+
+      <div class="role-strip" id="stakeholderControls" hidden>
+        <label for="stakeholderSelect"><span>选择模拟角色</span><small>小南会依据该角色在案例中的职责与处境组织回答</small></label>
+        <select id="stakeholderSelect" name="stakeholder">
+          <option value="management_office_duty">南站综管办值守人员</option>
+          <option value="operator_supervisor">交控万物现场主管</option>
+          <option value="hub_liaison">铁路／枢纽联络人</option>
+          <option value="passenger">旅客</option>
+        </select>
+      </div>
+
+      <div class="message-scroll" id="messageScroll">
+        <div class="message-list" id="messageList" aria-live="polite" aria-relevant="additions text">
+          <section class="welcome-state" id="welcomeState">
+            <span class="welcome-mark" aria-hidden="true"><img src="assets/nanyong-mark.svg" alt=""></span>
+            <p class="welcome-overline">南京南站案例知识库</p>
+            <h3>从案例里，找答案。</h3>
+            <p>选择一种问答方式，输入问题。小南会检索案例材料，并标出回答依据。</p>
+          </section>
+        </div>
+      </div>
+
+      <div class="composer-wrap" id="composerWrap">
+        <div class="error-banner" id="errorBanner" role="alert" hidden>
+          <div><strong>这次没有收到回答</strong><span id="errorMessage">请检查连接后重试。</span></div>
+          <button id="retryButton" type="button">重新发送</button>
+        </div>
+        <p class="privacy-notice"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.7 2.8 8 7 10 4.2-2 7-5.3 7-10V6l-7-3Zm-3 9 2 2 4-4"/></svg><span>对话保存在当前浏览器，提问内容会发送给阿里千问。请勿输入未公开访谈、个人信息或内部材料。</span></p>
+        <div class="prompt-row" id="promptRow" aria-label="推荐问题"></div>
+        <form class="composer" id="chatForm">
+          <label class="sr-only" for="questionInput">向小南提问</label>
+          <textarea id="questionInput" rows="1" maxlength="1200" placeholder="输入问题，或点击麦克风说话" required></textarea>
+          <div class="composer-meta"><span id="characterCount">0 / 1200</span><span id="voiceStatus" aria-live="polite">Enter 发送 · Shift + Enter 换行</span></div>
+          <button class="voice-button" id="voiceInputButton" type="button" aria-label="开始语音输入" aria-pressed="false" title="开始语音输入">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z"/><path d="M5.5 11.5V12a6.5 6.5 0 0 0 13 0v-.5M12 18.5V22M8.5 22h7"/></svg>
+          </button>
+          <button class="send-button" id="sendButton" type="submit" aria-label="发送问题">
+            <span>发送</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="guide-panel" aria-labelledby="guide-title">
+      <section class="guide-intro">
+        <p class="workspace-kicker">QUESTION GUIDE</p>
+        <h2 id="guide-title">怎样问，答案更有用</h2>
+        <p>先选问题模式，再说明你想核对的事实、解释的机制或代入的角色。</p>
+      </section>
+      <section class="guide-block">
+        <h3>当前模式</h3>
+        <div class="mode-explanation" id="modeExplanation"></div>
+      </section>
+      <section class="guide-block latest-sources" id="latestSources" aria-labelledby="sources-title">
+        <div class="source-heading"><h3 id="sources-title">最近引用</h3><span id="sourceCount">0 条</span></div>
+        <div id="sourceShelf"><p class="source-placeholder">回答中的证据会显示在这里，便于返回案例原文核对。</p></div>
+      </section>
+      <section class="boundary-card">
+        <span>使用边界</span>
+        <p>小南可以解释材料、比较观点和模拟立场，但不会把推测写成事实，也不会代替治理主体作正式决定。</p>
+        <a href="evidence.html">查看证据口径 <span aria-hidden="true">→</span></a>
+      </section>
+    </aside>
+  </main>
+
+  <template id="loadingTemplate">
+    <article class="message assistant-message loading-message" aria-label="小南正在回答">
+      <div class="message-avatar" aria-hidden="true"><img src="assets/nanyong-mark.svg" alt=""></div>
+      <div class="message-content"><div class="message-author"><b>小南</b><span>正在检索案例材料</span></div><div class="thinking"><i></i><i></i><i></i><span>正在组织回答与来源</span></div></div>
+    </article>
+  </template>
+
+  <script src="site.js"></script>
+  <script src="assistant.js"></script>
+</body>
+</html>

@@ -10,75 +10,85 @@
 
 👉 **https://xuyiheng-code.github.io/nanjingnan-station-case-study/**
 
-`index.html` 是仓库的对外门户，复用南站协同官参赛工作台的设计系统。下面是该页面的完整截图：
+`index.html` 即作品主站入口，页面内容与线上主站 `https://hubcoord.cn/` 完全一致。下面是该作品主站的完整截图。
 
-### 01 / Hero — 主标题与六行星轨图
+### 01 / 主站封面
 
-![南雍治道 Hero](docs/screenshots/hero.png)
+![主站封面](docs/screenshots/cover.jpg)
 
-### 02 / Shared story world — SC-01 时间线 T+00 → T+45
+主站封面采用南京南站航拍图为底，叠加 Canvas 信号粒子动画，配三阶段演进（碎片化 → 平台化 → 智能化）与六入口索引（案例故事 / 案例分析 / 影像作品 / 协同实验 / 空间沙盘 / 问答助手）。
 
-![SC-01 时间线](docs/screenshots/story.png)
+### 02 / 案例故事
 
-### 03 / Portfolio — 作品卡片（视频、网页、智能体、3D 沙盘）
+![案例故事](docs/screenshots/story.jpg)
 
-![作品合集](docs/screenshots/works.png)
-![作品合集·续](docs/screenshots/works2.png)
+案例故事以 SC-01 现场为主线，呈现「一座车站，几套治理系统」的真实张力：大客流、多方式、三区两治、跨省道路权与协同复盘。
 
-### 04 / Source code — 源码入口（深色段 6 项目）
+### 03 / 案例分析
 
-![源码段](docs/screenshots/code.png)
-![源码项目卡片](docs/screenshots/code_grid.png)
+![案例分析](docs/screenshots/analysis.jpg)
 
-### 05 / Archive — 材料与规则 + footer
+案例分析分 8 节拆解问题：传统方式为何失灵 → 平台如何改变结构 → 效能边界在哪里 → 政企共创启示。
 
-![材料与规则](docs/screenshots/materials.png)
-![Footer](docs/screenshots/footer.png)
+### 04 / 影像作品
+
+![影像作品](docs/screenshots/film.jpg)
+
+7 分 43 秒正式参赛案例片，1080P，内嵌 HTML5 播放器与字幕。原始 .mp4 留在仓库外以避免 GitHub 100MB 单文件限制。
+
+### 05 / 空间沙盘（CAD）
+
+![空间沙盘](docs/screenshots/cad.jpg)
+
+三维车站沙盘，CAD 底图叠加案件场景与决策时间线，可在浏览器内交互切换治理结构与决策主体。
+
+### 06 / 协同实验（案例智能体 Demo）
+
+![协同实验](docs/screenshots/demo.jpg)
+
+南站协同官案例智能体的可操作 Demo：60 秒看协同官工作流 + 三分钟实录 + 议题卡样张。
+
+### 07 / 问答助手 · 小南
+
+![问答助手](docs/screenshots/assistant.jpg)
+
+基于已审阅案例材料的 RAG 问答助手，支持事实核对、机制分析、相关方模拟与中文语音输入。
 
 ---
 
-## 作品要点
-
-南京南站地处苏皖交界，长期存在「九龙治水」式的行政分割。本作品围绕三条主线展开：
-
-1. **从平台化到智能化**——以万物云（交控万物）入场为节点，刻画政企共创平台企业如何承接行政分割留下的协调真空；
-2. **协同官智能体**——围绕跨域枢纽事件整理证据、提示权责边界、起草协同议题卡，并保留人工确认；
-3. **小南案例问答助手**——基于已审阅的案例材料做 RAG 检索回答，支持事实核对、机制分析、相关方模拟与中文语音输入。
-
-理论框架与制度分析详见 [`01-原始创新作品提交包/00-请先阅读.md`](./01-原始创新作品提交包/00-请先阅读.md) 与 [`04-网页成品与展示材料/`](./04-网页成品与展示材料/) 下各交付稿页面。
-
-## 目录速览
+## 仓库目录
 
 | 目录 | 内容 | 建议先看 |
 | --- | --- | --- |
-| [`01-原始创新作品提交包/`](./01-原始创新作品提交包/) | 创新作品「南雍治道」提交包、导览视频与离线演示源码 | `00-请先阅读.md` |
-| [`02-终版案例视频/`](./02-终版案例视频/) | 案例片终版、字幕、封面与制作说明 | `README.md` |
-| [`03-可运行源码/`](./03-可运行源码/) | 工作台网页、3D 沙盘、Remotion 视频工程、智能体离线演示 | `README.md` |
-| [`04-网页成品与展示材料/`](./04-网页成品与展示材料/) | 已交付的 HTML 页面、参赛规划页、截图 | 子目录说明 |
-| [`05-设计与视觉资产/`](./05-设计与视觉资产/) | Logo、海报、设计系统、视觉输出 | `README.md` |
-| [`00-总览/`](./00-总览/) | 文件清单、上线说明、过程文档 | `文件清单.txt` |
+| `00-提交说明/` | 创新作品说明表、提交包清单、压缩前检查表、文件清单 | 说明表 |
+| `01-线上一致网页/` | 与线上主站一致的本地版，含案例故事、分析、影像、协同实验、空间沙盘、问答助手 | `index.html` |
+| `02-视频作品/` | 正式参赛案例片字幕、封面、关键帧；作品导览短片字幕与封面（>100MB 原片不进 Git） | `01-正式参赛案例片/` |
+| `03-可运行源码/` | 南站协同官智能体工程 · 南京南站 3D 空间沙盘 · 案例视频 Remotion 工程 | 各项目 README |
+| `04-设计与视觉资产/` | Logo、海报、设计系统、视觉输出 | `design-system/` |
+| `05-验证与截图/` | 网页截图、视频终审报告、提交前复核材料 | `网页截图/` |
+| `99-历史归档/` | 旧版目录（整合包结构与早前尝试），保留供回溯 | 不必打开 |
 
 ## 在线入口
 
 - **作品合集首页**：https://xuyiheng-code.github.io/nanjingnan-station-case-study/
-- **小南 · 案例问答助手**：https://qaq.hubcoord.cn/assistant.html
-- **南站工作台网页（本地版）**：[`03-可运行源码/南站工作台网页-hubcoord-case/index.html`](./03-可运行源码/南站工作台网页-hubcoord-case/index.html)
-- **南京南站 3D 运行沙盘**：[`03-可运行源码/南京南站3D仿真-station-sim-3d/`](./03-可运行源码/南京南站3D仿真-station-sim-3d/)
-- **案例视频 Remotion 工程**：[`03-可运行源码/案例视频Remotion工程-case-video/`](./03-可运行源码/案例视频Remotion工程-case-video/)
+- **线上主站**：https://hubcoord.cn/
+- **三维沙盘**：https://cad.hubcoord.cn/
+- **小南问答助手**：https://qaq.hubcoord.cn/assistant.html
 
-## 视频预览
+## 本地打开
 
-仓库内置两支网页友好型预览视频（原始高清版留在本地 `02-终版案例视频/`，不进入 Git 历史）：
-
-- [`web-media/nanjing-south-case-preview.mp4`](./web-media/nanjing-south-case-preview.mp4) — 案例片《从平台化到智能化》
-- [`web-media/hubcoord-guide-preview.mp4`](./web-media/hubcoord-guide-preview.mp4) — 协同官导览
+1. 直接双击 `index.html`（GitHub Pages 入口），浏览器会加载主站封面并跳转。
+2. 想直接进入主站目录，可打开 `01-线上一致网页/index.html`。
+3. 若只看案例正文 → `01-线上一致网页/story.html`。
+4. 若只看案例分析 → `01-线上一致网页/analysis.html`。
+5. 若查看正式案例片 → `01-线上一致网页/film.html`，或 `02-视频作品/01-正式参赛案例片/`。
+6. 若浏览空间沙盘 → `01-线上一致网页/cad/app.html`，或线上入口 `https://cad.hubcoord.cn/`。
 
 ## 仓库约定
 
-- 原始 `.mp4` 视频超过 100 MB 不进 Git，网页展示使用 `web-media/` 下的压缩版；
-- `06-GitHub-Pages上线包/` 与 `node_modules/` 已通过根目录 `.gitignore` 排除；
-- 本仓库根目录的 `index.html` 同时作为 GitHub Pages 入口；如需独立部署可改用 `06-GitHub-Pages上线包/`；
-- 提交规范的开发约定见 [`00-总览/后续开发与GitHub上线说明.md`](./00-总览/后续开发与GitHub上线说明.md)。
+- 原始 `.mp4` 视频超过 100 MB 不进 Git（女声版 ~299MB、男声版 ~300MB、导览版 ~138MB），网页展示使用 `01-线上一致网页/assets/films/` 下的智能体演示版（约 6-7 MB）。
+- `99-历史归档/` 与 `node_modules/` 已通过根目录 `.gitignore` 排除。
+- 本仓库根目录的 `index.html` 同时作为 GitHub Pages 入口；如需独立部署可改用 `01-线上一致网页/`。
 
 ## 团队与版权
 

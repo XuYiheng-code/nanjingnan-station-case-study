@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071926" />
+    <meta name="description" content="南雍治道团队正式参赛案例片：从平台化到智能化，呈现南京南站的治理现场、决策困境与制度边界。" />
+    <title>参赛影像作品｜南京南站治理案例｜南雍治道</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./showcase.css?v=20260907-4" />
+  </head>
+  <body class="film-page">
+    <a class="skip-link" href="#film-main">跳到案例视频</a>
+    <main class="film-shell" id="film-main">
+      <div class="film-grid" aria-hidden="true"></div>
+      <header class="film-header">
+        <a class="film-brand" href="index.html" aria-label="返回案例封面">
+          <span class="brand-mark" aria-hidden="true"><img src="./assets/nanyong-mark.svg" alt="" /></span>
+          <span><strong>南雍治道</strong><small>从平台化到智能化</small></span>
+        </a>
+        <nav aria-label="影像作品导航">
+          <a href="story.html">案例故事</a>
+          <a href="analysis.html">案例分析</a>
+          <a href="demo.html">协同实验</a>
+        </nav>
+      </header>
+
+      <div class="film-layout">
+        <section class="film-copy" aria-labelledby="film-title">
+          <p class="kicker">COMPETITION CASE FILM · 正式参赛影像</p>
+          <h1 class="film-title-long" id="film-title">
+            <span>从平台化到智能化：</span>
+            <span>政企共创平台企业</span>
+            <span class="accent">何以化解行政分割难题？</span>
+          </h1>
+          <p>——以南京南站跨区域公共交通枢纽为例。七分四十三秒，从治理现场进入“一区两治”的决策困境，呈现平台企业如何重组协同关系，也追问技术介入之后的权责边界。</p>
+          <dl class="film-meta">
+            <div><dt>作品</dt><dd>正式参赛案例片</dd></div>
+            <div><dt>画幅</dt><dd>16:9 · 1080P</dd></div>
+            <div><dt>团队</dt><dd>南雍治道</dd></div>
+          </dl>
+          <div class="film-voice">
+            <span>旁白版本</span>
+            <div class="film-voice-options" role="group" aria-label="选择旁白版本">
+              <button class="is-active" type="button" data-film-voice="female" aria-pressed="true">女声版</button>
+              <button type="button" data-film-voice="male" aria-pressed="false">男声版</button>
+            </div>
+          </div>
+          <div class="film-actions">
+            <a class="film-download" id="filmDownload" href="../../../../02-视频作品/01-正式参赛案例片/南京南站正式参赛案例片_阿里云女声_含BGM.mp4" download="南京南站正式参赛案例片_女声版_含BGM.mp4">下载当前版本</a>
+            <a class="film-back" href="demo.html">进入南站协同官 <span aria-hidden="true">→</span></a>
+          </div>
+          <p class="film-alt-downloads">本地提交包另附：<a href="../../../../02-视频作品/02-作品导览短片/南站协同官-作品导览视频.mp4">作品导览短片</a><span>·</span>无 BGM 版本可由 Remotion 工程中的 <code>props-nobgm.json</code> 复渲。</p>
+          <p class="film-transcripts">字幕文件：<a href="./assets/films/nanjing-south-competition-female.zh-CN.vtt" download>女声版</a><span>·</span><a href="./assets/films/nanjing-south-competition-male.zh-CN.vtt" download>男声版</a></p>
+        </section>
+
+        <section class="film-stage" aria-label="案例视频播放器">
+          <div class="film-frame" id="filmFrame">
+            <video id="caseFilm" controls playsinline preload="metadata" poster="./assets/films/nanjing-south-competition-poster.webp?v=20260907-4" aria-label="南京南站正式参赛案例片，当前为女声版旁白" data-female-src="../../../../02-视频作品/01-正式参赛案例片/南京南站正式参赛案例片_阿里云女声_含BGM.mp4" data-male-src="../../../../02-视频作品/01-正式参赛案例片/南京南站正式参赛案例片_阿里云男声_含BGM.mp4">
+              <source src="../../../../02-视频作品/01-正式参赛案例片/南京南站正式参赛案例片_阿里云女声_含BGM.mp4" type="video/mp4" />
+              <p>当前浏览器无法播放本视频。请<a href="../../../../02-视频作品/01-正式参赛案例片/南京南站正式参赛案例片_阿里云女声_含BGM.mp4" download>下载视频</a>后观看。</p>
+            </video>
+            <button class="film-play" id="filmPlay" type="button" aria-label="播放南京南站案例视频">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5z" /></svg>
+              <span>播放正式案例片</span>
+            </button>
+          </div>
+          <div class="film-caption"><span>建议横屏观看并开启声音</span><span id="filmRuntime">7 分 43 秒 · 含背景音乐</span></div>
+          <p class="film-error" id="filmError" role="status" hidden>视频暂时无法载入。可以使用左侧按钮下载后观看。</p>
+        </section>
+      </div>
+
+      <footer class="film-footer"><span>清华大学 · 2026 中国智能社会治理公共政策案例分析大赛</span><span>CASE PRESENTATION · NANJING SOUTH STATION</span></footer>
+    </main>
+    <script src="./showcase.js?v=20260907-5" defer></script>
+  </body>
+</html>

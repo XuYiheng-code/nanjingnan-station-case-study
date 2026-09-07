@@ -1,0 +1,48 @@
+{
+  "rule_version": "v1.0",
+  "usage_rule": "规则由研究组人工维护。模型只能读取匹配结果，不能新增、删除或修改规则。",
+  "rules": [
+    {
+      "rule_id": "AR-SC01-01",
+      "event_type": "passenger_traffic_coupling",
+      "spatial_scope": "cross_boundary",
+      "proposed_action": "verify_evidence",
+      "initiator_roles": ["operator_supervisor", "management_office_duty", "hub_liaison"],
+      "authority_level": "service",
+      "data_class": "simulated",
+      "decision": "within_service_scope",
+      "required_human_roles": ["operator_supervisor"],
+      "boundary_reason": "仅核验模拟线索和服务范围内的现场情况，不构成对外部主体的处置要求。",
+      "source_ids": ["SIM-SC01-01"],
+      "rule_version": "v1.0"
+    },
+    {
+      "rule_id": "AR-SC01-02",
+      "event_type": "passenger_traffic_coupling",
+      "spatial_scope": "cross_boundary",
+      "proposed_action": "request_cross_party_confirmation",
+      "initiator_roles": ["operator_supervisor", "hub_liaison"],
+      "authority_level": "coordination",
+      "data_class": "simulated",
+      "decision": "coordination_required",
+      "required_human_roles": ["operator_supervisor", "management_office_duty"],
+      "boundary_reason": "模拟事件涉及站内停车和外围道路两个界面，系统只能起草协同议题，需人工确认对象和范围。",
+      "source_ids": ["SIM-SC01-01", "SIM-SC01-02"],
+      "rule_version": "v1.0"
+    },
+    {
+      "rule_id": "AR-SC01-03",
+      "event_type": "passenger_traffic_coupling",
+      "spatial_scope": "cross_boundary",
+      "proposed_action": "direct_enforcement",
+      "initiator_roles": ["operator_supervisor", "management_office_duty", "hub_liaison"],
+      "authority_level": "restricted",
+      "data_class": "simulated",
+      "decision": "restricted",
+      "required_human_roles": ["management_office_duty"],
+      "boundary_reason": "行政执法不属于展示版智能体的能力范围；系统只能提示升级与确认路径。",
+      "source_ids": ["SIM-SC01-02"],
+      "rule_version": "v1.0"
+    }
+  ]
+}
